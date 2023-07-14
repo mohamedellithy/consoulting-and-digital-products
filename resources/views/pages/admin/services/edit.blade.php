@@ -2,12 +2,12 @@
 
 @section('content')
 <h4 class="fw-bold py-3 mb-2">
-    <span class="text-muted fw-light">Forms /</span> Basic Inputs
+    تعديل حدمة
 </h4>
 
 <div class="row">
     <div class="col-md-12">
-        <form class novalidate method="POST" action="{{ route('admin.services.update', $serivce->id) }}" enctype="multipart/form-data">
+        <form class novalidate method="POST" action="{{ route('admin.services.update', $service->id) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="card mb-4">
@@ -20,7 +20,7 @@
                                     اسم الخدمة
                                 </label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" id="formtabs-first-name" name="name" type="text" placeholder value="{{ $serivce->name ?? old('name') }}">
+                                    <input class="form-control" id="formtabs-first-name" name="name" type="text" placeholder value="{{ $service->name ?? old('name') }}">
                                     @error('name')
                                         <span class="text-danger w-100 fs-6">
                                             {{ $message }}
@@ -36,7 +36,7 @@
                                 </label>
                                 <div class="col-sm-9">
                                     <textarea class="form-control" id="editor" name="description" rows="7">
-                                        {{ $serivce->description }}</textarea>
+                                        {{ $service->description }}</textarea>
                                         @error('description')
                                             <span class="text-danger w-100 fs-6">
                                                 {{ $message }}
@@ -78,7 +78,7 @@
                                 <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">
                                     رقم الواتساب</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" id="formtabs-first-name" name="whatsapNumber" type="text" placeholder value="{{ $serivce->whatsapNumber ?? old('whatsapNumber') }}">
+                                    <input class="form-control" id="formtabs-first-name" name="whatsapNumber" type="text" placeholder value="{{ $service->whatsapNumber ?? old('whatsapNumber') }}">
                                     @error('whatsapNumber')
                                         <span class="text-danger w-100 fs-6">
                                             {{$message }}

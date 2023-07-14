@@ -2,7 +2,7 @@
 
 @section('content')
     <h4 class="fw-bold py-3 mb-2">
-        <span class="text-muted fw-light">Forms /</span> Basic Inputs
+       انشاء خدمة
     </h4>
 
     <div class="row">
@@ -10,7 +10,7 @@
             <form action="{{ route('admin.services.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card mb-4">
-                    <h5 class="card-header">Default</h5>
+                    {{-- <h5 class="card-header">Default</h5> --}}
                     <div class="card-body">
                         <div class="row g-3">
                             <div class="col-md-6">

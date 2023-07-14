@@ -3077,7 +3077,7 @@ fieldset:disabled .btn {
     clear: both;
     font-weight: 400;
     color: #697a8d;
-    text-align: inherit;
+    text-align: start;
     white-space: nowrap;
     background-color: transparent;
     border: 0;
