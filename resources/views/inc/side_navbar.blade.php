@@ -58,7 +58,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+            <a href="{{ route('admin.dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -73,12 +73,12 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('add_service') }}" class="menu-link">
+                    <a href="{{ route('admin.services.create') }}" class="menu-link">
                         <div data-i18n="Without menu">اضافة</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('list_services') }}" class="menu-link">
+                    <a href="{{ route('admin.services.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
                     </a>
                 </li>

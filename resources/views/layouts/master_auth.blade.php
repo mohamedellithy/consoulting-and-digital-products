@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style customizer-hide" dir="ltr">
+<html lang="ar" class="light-style customizer-hide" dir="rtl">
 
 <head>
     <meta charset="utf-8" />

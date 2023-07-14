@@ -1,4 +1,4 @@
-@extends('master_auth')
+@extends('layouts.master_auth')
 
 @section('content')
 <div class="container-xxl">
