@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-menu-fixed" dir="rtl">
+<html lang="ar" class="light-style layout-menu-fixed" dir="rtl">
 
 <head>
     <meta charset="utf-8" />
@@ -27,8 +27,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ asset('/assets/vendor/css/theme-default.css') }}"
-        class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/css/rtl.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/css/theme-default.css') }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('/assets/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
@@ -46,7 +46,7 @@
     <script src="{{ asset('/assets/js/config.js') }}"></script>
 </head>
 
-<body>
+<body id="rtl">
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">

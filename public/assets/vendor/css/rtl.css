@@ -1,0 +1,29 @@
+/* rtl */
+
+@media (min-width: 1200px) {
+    .layout-menu-fixed .layout-menu,
+    .layout-menu-fixed-offcanvas .layout-menu {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0 !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+    .layout-menu-fixed:not(.layout-menu-collapsed) .layout-page,
+    .layout-menu-fixed-offcanvas:not(.layout-menu-collapsed) .layout-page {
+        padding-left: 0px !important;
+        padding-right: 16.25rem;
+    }
+}
+
+.ms-auto {
+    margin-right: auto !important;
+    margin-left: 0px !important;
+}
+
+.dropdown-menu-end[data-bs-popper] {
+    left: 0;
+    right: auto;
+    text-align: right;
+}

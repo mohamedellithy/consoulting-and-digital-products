@@ -7,66 +7,31 @@ use App\Models\Service;
 
 class ServiceController extends Controller
 {
-    public function create()
-    {
-        return view('pages.admin.services._form');
-
+    public function create(){
+        return view('pages.admin.services.create');
     }
-    public function store(ServiceRequest $request)
-    {
+    public function store(ServiceRequest $request){
         Service::create($request->all());
-
-        return redirect()->route('list_services')->with('success_message', 'تم انشاء الخدمةابقة');
-
+        return redirect()->route('admin.services.index')->with('success_message', 'تم انشاء الخدمةابقة');
     }
     public function index()
     {
-        //     $data=Service::select('*');
-        //    return DataTables::of($data)->addIndexColumn()
-        $services = Service::orderBy('id', 'asc')->get();
-        return view('pages.admin.services.list')
-            ->with('services', $services);
-        //    ->make(true);
+        $services = Service::orderBy('id', 'desc')->paginate(10);
+        return view('pages.admin.services.index',compact('services'));
 
     }
-    public function edit($service_id)
+    public function edit($id)
     {
-        $service = Service::find($service_id);
-        return view('pages.admin.services._form')
-            ->with('service', $service);
-
+        $service = Service::find($id);
+        return view('pages.admin.services.edit',compact('service'));
     }
-    public function update(ServiceRequest $request, $service_id)
+    public function show($id){
+        $service = Service::find($id);
+        return view('pages.admin.services.show',compact('service'));
+    }
+    public function delete($id)
     {
-        $service = Service::findOrFail($service_id);
-        $service->name = $request->input('name');
-        $service->description = $request->input('description');
-        $service->image = $request->image;
-        $service->whatsapStatus = $request->input('whatsapStatus');
-        $service->whatsapNumber = $request->input('whatsapNumber');
-        $service->loginStatus = $request->input('loginStatus');
-        $service->save();
+        $service = Service::destroy($id);
         return redirect()->route('list_services');
-    }
-
-    public function show($service_id)
-    {
-        $service = Service::find($service_id);
-        return view('pages.admin.services.show')
-            ->with('service', $service);
-
-    }
-    public function delete($service_id)
-    {
-        // dd($service_id);
-        $service = Service::where('id', $service_id)->first();
-
-// ;
-        // dd($service);
-
-        $service->delete();
-
-        return redirect()->route('list_services');
-
     }
 }
