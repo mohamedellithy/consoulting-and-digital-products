@@ -24,6 +24,7 @@ class Service extends Model
     }
     public function setImageAttribute($image)
     {
+        // dd($image);
         $upload = new UploadImage();
         $image = $upload->upload($image);
         $this->attributes['image'] = $image->id;

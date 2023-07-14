@@ -21,9 +21,12 @@ class ServiceController extends Controller
     }
     public function index()
     {
-        $services = Service::orderBy('id', 'desc')->get();
+        //     $data=Service::select('*');
+        //    return DataTables::of($data)->addIndexColumn()
+        $services = Service::orderBy('id', 'asc')->get();
         return view('pages.admin.services.list')
             ->with('services', $services);
+        //    ->make(true);
 
     }
     public function edit($service_id)
@@ -33,7 +36,20 @@ class ServiceController extends Controller
             ->with('service', $service);
 
     }
-      public function show($service_id)
+    public function update(ServiceRequest $request, $service_id)
+    {
+        $service = Service::findOrFail($service_id);
+        $service->name = $request->input('name');
+        $service->description = $request->input('description');
+        $service->image = $request->image;
+        $service->whatsapStatus = $request->input('whatsapStatus');
+        $service->whatsapNumber = $request->input('whatsapNumber');
+        $service->loginStatus = $request->input('loginStatus');
+        $service->save();
+        return redirect()->route('list_services');
+    }
+
+    public function show($service_id)
     {
         $service = Service::find($service_id);
         return view('pages.admin.services.show')
@@ -50,7 +66,7 @@ class ServiceController extends Controller
 
         $service->delete();
 
-       return redirect()->route('list_services');
+        return redirect()->route('list_services');
 
     }
 }

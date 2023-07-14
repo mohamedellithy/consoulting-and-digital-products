@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-    <h4 class="fw-bold py-3 mb-2">
-        <span class="text-muted fw-light">Tables /</span> Basic Tables
+    <h4 class="fw-bold py-3  mb-2">
+        الخدمات
     </h4>
 
     <!-- Basic Bootstrap Table -->
     <div class="card">
-        <h5 class="card-header">Table Basic</h5>
+        {{-- <h5 class="card-header">Table Basic</h5> --}}
         <div class="table-responsive text-nowrap">
-            <table class="table">
+            <table class="table" id="table_id">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -72,8 +72,8 @@
                                                 class="bx bx-trash me-2"></i>حذف
 
                                         </a>
-                                         <a class="dropdown-item" href="{{ route('show', $service->id) }}"><i
-                                                class="bx bx-detail me-2"></i>عرض
+                                         <a class="dropdown-item" href="{{ route('show', $service->id) }}">
+                                               <i class="fa-regular fa-eye"></i>عرض
 
                                         </a>
                                     </div>
@@ -89,3 +89,4 @@
     </div>
     <!--/ Basic Bootstrap Table -->
 @endsection
+

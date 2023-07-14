@@ -2,17 +2,17 @@
 
 @section('content')
     <h4 class="fw-bold py-3 mb-2">
-        <span class="text-muted fw-light">Forms /</span> Basic Inputs
+        اضافة خدمة
     </h4>
 
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
-                <h5 class="card-header">Default</h5>
+                {{-- <h5 class="card-header">Default</h5> --}}
                 <div class="card-body">
 
                     @if (Route::currentRouteName() == 'edit')
-                        <form class="" novalidate="" method="POST" action="{{ route('update', $data->id) }}"
+                        <form class="" novalidate="" method="POST" action="{{ route('update', $service->id) }}"
                             enctype="multipart/form-data">
                             {{ method_field('PUT') }}
                         @else
@@ -27,7 +27,7 @@
                                     اسم الخدمة</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="name" id="formtabs-first-name" class="form-control"
-                                        placeholder=""value="{{ $data->name ?? old('name') }}" />
+                                        placeholder=""value="{{ $service->name ?? old('name') }}" />
                                     @error('name')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                     @enderror
@@ -39,7 +39,7 @@
                                 <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-last-name"> وصف الخدمة
                                 </label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" id="editor" rows="7" name='description'>{{ $data->description ?? old('description') }}</textarea>
+                                    <textarea class="form-control" id="editor" rows="7" name='description'>{{ $service->description ?? old('description') }}</textarea>
                                     @error('description')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                     @enderror
@@ -83,7 +83,7 @@
                                     رقم الواتساب</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="whatsapNumber" id="formtabs-first-name" class="form-control"
-                                        placeholder=""value="{{ $data->whatsapNumber ?? old('whatsapNumber') }}" />
+                                        placeholder=""value="{{ $service->whatsapNumber ?? old('whatsapNumber') }}" />
                                     @error('whatsapNumber')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                     @enderror
