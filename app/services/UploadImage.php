@@ -18,11 +18,12 @@ class UploadImage
                 'message' => 'Image not Exist',
             ];
         endif;
+$upload = $this->image->storeAs($this->image_path(), $this->generate_image_name(), 'public');
 
-        $image_path = $this->get_full_image_path();
+        // $image_path = $this->get_full_image_path();
 
-        if ($this->storage_image()):
-            return $this->store_on_db($image_path);
+        if ($upload):
+            return $this->store_on_db($upload );
         endif;
 
         return [
@@ -59,17 +60,19 @@ class UploadImage
         return 'services/image';
     }
 
-    public function storage_image()
-    {
-        $upload = $this->image->storeAs($this->image_path(), $this->generate_image_name(), 'public');
-        if ($upload) {
-            return true;
-        }
+    // public function storage_image()
+    // {
+    //     $upload = $this->image->storeAs($this->image_path(), $this->generate_image_name(), 'public');
 
-    }
+    //     if ($upload) {
+    //         return true;
+    //     }
+
+    // }
 
     public function store_on_db($image)
     {
+
         $image = Image::create([
             'path' => $image,
 

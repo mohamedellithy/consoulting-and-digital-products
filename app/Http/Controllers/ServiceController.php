@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
+use App\Services\UploadImage;
 
 class ServiceController extends Controller
 {
@@ -37,9 +38,8 @@ class ServiceController extends Controller
         $service->whatsapNumber = $request->input('whatsapNumber');
         $service->loginStatus = $request->input('loginStatus');
         $service->save();
-       return redirect()->route('admin.services.index');
+        return redirect()->route('admin.services.index');
         // return redirect()->back();
-
 
     }
     public function show($id)
@@ -49,8 +49,12 @@ class ServiceController extends Controller
     }
     public function destroy($id)
     {
+        $service = Service::find($id)->value('image');
+        $upload = new UploadImage();
+        $image = $upload->delete_image($service);
         $service = Service::destroy($id);
-       return redirect()->route('admin.services.index');
+
+        return redirect()->route('admin.services.index');
 
     }
 }
