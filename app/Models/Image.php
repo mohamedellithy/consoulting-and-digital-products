@@ -11,6 +11,8 @@ class Image extends Model
     use HasFactory;
     protected $fillable = [
         'path',
+        'meta_title',
+        'meta_description'
     ];
 
     public function service()

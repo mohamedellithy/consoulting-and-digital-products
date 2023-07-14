@@ -17,10 +17,12 @@ class Service extends Model
         'whatsapStatus',
         'whatsapNumber',
         'loginStatus',
+        'meta_title',
+        'meta_description',
     ];
     public function image_info()
     {
-        return $this->belongsTo(Image::class, 'image','id');
+        return $this->belongsTo(Image::class, 'image', 'id');
     }
     public function setImageAttribute($image)
     {

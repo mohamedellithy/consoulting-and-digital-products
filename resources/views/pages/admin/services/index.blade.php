@@ -26,7 +26,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $service->id }}</td>
                                 <td>{{ $service->name }}</td>
-                                <td>{{ $service->description }}</td>
+                                <td class="d-inline-block text-truncate" style="max-width: 150px;">{{ $service->description }}</td>
                                 <td>
                                     <ul class="list-unstyled categorys-list m-0 avatar-group d-flex align-items-center">
 
