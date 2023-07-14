@@ -19,9 +19,8 @@ class ServiceController extends Controller
     }
     public function index()
     {
-        $services = Service::orderBy('id', 'desc')->paginate(10);
+        $services = Service::with('image_info')->orderBy('id', 'desc')->paginate(10);
         return view('pages.admin.services.index', compact('services'));
-
     }
     public function edit($id)
     {

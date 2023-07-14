@@ -5,7 +5,7 @@
         <!-- Basic Bootstrap Table -->
         <div class="card">
             {{-- <h5 class="card-header">Table Basic</h5> --}}
-            <div class="table-responsive text-nowrap">
+            <div class="table-responsive">
                 <table class="table" id="table_id">
                     <thead>
                         <tr>
@@ -33,7 +33,7 @@
                                         <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
                                             class="avatar avatar-xs pull-up" title="Christina Parker">
                                             {{-- {{ dd($service->image) }} --}}
-                                            <img src="{{ $service->image }}" alt="Avatar" class="rounded-circle">
+                                            <img src="{{ upload_assets($service->image_info) }}" alt="Avatar" class="rounded-circle">
                                         </li>
                                     </ul>
                                 </td>
@@ -87,6 +87,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $services->links() }}
             </div>
         </div>
         <!--/ Basic Bootstrap Table -->

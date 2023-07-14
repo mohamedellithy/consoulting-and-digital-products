@@ -3,7 +3,8 @@ namespace App\Services;
 
 use App\Models\Image;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 class UploadImage
 {
 
@@ -18,9 +19,9 @@ class UploadImage
                 'message' => 'Image not Exist',
             ];
         endif;
-$upload = $this->image->storeAs($this->image_path(), $this->generate_image_name(), 'public');
 
-        // $image_path = $this->get_full_image_path();
+        $new_image_name = $this->generate_image_name();
+        $upload = $this->image->storeAs($this->image_path(), $new_image_name, 'public');
 
         if ($upload):
             return $this->store_on_db($upload );
@@ -60,16 +61,6 @@ $upload = $this->image->storeAs($this->image_path(), $this->generate_image_name(
         return 'services/image';
     }
 
-    // public function storage_image()
-    // {
-    //     $upload = $this->image->storeAs($this->image_path(), $this->generate_image_name(), 'public');
-
-    //     if ($upload) {
-    //         return true;
-    //     }
-
-    // }
-
     public function store_on_db($image)
     {
 
@@ -85,18 +76,19 @@ $upload = $this->image->storeAs($this->image_path(), $this->generate_image_name(
     {
         $image = Image::find($image_id);
 
-        if ($image):
-            if (file_exists(public_path($image->path))):
-                File::delete(public_path($image->path));
+        if($image):
+            if(file_exists(public_path('storage/'.$image->path))):
+                File::delete(public_path('storage/'.$image->path));
             endif;
-
-            $image->delete();
-            return [
-                'status' => 'true',
-                'message' => 'Image is stored successfully',
-                'path' => $image,
-            ];
         endif;
+
+        $image->delete();
+
+        return [
+            'status' => 'true',
+            'message' => 'Image is stored successfully',
+            'path' => $image,
+        ];
     }
     public function add_image_info($data, $image_id)
     {

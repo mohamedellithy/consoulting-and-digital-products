@@ -18,9 +18,9 @@ class Service extends Model
         'whatsapNumber',
         'loginStatus',
     ];
-    public function image()
+    public function image_info()
     {
-        return $this->belongsTo(Image::class, 'id', 'image');
+        return $this->belongsTo(Image::class, 'image','id');
     }
     public function setImageAttribute($image)
     {
@@ -30,14 +30,14 @@ class Service extends Model
         $this->attributes['image'] = $image->id;
     }
 
-    public function getImageAttribute($image)
-    {
-        $image = Image::find($image)->path;
-        //  dd($image);
-        if (is_null($image)) {
-            return asset('storage/images/services/man.jpg');
-        }
-        return asset('storage') . '/' . $image;
-    }
+    // public function getImageAttribute($image)
+    // {
+    //     // $image = Image::find($image)->path;
+    //     // //  dd($image);
+    //     // if (is_null($image)) {
+    //     //     return asset('storage/images/services/man.jpg');
+    //     // }
+    //     // return asset('storage') . '/' . $image;
+    // }
 
 }

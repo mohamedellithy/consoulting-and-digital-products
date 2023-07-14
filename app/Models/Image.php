@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Casts\Attribute;
 class Image extends Model
 {
     use HasFactory;
@@ -15,6 +15,6 @@ class Image extends Model
 
     public function service()
     {
-        return $this->hasOne(Service::class,'image','id');
+        return $this->hasMany(Service::class,'id','image');
     }
 }
