@@ -57,17 +57,17 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active">
+        <li class="menu-item {{ IsActiveOnlyIf(['admin.dashboard']) }}">
             <a href="{{ route('admin.dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">الرئيسية</div>
             </a>
         </li>
 
-        <!-- Layouts -->
-        <li class="menu-item">
+        <!-- services -->
+        <li class="menu-item {{ IsActiveOnlyIf(['admin.services.index','admin.services.create','admin.services.edit']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <i class='menu-icon tf-icons bx bx-dialpad'></i>
                 <div data-i18n="Layouts">الخدمات</div>
             </a>
 
@@ -82,27 +82,159 @@
                         <div data-i18n="Without navbar">عرض</div>
                     </a>
                 </li>
-                {{-- <li class="menu-item">
-                    <a href="layouts-container.html" class="menu-link">
-                        <div data-i18n="Container">Container</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="layouts-fluid.html" class="menu-link">
-                        <div data-i18n="Fluid">Fluid</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="layouts-blank.html" class="menu-link">
-                        <div data-i18n="Blank">Blank</div>
-                    </a>
-                </li> --}}
             </ul>
         </li>
 
+        <!-- products -->
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-category'></i>
+                <div data-i18n="Layouts">المنتجات</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.create') }}" class="menu-link">
+                        <div data-i18n="Without menu">اضافة</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar">عرض</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- orders -->
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-package'></i>
+                <div data-i18n="Layouts">الطلبات</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.create') }}" class="menu-link">
+                        <div data-i18n="Without menu">اضافة</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar">عرض</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- المستخدمين -->
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-user-pin'></i>
+                <div data-i18n="Layouts">المستخدمين</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.create') }}" class="menu-link">
+                        <div data-i18n="Without menu">اضافة</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar">عرض</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+         <!-- عمليات الدفع -->
+         <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-wallet' ></i>
+                <div data-i18n="Layouts">عمليات الدفع</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.create') }}" class="menu-link">
+                        <div data-i18n="Without menu">اضافة</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar">عرض</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+         <!-- اعدادات المنصة-->
+         <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bx-cog'></i>
+                <div data-i18n="Layouts">اعدادات المنصة</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.create') }}" class="menu-link">
+                        <div data-i18n="Without menu">اضافة</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar">عرض</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- الوسائط-->
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bx-images' ></i>
+                <div data-i18n="Layouts">الوسائط</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.create') }}" class="menu-link">
+                        <div data-i18n="Without menu">اضافة</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar">عرض</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+         <!-- بوابات الدفع-->
+         <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-credit-card-alt'></i>
+                <div data-i18n="Layouts">بوابات الدفع</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.create') }}" class="menu-link">
+                        <div data-i18n="Without menu">اضافة</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar">عرض</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
         {{-- <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Pages</span>
-        </li>
+        </li> --}}
+        {{--
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
