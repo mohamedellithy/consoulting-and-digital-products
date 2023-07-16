@@ -83,7 +83,7 @@
             </div>
             <!-- / Layout page -->
         </div>
-
+        @include('includes.media')
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
@@ -112,8 +112,16 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        jQuery('document').ready(function(){
+            jQuery('.upload-media').click(function(){
+                jQuery('#exLargeModal').modal('show');
+            });
+        });
+    </script>
  
-     @stack('script')
+    @stack('script')
 
 </body>
 

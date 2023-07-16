@@ -72,12 +72,12 @@
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.services.create']) }}">
                     <a href="{{ route('admin.services.create') }}" class="menu-link">
                         <div data-i18n="Without menu">اضافة</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.services.index']) }}">
                     <a href="{{ route('admin.services.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
                     </a>

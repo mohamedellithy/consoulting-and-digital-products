@@ -47,6 +47,28 @@ body {
     padding-right: 10%;
 }
 
+.menu-sub>.menu-item>.menu-link {
+    padding: 12px 30px 12px 10px;
+}
+
+.modal .nav.nav-pills.nav-fill {
+    display: -webkit-inline-box !important;
+}
+
+.modal .list-medias {
+    list-style: none;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+
+.modal .list-medias li {
+    padding: 28px;
+    border: 10px solid #eee;
+    margin: 10px;
+}
+
 @media (min-width: 1200px) {
     .layout-menu-fixed .layout-menu,
     .layout-menu-fixed-offcanvas .layout-menu {
