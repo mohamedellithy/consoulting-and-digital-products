@@ -51,8 +51,6 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $service = Service::find($id)->value('image');
-        $upload = new UploadImage();
-        $image = $upload->delete_image($service);
         $service = Service::destroy($id);
 
         return redirect()->route('admin.services.index');

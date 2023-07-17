@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\MediaAjaxController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'auth','as' => 'admin.'],function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::resource('services',ServiceController::class);
     Route::resource('media-lists',MediaAjaxController::class);
+    Route::resource('products',ProductController::class);
 });
 
 Route::get('/search',[ServiceController::class, 'search'])->name('search');

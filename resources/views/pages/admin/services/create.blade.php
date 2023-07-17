@@ -31,7 +31,7 @@
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-icon-default-fullname">حالة تسجيل الدخول</label>
                                     <select name="loginStatus" id="formtabs-country" class="select2 form-select"
@@ -74,15 +74,20 @@
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-fullname"> الصورة</label>
                                 <br/>
-                                <button type="button" class="btn btn-danger upload-media" data-type-media="image">
-                                    <i class='bx bx-upload' ></i>
-                                    اضافة صورة للخدمة
-                                    <input type="hidden" name="image" 
-                                        class="form-control dob-picker uploaded-media-ids" required/>
-                                </button>
-                                @error('image')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
+                                <div class="container-uploader">
+                                    <button type="button" class="btn btn-danger upload-media" data-type-media="image">
+                                        <i class='bx bx-upload' ></i>
+                                        اضافة صورة للخدمة
+                                        <input type="hidden" name="image"
+                                            class="form-control dob-picker uploaded-media-ids" required/>
+                                    </button>
+                                    @error('image')
+                                        <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                    @enderror
+                                    <div class="preview-thumbs">
+                                        <ul class="list-preview-thumbs"></ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

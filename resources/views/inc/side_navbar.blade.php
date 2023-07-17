@@ -86,20 +86,20 @@
         </li>
 
         <!-- products -->
-        <li class="menu-item">
+        <li class="menu-item {{ IsActiveOnlyIf(['admin.products.index','admin.products.create']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-category'></i>
                 <div data-i18n="Layouts">المنتجات</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.create') }}" class="menu-link">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.products.create']) }}">
+                    <a href="{{ route('admin.products.create') }}" class="menu-link">
                         <div data-i18n="Without menu">اضافة</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.products.index']) }}">
+                    <a href="{{ route('admin.products.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
                     </a>
                 </li>

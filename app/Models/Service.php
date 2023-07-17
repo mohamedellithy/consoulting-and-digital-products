@@ -20,6 +20,7 @@ class Service extends Model
         'meta_title',
         'meta_description',
     ];
+    
     public function image_info()
     {
         return $this->belongsTo(Image::class, 'image', 'id');
