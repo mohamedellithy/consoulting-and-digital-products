@@ -26,3 +26,19 @@ if(!function_exists('IsActiveOnlyIf')){
         return '';
     }
 }
+
+
+if(!function_exists('TrimLongText')){
+    function TrimLongText($text,$length = 100){
+        return substr($text,0,$length).' ... ';
+    }
+}
+
+if(!function_exists('GetAttachments')) {
+    function GetAttachments($attachments_id)
+    {
+        $media_ids = explode(',', $attachments_id);
+        $attachments = \App\Models\Image::whereIn('id', $media_ids)->get();
+        return $attachments;
+    }
+}

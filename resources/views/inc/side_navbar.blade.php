@@ -86,7 +86,7 @@
         </li>
 
         <!-- products -->
-        <li class="menu-item {{ IsActiveOnlyIf(['admin.products.index','admin.products.create']) }}">
+        <li class="menu-item {{ IsActiveOnlyIf(['admin.products.index','admin.products.create','admin.products.edit']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-category'></i>
                 <div data-i18n="Layouts">المنتجات</div>

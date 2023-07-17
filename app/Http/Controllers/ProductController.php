@@ -13,38 +13,77 @@ class ProductController extends Controller
     }
     public function store(ProductRequest $request)
     {
-        Product::create($request->all());
+        Product::create($request->only([
+            'name',
+            'description',
+            'thumbnail_id',
+            'status',
+            'slug',
+            'attachments_id',
+            'price',
+            'discount',
+            'meta_title',
+            'meta_description'
+        ]));
         return redirect()->route('admin.products.index')->with('success_message', 'تم انشاء الخدمة');
     }
-    public function index()
+    public function index(Request $request)
     {
+        $products =  Product::query();
+        $products = $products->with('image_info');
+        $per_page = 10;
+        if($request->has('search')):
+            $products = $products->where('name', 'like', '%' . $request->query('search') . '%')->orWhere('name', 'like', '%' . $request->query('search') . '%');
+        endif;
 
-        $services = Product::with('image_info')->orderBy('id', 'desc')->paginate(10);
-        return view('pages.admin.products.index', compact('services'));
+        if($request->has('status')):
+            $products = $products->where('status',$request->query('status'));
+        endif;
+
+        if($request->has('filter')):
+            if($request->query('filter') == 'high-price'):
+                $products = $products->orderBy('price','desc');
+            elseif($request->query('filter') == 'low-price'):
+                $products = $products->orderBy('price','asc');
+            endif;
+        else:
+            $products = $products->orderBy('id', 'desc');
+        endif;
+
+        if($request->has('rows')):
+            $per_page = $request->query('rows');
+        endif;
+
+        $products = $products->paginate($per_page);
+        return view('pages.admin.products.index', compact('products'));
     }
     public function edit($id)
     {
-        $service = Product::find($id);
-        return view('pages.admin.products.edit', compact('service'));
+        $product = Product::find($id);
+        return view('pages.admin.products.edit', compact('product'));
     }
     public function update(ProductRequest $request, $id)
     {
-        $service = Product::findOrFail($id);
-        $service->name = $request->input('name');
-        $service->description = $request->input('description');
-        $service->image = $request->image;
-        $service->whatsapStatus = $request->input('whatsapStatus');
-        $service->whatsapNumber = $request->input('whatsapNumber');
-        $service->loginStatus = $request->input('loginStatus');
-        $service->save();
+        $product = Product::where('id',$id)->update($request->only([
+            'name',
+            'description',
+            'thumbnail_id',
+            'status',
+            'slug',
+            'attachments_id',
+            'price',
+            'discount',
+            'meta_title',
+            'meta_description'
+        ]));
         return redirect()->route('admin.products.index');
         // return redirect()->back();
 
     }
     public function show($id)
     {
-        $service = Product::find($id);
-        return view('pages.admin.services.show', compact('service'));
+        $product = Product::find($id);
+        return view('pages.admin.products.show', compact('product'));
     }
     public function destroy($id)
     {
