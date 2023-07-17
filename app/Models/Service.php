@@ -24,13 +24,13 @@ class Service extends Model
     {
         return $this->belongsTo(Image::class, 'image', 'id');
     }
-    public function setImageAttribute($image)
-    {
-        // dd($image);
-        $upload = new UploadImage();
-        $image = $upload->upload($image);
-        $this->attributes['image'] = $image->id;
-    }
+    // public function setImageAttribute($image)
+    // {
+    //     // dd($image);
+    //     $upload = new UploadImage();
+    //     $image = $upload->upload($image);
+    //     $this->attributes['image'] = $image->id;
+    // }
 
     // public function getImageAttribute($image)
     // {

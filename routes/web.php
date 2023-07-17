@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\MediaAjaxController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth','as' => 'admin.'],function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::resource('services',ServiceController::class);
+    Route::resource('media-lists',MediaAjaxController::class);
 });
 
 Route::get('/search',[ServiceController::class, 'search'])->name('search');

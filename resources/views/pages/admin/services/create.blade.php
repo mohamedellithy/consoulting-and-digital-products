@@ -77,14 +77,13 @@
                                 <button type="button" class="btn btn-danger upload-media" data-type-media="image">
                                     <i class='bx bx-upload' ></i>
                                     اضافة صورة للخدمة
+                                    <input type="hidden" name="image" 
+                                        class="form-control dob-picker uploaded-media-ids" required/>
                                 </button>
-                                <input type="hidden" name="image" id="formtabs-birthdate"
-                                    class="form-control dob-picker" required/>
                                 @error('image')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
-                           
                         </div>
                     </div>
                     <div class="card mb-4">

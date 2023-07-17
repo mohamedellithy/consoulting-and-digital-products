@@ -26,7 +26,7 @@ class ServiceRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'required',
             'whatsapStatus' => 'required|in:0,1',
             'whatsapNumber' => 'required_if:whatsapStatus,1',
             'loginStatus' => "required|in:0,1",
@@ -42,8 +42,6 @@ class ServiceRequest extends FormRequest
             'description.required' => ' مطلوب',
             'description.string' => 'يرجى ادخال نص',
             'image.required' => 'حقل الصورة مطلوب',
-            'image.image' => 'يرجى رفع ملف من نوع صورة  ',
-            'image.mimes' => 'صيغة الصورة يجب ان تكون jpeg,png,jpg,gif,svg,webp',
             'whatsapStatus.required' => 'حقل تفعيل مطلوب',
             'whatsapStatus.in' => 'يجب اختيار تفعيل او تعطيل الواتساب',
             'whatsapNumber.required_if' => ' ادخل رقم الواتساب ',

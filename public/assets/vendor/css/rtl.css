@@ -64,9 +64,76 @@ body {
 }
 
 .modal .list-medias li {
-    padding: 28px;
+    padding: 0px;
     border: 10px solid #eee;
     margin: 10px;
+    width: 160px;
+    height: 144px;
+}
+
+.modal .tab-pane {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.modal .list-medias li img {
+    height: 100%;
+    width: 100%;
+}
+
+.container-frame-upload-media {
+    min-height: 300px;
+    border: 2px dashed lightgray;
+    background-color: #f1f1f126;
+}
+
+.upload-icon {
+    text-align: center;
+}
+
+.upload-icon i {
+    font-size: 130px;
+    margin-top: 9%;
+    cursor: pointer;
+    color: lightgray;
+}
+
+.btn-upload {
+    padding: 12px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.upload-image-inner {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.list-upload-medias {
+    list-style: none;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+
+.list-upload-medias li {
+    width: 156px;
+    height: 156px;
+    background-color: white;
+    padding: 5px;
+    margin: 19px 5px;
+}
+
+.list-upload-medias li img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+}
+
+.media-item.active {
+    border: 10px solid #696cff !important;
 }
 
 @media (min-width: 1200px) {

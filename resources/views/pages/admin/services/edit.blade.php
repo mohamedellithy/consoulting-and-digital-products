@@ -74,11 +74,25 @@
                 </div>
                 <div class="col-xl">
                     <div class="card mb-4">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                        </div>
-
+                        
                         <div class="card-body">
-
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basic-default-fullname"> الصورة</label>
+                                        <br/>
+                                        <button type="button" class="btn btn-danger upload-media" data-type-media="image">
+                                            <i class='bx bx-upload' ></i>
+                                            اضافة صورة للخدمة
+                                            <input type="hidden" name="image" 
+                                                class="form-control dob-picker uploaded-media-ids" required/>
+                                        </button>
+                                        @error('image')
+                                            <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mb-3">
                                 <label class="form-label" for="basic-icon-default-fullname">حالة تسجيل الدخول</label>
                                 <select name="loginStatus" id="formtabs-country" class="select2 form-select"

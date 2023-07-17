@@ -28,25 +28,26 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="navs-pills-justified-home" role="tabpanel">
                                     <ul class="list-medias">
-                                        <li class="media-item">item 1</li>
-                                        <li class="media-item">item 1</li>
-                                        <li class="media-item">item 1</li>
-                                        <li class="media-item">item 1</li>
-                                        <li class="media-item">item 1</li>
-                                        <li class="media-item">item 1</li>
-                                        <li class="media-item">item 1</li>
-                                        <li class="media-item">item 1</li>
-                                        <li class="media-item">item 1</li>
-                                        <li class="media-item">item 1</li>
+                                        
                                     </ul>
+                                    <div class="footer-list-media text-center">
+                                          <button type="button" class="btn btn-warning load-more-medias" >تحميل المزيد</button>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
-                                    <p>
-                                        Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream cheesecake fruitcake.
-                                    </p>
-                                    <p class="mb-0">
-                                        Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy liquorice caramels.
-                                    </p>
+                                    <div class="btn-upload">
+                                        <button class="btn btn-info btn-sm" style="position: relative">
+                                            <input type="file" class="upload-image-inner" multiple/>
+                                            <i class='bx bx-plus-circle' ></i>
+                                            تحميل الميديا
+                                        </button>
+                                    </div>
+                                    <div class="container-frame-upload-media">
+                                        <ul class="list-upload-medias"></ul>
+                                        {{-- <div class="upload-icon">
+                                            <i class='bx bxs-cloud-upload' ></i>
+                                        </div> --}}
+                                    </div>
                                 </div>
                                 
                             </div>
@@ -55,10 +56,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
                     الغاء
                 </button>
-                <button type="button" class="btn btn-primary">تحديد الصورة</button>
+                <button type="button" class="btn btn-primary select-media">تحديد الصورة</button>
             </div>
         </div>
     </div>
