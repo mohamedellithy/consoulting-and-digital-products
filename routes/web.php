@@ -36,3 +36,4 @@ Route::group(['middleware' => 'auth','as' => 'admin.'],function(){
 });
 
 Route::get('/search',[ServiceController::class, 'search'])->name('search');
+Route::get('/filter',[ServiceController::class, 'filter'])->name('filter');

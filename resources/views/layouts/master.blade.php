@@ -32,7 +32,8 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendor/css/theme-default.css') }}"
         class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('/assets/css/demo.css') }}" />
-
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/css/custome.css') }}" />
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
@@ -116,10 +117,10 @@
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
-        jQuery('document').ready(function(){
+        jQuery('document').ready(function() {
             // paginate page 1
-            let page   = 1;
-            let params ={};
+            let page = 1;
+            let params = {};
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -127,15 +128,15 @@
             });
 
             // ajax call
-            function ajax_load_medias(data = {}){
+            function ajax_load_medias(data = {}) {
                 $.ajax({
-                    type:'GET',
-                    url:"{{ route('admin.media-lists.index') }}",
-                    data:data,
-                    success:function(data) {
+                    type: 'GET',
+                    url: "{{ route('admin.media-lists.index') }}",
+                    data: data,
+                    success: function(data) {
                         console.log(data);
                         jQuery('.list-medias').append(data._result);
-                        if(data._result.length == 0){
+                        if (data._result.length == 0) {
                             jQuery('.load-more-medias').hide();
                             console.log('hi');
                         }
@@ -145,7 +146,7 @@
 
             // load images all lists
             let global_media_ids = null;
-            jQuery('.upload-media').click(function(){
+            jQuery('.upload-media').click(function() {
                 jQuery('#exLargeModal').modal('show');
                 jQuery('.load-more-medias').show();
                 jQuery('.list-medias').html('');
@@ -154,20 +155,20 @@
                 ajax_load_medias();
             });
 
-            jQuery('.load-more-medias').click(function(){
-                page +=1;
+            jQuery('.load-more-medias').click(function() {
+                page += 1;
                 params.page = page;
                 ajax_load_medias(params);
             });
 
             // uploda files and medias
-            jQuery('.btn-upload input[type="file"]').change(function(e){
+            jQuery('.btn-upload input[type="file"]').change(function(e) {
                 console.log(e.target.files);
                 let medias = e.target.files;
                 var formData = new FormData();
-                for(let i = 0; i < medias.length; i++) {
+                for (let i = 0; i < medias.length; i++) {
                     let url = URL.createObjectURL(medias[i]);
-                    formData.append(`medias[${i}]`,medias[i]);
+                    formData.append(`medias[${i}]`, medias[i]);
                     jQuery('.list-upload-medias').append(`<li class="uploadItem-${i}">
                             <img src="${url}" class="img-uploaded">
                             <div class="progress upload">
@@ -178,7 +179,7 @@
 
                 console.log(medias[0]);
                 $.ajax({
-                    xhr: function(){
+                    xhr: function() {
                         var xhr = new window.XMLHttpRequest();
                         xhr.upload.addEventListener("progress", function(evt) {
                             if (evt.lengthComputable) {
@@ -189,59 +190,68 @@
                         }, false);
                         return xhr;
                     },
-                    type:'POST',
-                    url:"{{ route('admin.media-lists.store') }}",
+                    type: 'POST',
+                    url: "{{ route('admin.media-lists.store') }}",
                     enctype: 'multipart/form-data',
                     processData: false,
                     contentType: false,
                     cache: false,
-                    data:formData,
-                    success:function(data) {
+                    data: formData,
+                    success: function(data) {
                         console.log(data);
-                        data._result.forEach((element,key) => {
-                            console.log(element,key);
-                            jQuery(`.list-upload-medias li.uploadItem-${key} .progress.upload`).remove();
-                            jQuery(`.list-upload-medias li.uploadItem-${key} img`).css({'opacity' : '1'})
+                        data._result.forEach((element, key) => {
+                            console.log(element, key);
+                            jQuery(
+                                    `.list-upload-medias li.uploadItem-${key} .progress.upload`)
+                                .remove();
+                            jQuery(`.list-upload-medias li.uploadItem-${key} img`).css({
+                                'opacity': '1'
+                            })
                         });
                     }
                 });
             });
 
             let self = null;
-            jQuery('.modal').on('click','.list-medias .media-item',function(){
-                if(self != this){
+            jQuery('.modal').on('click', '.list-medias .media-item', function() {
+                if (self != this) {
                     jQuery(".media-item.active").removeClass('active');
                 }
                 jQuery(this).toggleClass('active');
                 self = this;
             });
 
-            jQuery('.modal').on('click','.select-media',function(){
+            jQuery('.modal').on('click', '.select-media', function() {
                 let media_ids = [];
-                let preview_thumbs = jQuery(global_media_ids).parents('.container-uploader').find('.preview-thumbs .list-preview-thumbs');
+                let preview_thumbs = jQuery(global_media_ids).parents('.container-uploader').find(
+                    '.preview-thumbs .list-preview-thumbs');
                 document.querySelectorAll('.list-medias .media-item.active').forEach((ele) => {
                     let media_path = ele.getAttribute('media-path');
-                    let media_id   = ele.getAttribute('media-id');
+                    let media_id = ele.getAttribute('media-id');
                     media_ids.push(media_id);
                     preview_thumbs.html(`<li class="preview-media-inner">
                         <img src="${media_path}" />
                         <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
                     </li>`);
                 });
-                let join_list = jQuery(global_media_ids).find('.uploaded-media-ids').val(media_ids.join(','));
+                let join_list = jQuery(global_media_ids).find('.uploaded-media-ids').val(media_ids.join(
+                    ','));
                 if (jQuery('#exLargeModal').length) {
                     jQuery('#exLargeModal').modal('hide');
                 }
             });
 
-            jQuery('.container-uploader').on('click','.preview-media-inner .remove',function(){
+            jQuery('.container-uploader').on('click', '.preview-media-inner .remove', function() {
                 let select_media_id = jQuery(this).attr('media-id');
-                let media_join_list = jQuery(this).parents('.container-uploader').find('.uploaded-media-ids').val();
+                let media_join_list = jQuery(this).parents('.container-uploader').find(
+                    '.uploaded-media-ids').val();
                 let media_lists = media_join_list.split(',');
-                media_lists.splice(media_lists.indexOf(select_media_id),1);
-                console.log(select_media_id,media_lists);
-                jQuery(this).parents('.container-uploader').find('.uploaded-media-ids').val(media_lists.join(','));
-                jQuery(this).parents('.container-uploader').find('.preview-thumbs .list-preview-thumbs .preview-media-inner').remove();
+                media_lists.splice(media_lists.indexOf(select_media_id), 1);
+                console.log(select_media_id, media_lists);
+                jQuery(this).parents('.container-uploader').find('.uploaded-media-ids').val(media_lists
+                    .join(','));
+                jQuery(this).parents('.container-uploader').find(
+                    '.preview-thumbs .list-preview-thumbs .preview-media-inner').remove();
             });
         });
     </script>
