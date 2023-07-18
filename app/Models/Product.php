@@ -17,6 +17,8 @@ class Product extends Model
         'thumbnail_id',
         'status','slug',
         'attachments_id',
+        'price',
+        'discount',
         'meta_title',
         'meta_description'];
 

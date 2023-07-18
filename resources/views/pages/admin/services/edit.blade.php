@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-company"> وصف الخدمة</label>
-                                    <textarea id="basic-default-message" class="form-control" placeholder="" name='description'>{{ $service->description ?? old('description') }}</textarea>
+                                    <textarea id="basic-default-message"  rows="10" class="form-control" placeholder="" name='description'>{{ $service->description ?? old('description') }}</textarea>
                                     @error('description')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                     @enderror

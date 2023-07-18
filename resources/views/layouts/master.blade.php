@@ -146,12 +146,14 @@
 
             // load images all lists
             let global_media_ids = null;
-            jQuery('.upload-media').click(function() {
+            let multiple_upload  = false;
+            jQuery('.upload-media').click(function(){
                 jQuery('#exLargeModal').modal('show');
                 jQuery('.load-more-medias').show();
                 jQuery('.list-medias').html('');
                 page = 1;
                 global_media_ids = this;
+                multiple_upload = jQuery(this).attr('data-multiple-media');
                 ajax_load_medias();
             });
 
@@ -213,9 +215,11 @@
             });
 
             let self = null;
-            jQuery('.modal').on('click', '.list-medias .media-item', function() {
-                if (self != this) {
-                    jQuery(".media-item.active").removeClass('active');
+            jQuery('.modal').on('click','.list-medias .media-item',function(){
+                if(multiple_upload  != 'true'){
+                    if(self != this){
+                        jQuery(".media-item.active").removeClass('active');
+                    }
                 }
                 jQuery(this).toggleClass('active');
                 self = this;
@@ -229,10 +233,17 @@
                     let media_path = ele.getAttribute('media-path');
                     let media_id = ele.getAttribute('media-id');
                     media_ids.push(media_id);
-                    preview_thumbs.html(`<li class="preview-media-inner">
-                        <img src="${media_path}" />
-                        <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
-                    </li>`);
+                    if(multiple_upload  != 'true'){
+                        preview_thumbs.html(`<li class="preview-media-inner">
+                            <img src="${media_path}" />
+                            <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
+                        </li>`);
+                    } else {
+                        preview_thumbs.append(`<li class="preview-media-inner">
+                            <img src="${media_path}" />
+                            <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
+                        </li>`);
+                    }
                 });
                 let join_list = jQuery(global_media_ids).find('.uploaded-media-ids').val(media_ids.join(
                     ','));
@@ -246,12 +257,10 @@
                 let media_join_list = jQuery(this).parents('.container-uploader').find(
                     '.uploaded-media-ids').val();
                 let media_lists = media_join_list.split(',');
-                media_lists.splice(media_lists.indexOf(select_media_id), 1);
-                console.log(select_media_id, media_lists);
-                jQuery(this).parents('.container-uploader').find('.uploaded-media-ids').val(media_lists
-                    .join(','));
-                jQuery(this).parents('.container-uploader').find(
-                    '.preview-thumbs .list-preview-thumbs .preview-media-inner').remove();
+                media_lists.splice(media_lists.indexOf(select_media_id),1);
+                console.log(select_media_id,media_lists);
+                jQuery(this).parents('.container-uploader').find('.uploaded-media-ids').val(media_lists.join(','));
+                jQuery(this).parents('.preview-media-inner').remove();
             });
         });
     </script>

@@ -140,6 +140,7 @@ body {
     list-style: none;
     padding: 0px;
     display: inline-flex;
+    flex-wrap: wrap;
 }
 
 .preview-media-inner {
@@ -168,6 +169,45 @@ body {
 .table-responsive {
     overflow-x: visible;
     min-height: 225px;
+}
+
+table.table tr td.width-16 {
+    width: 16%;
+}
+
+table.table tr td.width-25 {
+    width: 25%;
+}
+
+table.table tr td.width-50 {
+    width: 50%;
+}
+
+table.table tr td.width-70 {
+    width: 70%;
+}
+
+table.table tr td img {
+    width: 70px;
+    border: 1px solid #cbc2c2;
+    padding: 6px;
+}
+
+.filters-fields {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.filters-fields .nav-item:first-child {
+    background-color: #eee;
+}
+
+.filters-fields .nav-item .search {
+    background-color: transparent;
+}
+
+.filters-fields .nav-item .bx-search {
+    margin-right: 10px;
 }
 
 @media (min-width: 1200px) {
