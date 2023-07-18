@@ -212,7 +212,7 @@
 
                         $('.searchdata').empty();
                         jQuery('.alldata').hide();
-                        jQuery('.searchdata').append('لايوجد بيانات');
+                      
 
                     }
                     console.log('hi');
