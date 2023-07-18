@@ -1,21 +1,12 @@
 @forelse($services as $key => $service)
     <tr>
-        <td>{{ $loop->iteration }}</td>
-        <td>{{ $service->name }}</td>
-        <td class="d-inline-block text-truncate" style="max-width: 150px;">
-            {{ $service->description }}
+        <td class="">
+            <img src="{{ upload_assets($service->image_info) }}" alt="Avatar" class="rounded-circle">
         </td>
-        <td>
-            <ul class="list-unstyled categorys-list m-0 avatar-group d-flex align-items-center">
-
-                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                    class="avatar avatar-xs pull-up" title="Christina Parker">
-                    {{-- {{ dd($service->image) }} --}}
-                    <img src="{{ upload_assets($service->image_info) }}" alt="Avatar" class="rounded-circle">
-                </li>
-            </ul>
+        <td class="width-16">{{ $service->name }}</td>
+        <td class="">
+            {{ TrimLongText($service->description) }}
         </td>
-
         <td>
             @if ($service->whatsapStatus == 1)
                 <span class="badge bg-label-success me-1">مفعل</span>
