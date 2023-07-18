@@ -1,9 +1,7 @@
 select {
-
-  /* styling */
-
-  font: inherit !important;
+    /* styling */
+    /* font: inherit !important;
   line-height: 1.5em !important;
   padding: 0.5em 0 0.5em 0 !important;
-  -webkit-appearance: listbox !important;
+  -webkit-appearance: listbox !important; */
 }
