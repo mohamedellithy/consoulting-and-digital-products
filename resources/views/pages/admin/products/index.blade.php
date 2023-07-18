@@ -1,5 +1,5 @@
-@extends('layouts.master') 
-@php 
+@extends('layouts.master')
+@php
 $search = request()->query('search') ?: null;
 $status = request()->query('status') ?: null;
 $filter = request()->query('filter') ?: null;
@@ -74,7 +74,7 @@ $rows   = request()->query('rows')   ?: 10;
                                 <td>
                                    {{ $product->price }} USD
                                 </td>
-                                
+
                                 <td>
                                     @if ($product->status == 'active')
                                         <span class="badge bg-label-success me-1">مفعل</span>
@@ -119,33 +119,3 @@ $rows   = request()->query('rows')   ?: 10;
         <!--/ Basic Bootstrap Table -->
     </div>
 @endsection
-@push('script')
-    <script>
-        $(document).ready(function() {
-            $('#search').on('keyup', function() {
-                $value = $(this).val();
-                if ($value) {
-                    $('.alldata').hide()
-                    $('.searchdata').show()
-
-                } else {
-                    $('.alldata').show()
-                    $('.searchdata').hide()
-                }
-                $.ajax({
-                    url: '{{ route('search') }}',
-                    method: 'GET',
-                    data: {
-                        search: $value
-                    },
-                    success: function(data) {
-                        // Update the search results in the view
-                        console.log(data);
-                        $('#content').html(data);
-                    },
-
-                });
-            });
-        });
-    </script>
-@endpush
