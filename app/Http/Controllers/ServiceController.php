@@ -72,18 +72,5 @@ class ServiceController extends Controller
         ]);
     }
 
-    // public function filter(Request $request)
-    // {
-    //     $loginStatus = $request->loginStatus;
-    //     $whatsapStatus = $request->whatsapStatus;
-
-    //     $services = Service::when(!is_null($loginStatus), function ($query) use ($loginStatus) {
-    //         return $query->where('loginStatus', $loginStatus);
-    //     })->when(!is_null($whatsapStatus), function ($query) use ($whatsapStatus) {
-    //         return $query->where('whatsapStatus', $whatsapStatus);
-    //     })->paginate(10);
-
-    //     return view('pages.admin.services.index', compact('services'));
-
-    // }
+  
 }

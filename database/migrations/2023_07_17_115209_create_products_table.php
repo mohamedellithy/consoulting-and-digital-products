@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('thumbnail_id')->nullable();
             $table->foreign('thumbnail_id')->references('id')->on('images')->onDelete('set null');
             $table->string('status')->default('active');
-            $table->string('slug');
+            $table->text('slug');
             $table->double('price',2)->default(0);
             $table->double('discount',2)->nullable();
             $table->string('attachments_id')->nullable();

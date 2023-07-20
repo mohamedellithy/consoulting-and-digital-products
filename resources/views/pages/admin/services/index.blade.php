@@ -1,84 +1,85 @@
-@extends('layouts.master') @section('content')
+@extends('layouts.master')
+
+@section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4">
-            الخدمات</h4>
+            الخدمات
+        </h4>
         <!-- Basic Bootstrap Table -->
-        <div class="card">
-            {{-- <h5 class="card-header">Table Basic</h5> --}}
-            <div class="d-flex flex-row align-content-center justify-content-between">
-                <div class="nav-item d-flex align-items-center m-4" style="max-width: 30%">
-                    <i class="bx bx-search position-absolute top-3 right-10 p-0"></i>
-                    <input type="text" class="search form-control border shadow-sm " placeholder="ابحث"
-                        aria-label="Search..." id="search" name="search" />
+        <div class="card" style="padding-top: 3%;">
+            <form id="filter-data" method="get">
+                <div class="d-flex filters-fields">
+                    <div class="nav-item d-flex align-items-center m-2">
+                        <i class="bx bx-search fs-4 lh-0"></i>
+                        <input type="text" class="search form-control border-0 shadow-none" placeholder="البحث ...."
+                            id="search" name="search" />
+                    </div>
+                    <div class="nav-item d-flex align-items-center m-2">
+                        <select name="whatsapStatus" id="whatsapStatus" class="form-select form-select-lg">
+                            <option {{ is_null(request()->input('whatsapStatus')) ? 'selected' : '' }} value=""> حالة
+                                الواتساب
+                            </option>
+                            <option {{ request()->input('whatsapStatus') == 1 ? 'selected' : '' }} value="1">مفعل
+                            </option>
+                            <option
+                                {{ !is_null(request()->input('whatsapStatus')) && request()->input('whatsapStatus') == 0 ? 'selected' : '' }}
+                                value="0">معطل </option>
+                        </select>
+                    </div>
+                    <div class="nav-item d-flex align-items-center m-2">
+                        <select name="loginStatus" id="loginStatus" class="form-select form-select-lg">
+                            <option {{ is_null(request()->input('loginStatus')) ? 'selected' : '' }} value=""> حالة التسجيل
+                            </option>
+                            <option {{ request()->input('loginStatus') == 1 ? 'selected' : '' }} value="1">مفعل
+                            </option>
+                            <option
+                                {{ !is_null(request()->input('loginStatus')) && request()->input('loginStatus') == 0 ? 'selected' : '' }}
+                                value="0">معطل</option>
+                        </select>
+                    </div>
                 </div>
-<div class="d-flex flex-row mx-5">
-    <div class="form-group m-2">
-                    <label for="whatsapStatus">حالة الواتساب</label>
-                    <select class=" form-control select" name="whatsapStatus" id="whatsapStatus">
-                        <option {{ is_null(request()->input('whatsapStatus')) ? 'selected' : '' }} value=""> الكل
-                        </option>
-                        <option {{ request()->input('whatsapStatus') == 1 ? 'selected' : '' }} value="1">مفعل
-                        </option>
-                        <option
-                            {{ !is_null(request()->input('whatsapStatus')) && request()->input('whatsapStatus') == 0 ? 'selected' : '' }}
-                            value="0">معطل </option>
-                    </select>
+                <div class="d-flex">
+                    <div class="nav-item d-flex align-items-center m-2">
+                        <label style="padding: 0px 10px;color: #636481;">المعروض</label>
+                        <select name="rows" onchange="document.getElementById('filter-data').submit()" id="largeSelect"
+                            class="form-select form-select-sm">
+                            <option>10</option>
+                            <option value="50"
+                                @isset($rows) @if ($rows == '50') selected @endif @endisset>
+                                50</option>
+                            <option value="100"
+                                @isset($rows) @if ($rows == '100') selected @endif @endisset>
+                                100</option>
+                        </select>
+                    </div>
                 </div>
-
-                <div class="form-group m-2">
-                    <label for="loginStatus">حالة التسجيل</label>
-                    <select class="form-control select" name="loginStatus" id="loginStatus">
-                        <option {{ is_null(request()->input('loginStatus')) ? 'selected' : '' }} value=""> الكل
-                        </option>
-                        <option {{ request()->input('loginStatus') == 1 ? 'selected' : '' }} value="1">مفعل</option>
-                        <option
-                            {{ !is_null(request()->input('loginStatus')) && request()->input('loginStatus') == 0 ? 'selected' : '' }}
-                            value="0">معطل</option>
-                    </select>
-                </div>
-</div>
-
-
-
-            </div>
-
-
-
-
+            </form>
+            <br />
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
-                        <tr class="text-center">
-                            <th>#</th>
+                        <tr>
+                            <th>الصورة</th>
                             <th>الاسم</th>
                             <th>الوصف</th>
-                            <th>الصورة</th>
                             <th>حالة الواتساب</th>
                             <th>رقم الواتساب</th>
                             <th>حالة التسجيل</th>
                             <th>العمليات</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0 alldata">
                         @foreach ($services as $service)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $service->name }}</td>
-                                <td class="text-truncate" style="max-width: 150px;">
-                                    {{ $service->description }}
+                                <td class="">
+                                    <img src="{{ upload_assets($service->image_info) }}" alt="Avatar"
+                                        class="rounded-circle">
                                 </td>
-                                <td>
-                                    <ul class="list-unstyled categorys-list m-0 avatar-group d-flex align-items-center">
-
-                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                            class="" title="Christina Parker">
-                                            {{-- {{ dd($service->image) }} --}}
-                                            <img src="{{ upload_assets($service->image_info) }}" alt="Avatar"
-                                                height="100" width="100" class="d-block rounded">
-                                        </li>
-                                    </ul>
+                                <td class="width-16">{{ $service->name }}</td>
+                                <td class="">
+                                    {{ TrimLongText($service->description) }}
                                 </td>
-
                                 <td>
                                     @if ($service->whatsapStatus == 1)
                                         <span class="badge bg-label-success me-1">مفعل</span>
@@ -126,13 +127,12 @@
                                 </td>
                             </tr>
                         @endforeach
+                    </tbody>
                     <tbody id="content" class="searchdata"></tbody>
                     </tbody>
-
                 </table>
-
+                <br />
                 <div class="d-flex flex-row justify-content-center">
-
                     {{ $services->links() }}
                 </div>
             </div>
@@ -212,7 +212,7 @@
 
                         $('.searchdata').empty();
                         jQuery('.alldata').hide();
-                      
+
 
                     }
                     console.log('hi');
