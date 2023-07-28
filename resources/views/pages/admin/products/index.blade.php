@@ -20,14 +20,14 @@ $rows   = request()->query('rows')   ?: 10;
                             @isset($search) value="{{ $search }}" @endisset id="search" name="search"/>
                     </div>
                     <div class="nav-item d-flex align-items-center m-2" >
-                        <select name="status" onchange="document.getElementById('filter-data').submit()" id="largeSelect" class="form-select form-select-lg">
+                        <select name="status" onchange="document.getElementById('filter-data').submit()" id="largeSelect" class="form-select form-select-md">
                             <option>حالة المنتج</option>
                             <option value="active" @isset($status) @if($status == 'active') selected @endif @endisset>مفعل</option>
                             <option value="notactive" @isset($status) @if($status == 'notactive') selected @endif @endisset>غير مفعل</option>
                         </select>
                     </div>
                     <div class="nav-item d-flex align-items-center m-2" >
-                        <select name="filter" id="largeSelect"  onchange="document.getElementById('filter-data').submit()" class="form-select form-select-lg">
+                        <select name="filter" id="largeSelect"  onchange="document.getElementById('filter-data').submit()" class="form-select form-select-md">
                             <option>فلتر المنتجات</option>
                             <option value="high-price" @isset($filter) @if($filter == 'high-price') selected @endif @endisset>الاعلي سعرا</option>
                             <option value="low-price"  @isset($filter) @if($filter == 'low-price') selected @endif @endisset>الاقل سعرا</option>
@@ -72,7 +72,7 @@ $rows   = request()->query('rows')   ?: 10;
                                     {{ TrimLongText($product->description) }}
                                 </td>
                                 <td>
-                                   {{ $product->price }} USD
+                                    {{ formate_price($product->price) }}
                                 </td>
 
                                 <td>

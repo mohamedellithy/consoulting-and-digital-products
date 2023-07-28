@@ -27,7 +27,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-company" style="color: orange;">سعر المنتج</label>
-                                <h5 style="line-height: 1.8em;">{{ $product->price }} USD</h5>
+                                <h5 style="line-height: 1.8em;">{{ formate_price($product->price) }}</h5>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="basic-icon-default-company" style="color: orange;">عنوان السيو ( meta title )</label>

@@ -13,6 +13,7 @@ class Product extends Model
 
     protected $fillable = [
         'name',
+        'short_description',
         'description',
         'thumbnail_id',
         'status','slug',
@@ -32,5 +33,10 @@ class Product extends Model
     public function image_info()
     {
         return $this->belongsTo(Image::class, 'thumbnail_id', 'id');
+    }
+
+    public function downloads()
+    {
+        return $this->hasOne(Download::class,'product_id','id');
     }
 }

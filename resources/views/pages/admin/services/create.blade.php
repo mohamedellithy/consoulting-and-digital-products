@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@php
+$settings = platformSettings();
+@endphp
 @section('content')
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -26,7 +28,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-company"> وصف الخدمة</label>
-                                    <textarea id="basic-default-message"  rows="10" class="form-control" placeholder="" name='description' required>{{ old('description') }}</textarea>
+                                    <textarea id="basic-default-message"  rows="10" class="form-control summernote" placeholder="" name='description' required>{{ old('description') }}</textarea>
                                     @error('description')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                     @enderror
@@ -57,13 +59,21 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-message"> رقم الواتساب</label>
-                                    <input type="text" name="whatsapNumber" value="{{ old('whatsapNumber') }}"
+                                    <input type="text" name="whatsapNumber" value="{{ old('whatsapNumber') ?: (isset($settings['website_whastapp']) ? $settings['website_whastapp'] : null )  }}"
                                         id="formtabs-first-name" class="form-control" placeholder="" required/>
                                     @error('whatsapNumber')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 {{-- <button type="submit" class="btn btn-primary">Send</button> --}}
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-default-fullname">رابط الخدمة</label>
+                                    <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
+                                        name="slug" value="{{ old('slug') }}" required/>
+                                    @error('slug')
+                                        <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </form>
                         </div>
                     </div>

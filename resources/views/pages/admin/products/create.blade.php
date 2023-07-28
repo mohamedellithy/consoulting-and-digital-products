@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+
 @section('content')
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -26,8 +27,15 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label class="form-label" for="basic-default-company"> ( وصف قصير ) نبذة عن المنتج </label>
+                                <textarea id="basic-default-message" rows="3" class="form-control" placeholder="" name='short_description' required>{{ old('short_description') }}</textarea>
+                                @error('short_description')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label" for="basic-default-company"> وصف المنتج</label>
-                                <textarea id="basic-default-message" rows="10" class="form-control" placeholder="" name='description' required>{{ old('description') }}</textarea>
+                                <textarea id="basic-default-message" rows="10" class="form-control summernote" placeholder="" name='description' required>{{ old('description') }}</textarea>
                                 @error('description')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
@@ -43,6 +51,85 @@
                                 <label class="form-label" for="basic-default-company"> رابط المنتج</label>
                                 <input id="basic-default-message" class="form-control" placeholder="" name='slug' value="{{ old('slug') }}" required>
                                 @error('slug')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="mb-3">
+                                <h4 class="">التحميلات </h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-fullname">نوع الملف</label>
+                                <select type="url" class="form-control" id="basic-default-fullname" placeholder=""
+                                    name="download_type" value="{{ old('download_type') }}" required>
+                                    <option value="pdf">Pdf</option>
+                                    <option value="image">Image</option>
+                                    <option value="video">Video</option>
+                                    <option value="audio">Audio</option>
+                                    <option value="zip">Zip</option>
+                                </select>
+                                @error('download_type')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <div class="container-uploader">
+                                    <button type="button" class="btn btn-info btn-sm upload-media" data-type-media="image" data-multiple-media="true">
+                                        <i class='bx bx-upload' ></i>
+                                        اضافة ملفات قابلة للتحميل
+                                        <input type="hidden" name="download_attachments_id" value=""
+                                            class="form-control dob-picker uploaded-media-ids"/>
+                                    </button>
+                                    @error('download_attachments_id')
+                                        <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                    @enderror
+                                    <div class="preview-thumbs">
+                                        <br/>
+                                        <div class="alert alert-info ">
+                                            لايوجد ملفات
+                                        </div>
+                                        <ul class="list-preview-thumbs">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-fullname">حالة الملف</label>
+                                <select type="url" class="form-control" id="basic-default-fullname" placeholder=""
+                                    name="download_status" value="{{ old('download_status') }}" required>
+                                    <option value="download">تنزيل الملف او الفيديو</option>
+                                    <option value="without_download">مشاهدة بدون تنزيل</option>
+                                </select>
+                                @error('download_status')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-fullname">رابط ملف التحميل ان وجدت</label>
+                                <input type="url" class="form-control" id="basic-default-fullname" placeholder=""
+                                    name="download_link" value="{{ old('download_link') }}"/>
+                                @error('download_link')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-fullname">اسم الملف التحميلات</label>
+                                <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
+                                    name="download_name" value="{{ old('download_name') }}" required/>
+                                @error('download_name')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-fullname">وصف ملف التحميلات</label>
+                                <textarea type="text" class="form-control summernote" id="basic-default-fullname" placeholder=""
+                                    name="download_description" required>{{ old('download_description') }}</textarea>
+                                @error('download_description')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -81,7 +168,7 @@
                                 <div class="container-uploader">
                                     <button type="button" class="btn btn-outline-warning btn-sm upload-media" data-type-media="image" data-multiple-media="true">
                                         <i class='bx bx-upload' ></i>
-                                        اضافة صورأخري للمنتج 
+                                        اضافة صورأخري للمنتج
                                         <input type="hidden" name="attachments_id" value=""
                                             class="form-control dob-picker uploaded-media-ids" required/>
                                     </button>
@@ -113,7 +200,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label" for="basic-icon-default-company">وصف السيو ( meta description ) </label>
-                                <textarea type="text" id="basic-icon-default-company" class="form-control"
+                                <textarea type="text" class="form-control"
                                     name="meta_description">{{ old('meta_description') }}</textarea>
                                 @error('meta_description')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>

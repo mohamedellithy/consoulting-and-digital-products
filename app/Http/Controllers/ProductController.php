@@ -13,9 +13,10 @@ class ProductController extends Controller
     }
     public function store(ProductRequest $request)
     {
-        Product::create($request->only([
+        $product = Product::create($request->only([
             'name',
             'description',
+            'short_description',
             'thumbnail_id',
             'status',
             'slug',
@@ -25,6 +26,18 @@ class ProductController extends Controller
             'meta_title',
             'meta_description'
         ]));
+
+        $product->downloads()->create($request->only([
+            'product_id',
+            'download_name',
+            'download_description',
+            'download_link',
+            'download_attachments_id',
+            'download_status',
+            'download_type'
+        ]));
+
+        flash()->success('تم اضافة منتج جديد بنجاح ');
         return redirect()->route('admin.products.index')->with('success_message', 'تم انشاء الخدمة');
     }
     public function index(Request $request)
@@ -59,13 +72,15 @@ class ProductController extends Controller
     }
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('downloads')->find($id);
         return view('pages.admin.products.edit', compact('product'));
     }
     public function update(ProductRequest $request, $id)
     {
-        $product = Product::where('id',$id)->update($request->only([
+        $product = Product::find($id);
+        $product->update($request->only([
             'name',
+            'short_description',
             'description',
             'thumbnail_id',
             'status',
@@ -76,6 +91,19 @@ class ProductController extends Controller
             'meta_title',
             'meta_description'
         ]));
+
+        $product->downloads()->update($request->only([
+            'product_id',
+            'download_name',
+            'download_description',
+            'download_link',
+            'download_attachments_id',
+            'download_status',
+            'download_type'
+        ]));
+
+        flash()->success('تم تعديل المنتج بنجاح');
+
         return redirect()->route('admin.products.index');
         // return redirect()->back();
 
@@ -87,13 +115,10 @@ class ProductController extends Controller
     }
     public function destroy($id)
     {
-        $service = Product::find($id)->value('image');
-        $service = Product::destroy($id);
+        $product = Product::destroy($id);
 
+        flash()->success('تم حذف المنتج بنجاح');
         return redirect()->route('admin.products.index');
 
-    }
-    public function search(Request $request){
-        // here search
     }
 }

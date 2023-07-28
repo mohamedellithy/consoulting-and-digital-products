@@ -107,20 +107,20 @@
         </li>
 
         <!-- orders -->
-        <li class="menu-item">
+        <li class="menu-item {{ IsActiveOnlyIf(['admin.orders.index','admin.orders.create','admin.orders.edit','admin.orders.show']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-package'></i>
                 <div data-i18n="Layouts">الطلبات</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.create') }}" class="menu-link">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.orders.create']) }}">
+                    <a href="{{ route('admin.orders.create') }}" class="menu-link">
                         <div data-i18n="Without menu">اضافة</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.orders.index','admin.orders.show']) }}">
+                    <a href="{{ route('admin.orders.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
                     </a>
                 </li>
@@ -128,20 +128,15 @@
         </li>
 
         <!-- المستخدمين -->
-        <li class="menu-item">
+        <li class="menu-item {{ IsActiveOnlyIf(['admin.customers.index','admin.customers.show','admin.customers.services-orders','admin.customers.products-orders']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-user-pin'></i>
                 <div data-i18n="Layouts">المستخدمين</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.create') }}" class="menu-link">
-                        <div data-i18n="Without menu">اضافة</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.customers.index','admin.customers.show','admin.customers.services-orders','admin.customers.products-orders']) }}">
+                    <a href="{{ route('admin.customers.index') }}" href="{{ route('admin.customers.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
                     </a>
                 </li>
@@ -149,20 +144,15 @@
         </li>
 
          <!-- عمليات الدفع -->
-         <li class="menu-item">
+         <li class="menu-item {{ IsActiveOnlyIf(['admin.payments.index','admin.payments.create','admin.payments.show']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-wallet' ></i>
                 <div data-i18n="Layouts">عمليات الدفع</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.create') }}" class="menu-link">
-                        <div data-i18n="Without menu">اضافة</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.index') }}" class="menu-link">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.payments.index']) }}">
+                    <a href="{{ route('admin.payments.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
                     </a>
                 </li>
@@ -170,49 +160,49 @@
         </li>
 
          <!-- اعدادات المنصة-->
-         <li class="menu-item">
+         <li class="menu-item {{ IsActiveOnlyIf(['admin.settings.pages.index','admin.settings.general','admin.settings.payments','admin.settings.pages.edit']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bx-cog'></i>
                 <div data-i18n="Layouts">اعدادات المنصة</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.create') }}" class="menu-link">
-                        <div data-i18n="Without menu">اضافة</div>
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.settings.pages.index','admin.settings.pages.edit']) }}">
+                    <a href="{{ route('admin.settings.pages.index') }}" class="menu-link">
+                        <div data-i18n="Without menu">اعدادات الصفحات</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.index') }}" class="menu-link">
-                        <div data-i18n="Without navbar">عرض</div>
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.settings.general']) }}">
+                    <a href="{{ route('admin.settings.general') }}" class="menu-link">
+                        <div data-i18n="Without navbar">اعدادات عامة </div>
+                    </a>
+                </li>
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.settings.payments']) }}">
+                    <a href="{{ route('admin.settings.payments') }}" class="menu-link">
+                        <div data-i18n="Without navbar">اعدادات بوابات الدفع </div>
                     </a>
                 </li>
             </ul>
         </li>
 
         <!-- الوسائط-->
-        <li class="menu-item">
+        <li class="menu-item {{ IsActiveOnlyIf(['admin.medias.index']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bx-images' ></i>
                 <div data-i18n="Layouts">الوسائط</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.create') }}" class="menu-link">
-                        <div data-i18n="Without menu">اضافة</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.services.index') }}" class="menu-link">
-                        <div data-i18n="Without navbar">عرض</div>
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.medias.index']) }}">
+                    <a href="{{ route('admin.medias.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar"> عرض الوسائط</div>
                     </a>
                 </li>
             </ul>
         </li>
 
          <!-- بوابات الدفع-->
-         <li class="menu-item">
+         {{-- <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-credit-card-alt'></i>
                 <div data-i18n="Layouts">بوابات الدفع</div>
@@ -230,7 +220,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
         {{-- <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Pages</span>
         </li> --}}

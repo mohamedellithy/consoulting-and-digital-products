@@ -14,7 +14,17 @@ class ServiceController extends Controller
     }
     public function store(ServiceRequest $request)
     {
-        Service::create($request->all());
+        Service::create($request->only([
+            'name',
+            'description',
+            'image',
+            'whatsapStatus',
+            'whatsapNumber',
+            'loginStatus',
+            'slug'
+        ]));
+
+        flash()->success('تم اضافة خدمة جديد بنجاح ');
         return redirect()->route('admin.services.index')->with('success_message', 'تم انشاء الخدمة');
     }
     public function index()
@@ -37,7 +47,10 @@ class ServiceController extends Controller
         $service->whatsapStatus = $request->input('whatsapStatus');
         $service->whatsapNumber = $request->input('whatsapNumber');
         $service->loginStatus = $request->input('loginStatus');
+        $service->slug = $request->input('slug');
         $service->save();
+
+        flash()->success('تم تحديث الخدمة بنجاح ');
         return redirect()->route('admin.services.index');
         // return redirect()->back();
 
@@ -49,9 +62,8 @@ class ServiceController extends Controller
     }
     public function destroy($id)
     {
-        $service = Service::find($id)->value('image');
         $service = Service::destroy($id);
-
+        flash()->success('تم حذف الخدمة بنجاح ');
         return redirect()->route('admin.services.index');
 
     }
@@ -72,5 +84,5 @@ class ServiceController extends Controller
         ]);
     }
 
-  
+
 }

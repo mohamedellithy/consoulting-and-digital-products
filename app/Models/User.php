@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'status',
+        'phone'
     ];
 
     /**
@@ -41,4 +44,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+     /**
+     * Scope a query to only include popular users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCustomer($query)
+    {
+        return $query->where('role', '=', 1);
+    }
+
+
+    public function services_orders(){
+        return $this->hasMany(Order::class,'customer_id','id');
+    }
+
+    public function application_orders(){
+        return $this->hasMany(ApplicationOrder::class,'customer_id','id');
+    }
 }

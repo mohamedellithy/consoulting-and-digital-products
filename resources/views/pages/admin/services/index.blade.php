@@ -15,7 +15,7 @@
                             id="search" name="search" />
                     </div>
                     <div class="nav-item d-flex align-items-center m-2">
-                        <select name="whatsapStatus" id="whatsapStatus" class="form-select form-select-lg">
+                        <select name="whatsapStatus" id="whatsapStatus" class="form-select form-select-md">
                             <option {{ is_null(request()->input('whatsapStatus')) ? 'selected' : '' }} value=""> حالة
                                 الواتساب
                             </option>
@@ -27,7 +27,7 @@
                         </select>
                     </div>
                     <div class="nav-item d-flex align-items-center m-2">
-                        <select name="loginStatus" id="loginStatus" class="form-select form-select-lg">
+                        <select name="loginStatus" id="loginStatus" class="form-select form-select-md">
                             <option {{ is_null(request()->input('loginStatus')) ? 'selected' : '' }} value=""> حالة التسجيل
                             </option>
                             <option {{ request()->input('loginStatus') == 1 ? 'selected' : '' }} value="1">مفعل
@@ -65,7 +65,6 @@
                             <th>حالة الواتساب</th>
                             <th>رقم الواتساب</th>
                             <th>حالة التسجيل</th>
-                            <th>العمليات</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -114,8 +113,6 @@
                                                 <button type="submit" class="dropdown-item">
                                                     <i class="bx bx-trash me-2"></i>حذف
                                                 </button>
-
-
                                                 <a class="dropdown-item"
                                                     href="{{ route('admin.services.show', $service->id) }}"><i
                                                         class="fa-regular fa-eye me-2"></i></i>عرض
@@ -142,42 +139,6 @@
 @endsection
 @push('script')
     <script>
-        //  $('#search').on('keyup', function() {
-        //     $search = $('#search').val();
-        //     console.log($search)
-        //     if ($search) {
-        //         $('.alldata').hide()
-        //         $('.searchdata').show()
-
-        //     } else {
-        //         $('.alldata').show()
-        //         $('.searchdata').hide()
-        //     }
-        //     $.ajax({
-        //         url: '{{ route('search') }}',
-        //         method: 'GET',
-        //         data: {
-        //             search: $search
-
-        //         },
-        //         success: function(data) {
-        //             if (data._result.length > 0) {
-        //                 console.log(data);
-        //                 $('.searchdata').empty();
-        //                 jQuery('.searchdata').append(data._result);
-
-        //             } else {
-
-        //                 $('.searchdata').empty();
-        //                 jQuery('.alldata').hide();
-        //                 // jQuery('.searchdata').append('لايوجد بيانات');
-
-        //             }
-        //             console.log('hi');
-        //         }
-
-        //     });
-        // });
         $('#whatsapStatus, #search,#loginStatus').on('change', function() {
             $search = $('#search').val();
             $whatsapStatus = $('#whatsapStatus').val();

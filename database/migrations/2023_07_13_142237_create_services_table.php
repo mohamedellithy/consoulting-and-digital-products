@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->unsignedBigInteger('image')->nullable();
             $table->foreign('image')->references('id')->on('images')->onDelete('set null');
             $table->boolean('whatsapStatus')->default(0);
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('loginStatus')->default(0);
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->string('slug');
             $table->timestamps();
         });
     }

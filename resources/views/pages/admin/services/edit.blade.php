@@ -30,19 +30,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-company"> وصف الخدمة</label>
-                                    <textarea id="basic-default-message"  rows="10" class="form-control" placeholder="" name='description'>{{ $service->description ?? old('description') }}</textarea>
+                                    <textarea id="basic-default-message"  rows="10" class="form-control summernote" placeholder="" name='description'>{{ $service->description ?? old('description') }}</textarea>
                                     @error('description')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                     @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="basic-default-fullname"> الصورة</label>
-                                    <input type="file" name="image" id="formtabs-birthdate"
-                                        class="form-control dob-picker" />
-                                    @error('image')
-                                        <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                    @enderror
-
                                 </div>
                                 <div class="mb-3">
                                     <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-country">
@@ -61,9 +52,17 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-message"> رقم الواتساب</label>
-                                    <input type="text" name="whatsapNumber" value="{{ $service->whatsapNumber ?? old('whatsapNumber') }}"
+                                    <input type="text" name="whatsapNumber" value="{{ $service->whatsapNumber ?: old('whatsapNumber') }}"
                                         id="formtabs-first-name" class="form-control" placeholder="" />
                                     @error('whatsapNumber')
+                                        <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-default-fullname">رابط الخدمة</label>
+                                    <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
+                                        name="slug" value="{{ $service->slug ?: old('slug') }}" required/>
+                                    @error('slug')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                     @enderror
                                 </div>

@@ -13,6 +13,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('/assets/img/favicon/favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,8 +41,7 @@
 
     <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-    <!-- Page CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+    
     <!-- Helpers -->
     <script src="{{ asset('/assets/vendor/js/helpers.js') }}"></script>
 
@@ -50,8 +50,9 @@
     <script src="{{ asset('/assets/js/config.js') }}"></script>
     {{-- jquery --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-
+    <link   href="{{ asset('assets/editor/summernote-lite.min.css') }}" rel="stylesheet">
+    
+    @stack('style')
 </head>
 
 <body id="rtl">
@@ -71,6 +72,18 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
+
+                    @if (flash()->message)
+                        <div class="show-notify {{ flash()->class }}">
+                            {{ flash()->message }}
+                        </div>
+
+                        @if(flash()->level === 'error')
+                            <div class="show-notify {{ flash()->class }}">
+                                This was an error.
+                            </div>
+                        @endif
+                    @endif
 
                     <!-- Content -->
                     @yield('content')
@@ -93,8 +106,7 @@
     <!-- / Layout wrapper -->
 
     <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
+    
     <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
@@ -112,9 +124,9 @@
     <script src="{{ asset('/assets/js/dashboards-analytics.js') }}"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
+    {{-- <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script> --}}
 
     <script>
         jQuery('document').ready(function() {
@@ -264,6 +276,34 @@
             });
         });
     </script>
+
+    <script>
+        jQuery('.delete-media').on('click',function(){
+            if(confirm('Are you sure you want to delete') == true) {
+                jQuery(this).parents('form').submit();
+            }
+        });
+
+        jQuery('document').ready(function(){
+            setTimeout(() => {
+                jQuery('.show-notify').fadeOut(5000);
+            }, 3000);
+        });
+
+
+        jQuery(document).ready(function() {
+            jQuery('.summernote').summernote({
+                fontNames: ['Tajawal', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana', 'MyCustomFont'],
+                fontNamesIgnoreCheck: ['Tajawal'],
+            });
+        });
+    </script>
+    <script src="{{ asset('assets/editor/summernote-lite.min.js') }}"></script>
+    <style>
+        .note-editor .note-toolbar .note-color .dropdown-toggle, .note-popover .popover-content .note-color .dropdown-toggle {
+            width: 46px;
+        }
+    </style>
 
     @stack('script')
 

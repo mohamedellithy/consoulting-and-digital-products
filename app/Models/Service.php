@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Image;
 use App\Services\UploadImage;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,28 +20,22 @@ class Service extends Model
         'loginStatus',
         'meta_title',
         'meta_description',
+        'slug'
     ];
+
+    public function slug(): Attribute
+    {
+        return Attribute::make(
+            set: fn ($value) => str_replace(' ','-',$value ?: $this->name),
+        );
+    }
     
     public function image_info()
     {
         return $this->belongsTo(Image::class, 'image', 'id');
     }
-    // public function setImageAttribute($image)
-    // {
-    //     // dd($image);
-    //     $upload = new UploadImage();
-    //     $image = $upload->upload($image);
-    //     $this->attributes['image'] = $image->id;
-    // }
 
-    // public function getImageAttribute($image)
-    // {
-    //     // $image = Image::find($image)->path;
-    //     // //  dd($image);
-    //     // if (is_null($image)) {
-    //     //     return asset('storage/images/services/man.jpg');
-    //     // }
-    //     // return asset('storage') . '/' . $image;
-    // }
-
+    public function application_order(){
+        return $this->hasMany(ApplicationOrder::class,'service_id','id');
+    }
 }

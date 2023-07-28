@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->longText('short_description');
             $table->longText('description');
             $table->unsignedBigInteger('thumbnail_id')->nullable();
             $table->foreign('thumbnail_id')->references('id')->on('images')->onDelete('set null');

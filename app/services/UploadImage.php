@@ -21,10 +21,10 @@ class UploadImage
         endif;
 
         $new_image_name = $this->generate_image_name();
-        $upload = $this->image->storeAs($this->image_path(), $new_image_name, 'public');
+        $upload         = $this->image->storeAs($this->image_path(), $new_image_name, 'public');
 
         if ($upload):
-            return $this->store_on_db($upload );
+            return $this->store_on_db($upload,$new_image_name);
         endif;
 
         return [
@@ -61,12 +61,14 @@ class UploadImage
         return 'services/image';
     }
 
-    public function store_on_db($image)
+    public function store_on_db($image,$name)
     {
 
         $image = Image::create([
             'path' => $image,
-
+            'name' => $name,
+            'size' => $this->image->getSize(),
+            'type' => $this->image->getClientMimeType()
         ]);
 
         return $image;
