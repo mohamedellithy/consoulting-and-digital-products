@@ -36,6 +36,8 @@ class PageController extends Controller
             'position'  => $request->input('position')
         ]);
 
+        \Artisan::call('cache:clear');
+
         flash()->success('تم اضافة صفحة جديد بنجاح ');
         return redirect()->back();
     }
@@ -63,15 +65,24 @@ class PageController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $page = Page::where('id',$id)->update([
+        $data = [
             'title'            => $request->input('title'),
-            'content'          => $request->input('content'),
+            'content'          => is_array($request->input('content')) ? serialize($request->input('content')) : $request->input('content'),
             'status'           => $request->input('status'),
             'thumbnail_id'     => $request->input('thumbnail_id'),
             'meta_title'       => $request->input('meta_title'),
             'meta_description' => $request->input('meta_description'),
             'position'         => $request->input('position')
-        ]);
+        ];
+
+        if(request('slug')):
+            $slug         = str_replace(' ','-',$request->input('slug') ?: $request->input('title'));
+            $data['slug'] = $slug;
+        endif;
+        
+        $page = Page::where('id',$id)->update($data);
+
+        \Artisan::call('cache:clear');
 
         flash()->success('تم تحديث الصفحة بنجاح ');
         return redirect()->back();
@@ -86,5 +97,13 @@ class PageController extends Controller
     public function destroy($id)
     {
         //
+
+        $page = Page::destroy($id);
+
+        flash()->success('تم حذف الصفحة بنجاح');
+
+        \Artisan::call('cache:clear');
+
+        return back();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\StreamingController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\MediaAjaxController;
 use App\Http\Controllers\ProductController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\MediaController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,15 +66,27 @@ Route::get('/search',[ServiceController::class, 'search'])->name('search');
 Route::get('/filter',[ServiceController::class, 'filter'])->name('filter');
 
 
-Route::get('/',[FrontController::class,'index']);
-Route::get('/shop',[FrontController::class,'shop']);
-Route::get('/product/{slug}',[FrontController::class,'single_product']);
-Route::get('/services',[FrontController::class,'services']);
+Route::get('/',[FrontController::class,'index'])->name('home');
+Route::get('/shop',[FrontController::class,'shop'])->name('shop');
+Route::get('/product/{slug}',[FrontController::class,'single_product'])->name('single_product');
+Route::get('/services',[FrontController::class,'services'])->name('services');
 Route::get('/service/{slug}',[FrontController::class,'single_service']);
 Route::post('application-submit/{id}',[FrontController::class,'application_submit'])->name('application-submit');
-Route::get('my-account',[FrontController::class,'my_account'])->name('my-account');
-Route::get('my-orders',[FrontController::class,'my_orders'])->name('my-orders');
-Route::get('my-services',[FrontController::class,'my_services'])->name('my-services');
-Route::get('setting-account',[FrontController::class,'setting_account'])->name('setting-account');
+Route::get('/contact-us',[FrontController::class,'contact_us'])->name('contact-us');
 
-Route::get('/{slug}',[FrontController::class,'index']);
+Route::group(['middleware' => 'auth'],function(){
+    Route::get('my-account',[FrontController::class,'my_account'])->name('my-account');
+    Route::get('my-orders',[FrontController::class,'my_orders'])->name('my-orders');
+    Route::get('my-services',[FrontController::class,'my_services'])->name('my-services');
+    Route::get('my-downloads',[FrontController::class,'my_downloads'])->name('my-downloads');
+    Route::get('setting-account',[FrontController::class,'setting_account'])->name('setting-account');
+    Route::post('buy-now',[FrontController::class,'buy_now'])->name('buy_now');
+    Route::get('success',[FrontController::class,'payment_success'])->name('payments.success');
+    Route::get('success-order/{order_no}',[FrontController::class,'thank_you_payment'])->name('thank_you_payment');
+    Route::post('download-attachments',[FrontController::class,'download_attachments'])->name('download_attachments');
+    Route::get('view-attachments/{attachment_id}',[StreamingController::class,'view_attachments'])->name('view_attachments');
+    Route::get('download/{order_id}',[FrontController::class,'my_single_download'])->name('single_download');
+    Route::post('update-account',[FrontController::class,'update_account'])->name('update-account');
+});
+
+Route::get('/{slug}',[FrontController::class,'custom_page']);

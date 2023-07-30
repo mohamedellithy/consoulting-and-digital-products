@@ -31,13 +31,18 @@
                                     <td>{{ formate_price($order->order_total) }}</td>
                                     <td>{{ $order->created_at }}</td>
                                     <td>
-                                        <a href="#" title="عرض الطلب">
+                                        {{-- <a href="#" title="عرض الطلب">
                                             <i class="fas fa-eye"></i>
-                                        </a>
+                                        </a> --}}
                                         @if($order->order_status == 'pending')
-                                            <a class="" href="#" style="color:#0c77bd" title="استكمال الطلب">
-                                                <i class="far fa-credit-card"></i>
-                                            </a>
+                                            <form action="{{ route('buy_now') }}"" method="post">
+                                                @csrf
+                                                <input type="hidden" name="order_id" value="{{ $order->id }}" />
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="far fa-credit-card"></i>
+                                                    استكمال الطلب
+                                                </button>
+                                            </form>
                                         @endif
                                     </td>
                                 </tr>

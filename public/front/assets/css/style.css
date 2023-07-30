@@ -198,7 +198,7 @@ button {
 }
 
 a:focus,
-.btn:focus,
+.btns:focus,
 button:focus {
     text-decoration: none;
     outline: none;
@@ -219,7 +219,7 @@ button {
     text-decoration: none;
 }
 
-.btn:focus,
+.btns:focus,
 button:focus,
 input:focus,
 input:focus,
@@ -389,13 +389,13 @@ label {
 	1. Button style
 ===============================*/
 
-.btn {
+.btns {
     user-select: none;
     -moz-user-select: none;
-    /* background: var(--tg-secondary-color) none repeat scroll 0 0; */
+    background: var(--tg-secondary-color) none repeat scroll 0 0;
     border: medium none;
     border-radius: 30px;
-    /* color: var(--tg-white); */
+    color: var(--tg-white);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -416,19 +416,19 @@ label {
     z-index: 1;
 }
 
-.btn-secondary-color {
+.btns-secondary-color {
     background: var(--tg-secondary-color) none repeat scroll 0 0;
     color: var(--tg-white);
 }
 
-.btn::after {
+.btns::after {
     content: "\f054";
     font-family: "Font Awesome 5 Free";
     font-weight: 700;
     margin-left: 45px;
 }
 
-.btn::before {
+.btns::before {
     content: "";
     position: absolute;
     right: 0;
@@ -442,35 +442,35 @@ label {
     transition: all 0.3s ease 0s;
 }
 
-.btn:hover::before {
+.btns:hover::before {
     width: 100%;
 }
 
-.btn:hover {
+.btns:hover {
     color: var(--tg-white);
 }
 
-.btn.btn-two::after {
+.btns.btns-two::after {
     display: none;
 }
 
-.transparent-btn {
+.transparent-btns {
     border: 2px solid var(--tg-primary-color);
     background: transparent;
     color: var(--tg-primary-color);
 }
 
-.btn-three {
+.btns-three {
     padding: 19px 30px;
 }
 
 .transparent-btn-two::before,
-.btn-three::before {
+.btns-three::before {
     display: none;
 }
 
 .transparent-btn-two::after,
-.btn-three::after {
+.btns-three::after {
     content: "";
     background-image: url(../img/icons/right-arrow.svg);
     filter: brightness(0) invert(1);
@@ -479,7 +479,7 @@ label {
     margin-left: 12px;
 }
 
-.btn-three:hover {
+.btns-three:hover {
     background: var(--tg-secondary-color);
 }
 
@@ -786,18 +786,18 @@ label {
     color: var(--tg-primary-color);
 }
 
-.header-action .header-btn .btn {
+.header-action .header-btn .btns {
     color: var(--tg-white);
     font-size: 15px;
     padding: 16px 33px;
     border: 2px solid transparent;
 }
 
-.header-action .header-btn .btn::before {
+.header-action .header-btn .btns::before {
     display: none;
 }
 
-.header-action .header-btn .btn:hover {
+.header-action .header-btn .btns:hover {
     background: transparent;
     border-color: var(--tg-primary-color);
     color: var(--tg-primary-color);
@@ -1092,7 +1092,7 @@ label {
     box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.05);
 }
 
-.header-style-five .header-btn .btn {
+.header-style-five .header-btn .btns {
     text-transform: capitalize;
 }
 
@@ -2371,17 +2371,17 @@ label {
     line-height: 1;
 }
 
-.about-content-two .btn {
+.about-content-two .btns {
     background: transparent;
     border-color: var(--tg-primary-color);
     color: var(--tg-primary-color);
 }
 
-.about-content-two .btn::after {
+.about-content-two .btns::after {
     color: var(--tg-white);
 }
 
-.about-content-two .btn:hover {
+.about-content-two .btns:hover {
     color: var(--tg-white);
 }
 
@@ -4475,7 +4475,7 @@ label {
     opacity: .8;
 }
 
-.services-thumb .btn {
+.services-thumb .btns {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -4488,19 +4488,19 @@ label {
     color: var(--tg-white);
 }
 
-.services-thumb .btn::before {
+.services-thumb .btns::before {
     background: var(--tg-white);
 }
 
-.services-thumb .btn::after {
+.services-thumb .btns::after {
     color: var(--tg-primary-color);
 }
 
-.services-thumb .btn:hover {
+.services-thumb .btns:hover {
     color: var(--tg-primary-color);
 }
 
-.services-item:hover .services-thumb .btn {
+.services-item:hover .services-thumb .btns {
     opacity: 1;
     visibility: visible;
     margin-top: 0;
@@ -5631,13 +5631,13 @@ label {
     color: var(--tg-secondary-color);
 }
 
-.cta-inner-wrap-two .cta-btn .btn {
+.cta-inner-wrap-two .cta-btn .btns {
     border: 2px solid var(--tg-white);
     background: transparent;
     padding: 16px 30px;
 }
 
-.cta-inner-wrap-two .cta-btn .btn:hover {
+.cta-inner-wrap-two .cta-btn .btns:hover {
     background: var(--tg-blue);
     border-color: var(--tg-blue);
 }
@@ -5685,21 +5685,21 @@ label {
     border-radius: 10px;
 }
 
-.cta-inner-wrap-three .btn-three {
+.cta-inner-wrap-three .btns-three {
     background: var(--tg-white);
     color: var(--tg-primary-color);
 }
 
-.cta-inner-wrap-three .btn-three::after {
+.cta-inner-wrap-three .btns-three::after {
     filter: unset;
 }
 
-.cta-inner-wrap-three .btn-three:hover {
+.cta-inner-wrap-three .btns-three:hover {
     background: var(--tg-secondary-color);
     color: var(--tg-white);
 }
 
-.cta-inner-wrap-three .btn-three:hover::after {
+.cta-inner-wrap-three .btns-three:hover::after {
     filter: brightness(0) invert(1);
 }
 
@@ -6104,7 +6104,7 @@ label {
     box-shadow: -807px 0 0 800px #6699FF;
 }
 
-.estimate-form-wrap .btn.btn-three::after {
+.estimate-form-wrap .btns.btns-three::after {
     display: none;
 }
 
@@ -8216,21 +8216,21 @@ label {
     margin-right: 10px;
 }
 
-.pricing-btn .btn {
+.pricing-btn .btns {
     background: var(--tg-lavender);
     color: var(--tg-primary-color);
 }
 
-.pricing-btn .btn::before {
+.pricing-btn .btns::before {
     background: var(--tg-cornflower-blue);
 }
 
-.pricing-box.active .pricing-btn .btn {
+.pricing-box.active .pricing-btn .btns {
     background: var(--tg-primary-color);
     color: var(--tg-white);
 }
 
-.pricing-box.active .pricing-btn .btn::before {
+.pricing-box.active .pricing-btn .btns::before {
     background: var(--tg-blue);
 }
 

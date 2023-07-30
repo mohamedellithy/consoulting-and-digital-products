@@ -2,7 +2,15 @@
     <span class="badge bg-primary" style="position: absolute;">
         {{ $media->type ? explode('/',$media->type)[1] : 'mime' }}
     </span>
-    <img src="{{ upload_assets($media) }}" />
+    @if($media->type == 'video/mp4')
+        <video style="width:100%;height:100%" controls>
+            <source src="{{ upload_assets($media) }}" type="{{ $media->type }}"></source>
+        </video>
+    @elseif($media->type =='application/pdf')
+        <i style="font-size: 120px;" class='bx bxs-file-pdf'></i>
+    @else
+        <img src="{{ upload_assets($media) }}" />
+    @endif
     <p class="title-media-card text-center">
         {{ TrimLongText($media->name ?: fetchImageInnerDetails($media),50) }}
     </p>

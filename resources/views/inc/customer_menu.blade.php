@@ -14,6 +14,11 @@
             <i class="fas fa-th-list"></i> الخدمات
         </a>
     </li>
+    <li class="{{ IsActiveOnlyIf(['my-downloads']) }}">
+        <a href="{{ route('my-downloads') }}">
+            <i class="fas fa-th-list"></i> التحميلات
+        </a>
+    </li>
     <li class="{{ IsActiveOnlyIf(['setting-account']) }}">
         <a href="{{ route('setting-account') }}">
             <i class="fas fa-user-cog"></i> اعدادات الحساب

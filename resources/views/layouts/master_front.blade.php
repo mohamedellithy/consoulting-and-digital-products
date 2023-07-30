@@ -9,6 +9,7 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title> {{ get_settings('website_name') }} |  @yield('title','الرئيسية')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @yield('meta_tags')
 

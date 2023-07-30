@@ -46,11 +46,11 @@
                     margin-right: auto;
                     margin-left: 7px;
                 }
-                .btn::before {
+                .btns::before {
                     left: 0;
                     right: auto;
                 }
-                .btn::after {
+                .btns::after {
                     margin-right: 45px;
                     margin-left: auto;
                 }
@@ -239,11 +239,11 @@
                     text-align: center;
                     padding: 14px;
                 }
-                .frame-buy .btn-secondary-color {
+                .frame-buy .btns-secondary-color {
                     padding: 16px;
                     margin: auto;
                 }
-                .frame-buy .btn-secondary-color::before {
+                .frame-buy .btns-secondary-color::before {
                     height: 45px;
                     width: 45px;
                 }
@@ -456,7 +456,7 @@
                     font-size: 30px;
                     color: var(--tg-primary-color);
                 }
-                .application-inner .btn::before {
+                .application-inner .btns::before {
                     background: #d9a507;
                 }
                 .invalid-feedback {
@@ -590,11 +590,43 @@
                     color: white;
                     background-color: #07a18b;
                 }
-                .btns {
-                    color: hsla(0, 0%, 13%, 1);
-                    background-color: #dc3545;
-                    padding: 3px 8px;
+                /* .btns {
+                    color: black;
+                    background-color: white;
                     border-radius: 35px;
+                    border: 1px solid #c1bdbd;
+                    padding: 7px 30px;
+                } */
+                .container-thanks {
+                    display: flex!important;
+                    justify-content: space-between;
+                    text-align: right;
+                }
+                .container-thanks .right-thank {
+                    width: 70%;
+                }
+                .container-thanks .right-thank table tr th,
+                .container-thanks .right-thank table tr td {
+                    padding: 15px;
+                }
+                .order_details {
+                    border-radius: 15px;
+                    margin: 35px;
+                    padding: 10px;
+                    background-color: #fff3cd;
+                }
+                .alert-info-success {
+                    width: 65%;
+                    border: 1px solid #e9ebea;
+                    border-radius: 0px;
+                    background-color: #e9ffeb;
+                }
+                .order_details tr td,
+                .order_details tr th {
+                    padding: 10px;
+                }
+                .order_details tr th {
+                    font-size: 14px;
                 }
                 @keyframes fromBottomToTop {
                     to {

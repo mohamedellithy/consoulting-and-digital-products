@@ -1,10 +1,17 @@
 @extends('layouts.master_front')
 
+@php
+$page = ActivePagesMenus(['slug','=','services'])[0];
+@endphp
+
+@section('meta_tags')
+<meta name="description" content="{{ isset($page->meta_description) ? $page->meta_description : get_settings('meta_description') }} ">
+<meta name="title" content="{{ isset($page->meta_title) ? $page->meta_title : get_settings('meta_title') }} ">
+@endsection
 
 @section('content')
-
-  <!-- breadcrumb-area -->
-  <section class="breadcrumb-area breadcrumb-bg page-bg" data-background="{{ asset('front/assets/img/bg/breadcrumb_bg.jpg') }}">
+<!-- breadcrumb-area -->
+<section class="breadcrumb-area breadcrumb-bg page-bg" data-background="{{ asset('front/assets/img/bg/breadcrumb_bg.jpg') }}">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -34,8 +41,12 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="section-title-two mb-60">
-                    <span class="sub-title">خدماتنا</span>
-                    <h2 class="title">تصفح خدماتنا و استفد من مميزات عديدة</h2>
+                    <span class="sub-title">
+                        {{  isset($page->content['services']['sub_heading']) ? $page->content['services']['sub_heading'] : 'خدماتنا' }}
+                    </span>
+                    <h2 class="title">
+                        {{  isset($page->content['services']['heading']) ? $page->content['services']['heading'] : 'تصفح خدماتنا و استفد من مميزات عديدة' }}
+                    </h2>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-8">
@@ -48,7 +59,7 @@
                 </form>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row">
             @forelse($services as $service)
                 @include('partials.services_list_card_1')
             @empty
@@ -59,3 +70,11 @@
 <!-- services-area-end -->
 
 @endsection
+
+@push('scripts')
+<style>
+    .page-bg{
+        margin-top: 140px !important;
+    }
+</style>
+@endpush

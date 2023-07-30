@@ -183,15 +183,26 @@
                 for (let i = 0; i < medias.length; i++) {
                     let url = URL.createObjectURL(medias[i]);
                     formData.append(`medias[${i}]`, medias[i]);
-                    jQuery('.list-upload-medias').append(`<li class="uploadItem-${i}">
-                            <img src="${url}" class="img-uploaded">
-                            <div class="progress upload">
-                                <div class="progress-bar" role="progressbar" style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                            </div>
-                        </li>`);
+                    if(medias[i]['type'] == 'video/mp4'){
+                        jQuery('.list-upload-medias').append(`<li class="uploadItem-${i}">
+                                <video style="width: 100%;height: 100%;" class="img-uploaded" controls>
+                                    <source src="${url}" type="video/mp4">
+                                </video>
+                                <div class="progress upload">
+                                    <div class="progress-bar" role="progressbar" style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                </div>
+                            </li>`);
+                    } else {
+                        jQuery('.list-upload-medias').append(`<li class="uploadItem-${i}">
+                                <img src="${url}" class="img-uploaded">
+                                <div class="progress upload">
+                                    <div class="progress-bar" role="progressbar" style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                </div>
+                            </li>`);
+                    }
                 }
 
-                console.log(medias[0]);
+                console.log(medias[0]['type']);
                 $.ajax({
                     xhr: function() {
                         var xhr = new window.XMLHttpRequest();
@@ -244,17 +255,36 @@
                 document.querySelectorAll('.list-medias .media-item.active').forEach((ele) => {
                     let media_path = ele.getAttribute('media-path');
                     let media_id = ele.getAttribute('media-id');
+                    let media_type = ele.getAttribute('media-type');
                     media_ids.push(media_id);
                     if(multiple_upload  != 'true'){
-                        preview_thumbs.html(`<li class="preview-media-inner">
-                            <img src="${media_path}" />
-                            <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
-                        </li>`);
+                        if(media_type == 'video/mp4'){
+                            preview_thumbs.html(`<li class="preview-media-inner">
+                                <video style="width:100%;height:100%" controls>
+                                    <source src="${media_path}" type="${media_type}"></source>
+                                </video>
+                                <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
+                            </li>`);
+                        } else {
+                            preview_thumbs.html(`<li class="preview-media-inner">
+                                <img src="${media_path}" />
+                                <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
+                            </li>`);
+                        }
                     } else {
-                        preview_thumbs.append(`<li class="preview-media-inner">
-                            <img src="${media_path}" />
-                            <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
-                        </li>`);
+                        if(media_type == 'video/mp4'){
+                            preview_thumbs.append(`<li class="preview-media-inner">
+                                <video style="width:100%;height:100%" controls>
+                                    <source src="${media_path}" type="${media_type}"></source>
+                                </video>
+                                <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
+                            </li>`);
+                        } else { 
+                            preview_thumbs.append(`<li class="preview-media-inner">
+                                <img src="${media_path}" />
+                                <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
+                            </li>`);
+                        }
                     }
                 });
                 let join_list = jQuery(global_media_ids).find('.uploaded-media-ids').val(media_ids.join(
@@ -294,8 +324,9 @@
         jQuery(document).ready(function() {
             jQuery('.summernote').summernote({
                 fontNames: ['Tajawal', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana', 'MyCustomFont'],
-                fontNamesIgnoreCheck: ['Tajawal'],
+                fontNamesIgnoreCheck: ['Tajawal']
             });
+
         });
     </script>
     <script src="{{ asset('assets/editor/summernote-lite.min.js') }}"></script>

@@ -27,6 +27,13 @@ class Page extends Model
         );
     }
 
+    public function content(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => @unserialize($value) !== false ? unserialize($value) : $value,
+        );
+    }
+
     public function status(): Attribute
     {
         return Attribute::make(

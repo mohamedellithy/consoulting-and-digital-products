@@ -92,8 +92,9 @@ class ProductController extends Controller
             'meta_description'
         ]));
 
-        $product->downloads()->update($request->only([
+        $product->downloads()->updateOrCreate($request->only([
             'product_id',
+        ]),$request->only([
             'download_name',
             'download_description',
             'download_link',

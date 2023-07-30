@@ -11,7 +11,7 @@
             </div>
             <div class="services-thumb">
                 <img  src="{{ upload_assets($service->image_info) }}" alt="">
-                <a href="{{ url('service/'.$service->slug) }}" class="btn transparent-btn">عرض الخدمة</a>
+                <a href="{{ url('service/'.$service->slug) }}" class="btns transparent-btns">عرض الخدمة</a>
             </div>
             <div class="list-wrap text-right">
                 <h6>

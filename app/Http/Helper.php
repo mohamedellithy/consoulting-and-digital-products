@@ -2,6 +2,7 @@
 use App\Models\Setting;
 use App\Models\Image;
 use App\Models\Page;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 if(!function_exists('upload_assets')){
     function upload_assets($image_selected,$is_id = false,$default = 'default.jpg'){
@@ -118,9 +119,26 @@ if(!function_exists('IsPagesAllowDeletes')){
         if(!isset($page)) return false;
 
         if(!in_array($page,[
-            'home',
+            '/',
             'shop',
             'services'
+        ])):
+            return true;
+        endif;
+
+        return false;
+    }
+}
+
+if(!function_exists('IsNotAllowPagesChangeSlug')){
+    function IsNotAllowPagesChangeSlug($page){
+        if(!isset($page)) return false;
+
+        if(!in_array($page,[
+            '/',
+            'shop',
+            'services',
+            'contact-us'
         ])):
             return true;
         endif;
@@ -155,7 +173,7 @@ if(!function_exists('ActivePagesMenus')){
 
         if(count($whereCondition) > 0):
             list($column,$condition,$value) = $whereCondition;
-            return collect($pages)->where($column,$condition,$value)->all();
+            return array_values(collect($pages)->where($column,$condition,$value)->all());
         endif;
 
         return $pages;

@@ -9,7 +9,7 @@
                 </div> -->
             <div class="services-thumb">
                 <img src="{{ upload_assets($product->image_info) }}" alt="">
-                <a href="{{ url('product/'.$product->slug) }}" class="btn transparent-btn">
+                <a href="{{ url('product/'.$product->slug) }}" class="btns transparent-btn">
                    تفاصيل المنتج
                 </a>
             </div>
@@ -33,7 +33,7 @@
                     </b>
                 </div>
                 <div class="frame-buy">
-                    <a href="product-details.html" class="btn btn-secondary-color">
+                    <a href="product-details.html" class="btns btns-secondary-color">
                         شراء المنتج
                      </a>
                 </div>

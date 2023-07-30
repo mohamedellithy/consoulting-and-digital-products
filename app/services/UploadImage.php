@@ -79,8 +79,8 @@ class UploadImage
         $image = Image::find($image_id);
 
         if($image):
-            if(file_exists(public_path('storage/'.$image->path))):
-                File::delete(public_path('storage/'.$image->path));
+            if(file_exists(Storage::disk('public')->path($image->path))):
+                File::delete(Storage::disk('public')->path($image->path));
             endif;
         endif;
 

@@ -1,12 +1,17 @@
 @extends('layouts.master_front')
+@php
+$page = ActivePagesMenus(['slug','=','/'])[0];
+@endphp
 
 @section('meta_tags')
-<meta name="description" content="{{ get_settings('meta_description') }} ">
+<meta name="description" content="{{ isset($page->meta_description) ? $page->meta_description : get_settings('meta_description') }} ">
+<meta name="title" content="{{ isset($page->meta_title) ? $page->meta_title : get_settings('meta_title') }} ">
 @endsection
 
 
 @section('content')
 
+@if(isset($page->content['slider_banner']['enable']) && $page->content['slider_banner']['enable'] == 'active')
 <!-- banner-area -->
 <section class="banner-area-two banner-bg-two" data-background="assets/img/banner/h2_banner_bg.jpg') }}">
     <div class="container">
@@ -14,23 +19,23 @@
             <div class="col-lg-6">
                 <div class="banner-content-two">
                     <span class="sub-title" data-aos="fade-up" data-aos-delay="0">
-                        نحن خبراء في هذا المجال
+                        {{ isset($page->content['slider_banner']['sub_heading']) ? $page->content['slider_banner']['sub_heading']  : 'نحن خبراء في هذا المجال' }}
                     </span>
                     <h2 class="title " data-aos="fade-up" data-aos-delay="300">
-                        الخطوة الرائدة للتجارة و الاستثمار
+                        {{ isset($page->content['slider_banner']['heading']) ? $page->content['slider_banner']['heading']  : 'الخطوة الرائدة للتجارة و الاستثمار' }}
                     </h2>
                     <p data-aos="fade-up" data-aos-delay="500">
-                        تمتلك وكالة الخطوة الرائدة للتجارة و الاستثمار امكانيات فريدة و متميزة لتحقيق النتائج السريعة و تحقيق أعلى مكاسب
+                        {{ isset($page->content['slider_banner']['description']) ? $page->content['slider_banner']['description']  : 'تمتلك وكالة الخطوة الرائدة للتجارة و الاستثمار امكانيات فريدة و متميزة لتحقيق النتائج السريعة و تحقيق أعلى مكاسب' }}
                     </p>
                     <div class="banner-btn">
-                        <a href="services.html" class="btn" data-aos="fade-left" data-aos-delay="700">خدماتنا</a>
-                        <a href="https://www.youtube.com/watch?v=6mkoGSqTqFI" class="play-btn popup-video" data-aos="fade-right" data-aos-delay="700"><i class="fas fa-play"></i> <span>مشاهدة الفيديو التعريفي</span></a>
+                        <a href="#" class="btns" data-aos="fade-left" data-aos-delay="700">خدماتنا</a>
+                        <a href="https://www.youtube.com/watch?v=6mkoGSqTqFI" class="play-btns popup-video" data-aos="fade-right" data-aos-delay="700"><i class="fas fa-play"></i> <span>مشاهدة الفيديو التعريفي</span></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="banner-img text-center">
-                    <img src="{{ asset('front/assets/img/banner/arabic-businessman-traditional-small.png') }}" alt="" data-aos="fade-right" data-aos-delay="400">
+                    <img src="{{ isset($page->content['slider_banner']['thumbnail_id']) ? upload_assets($page->content['slider_banner']['thumbnail_id'],true) : asset('front/assets/img/banner/arabic-businessman-traditional-small.png') }}" alt="" data-aos="fade-right" data-aos-delay="400">
                 </div>
             </div>
         </div>
@@ -42,58 +47,74 @@
     </div>
 </section>
 <!-- banner-area-end -->
+@endif
 
 <!-- brand-area -->
+@if(isset($page->content['partner_banner']['enable']) && $page->content['partner_banner']['enable'] == 'active')
 <section class="brand-aera-two">
     <div class="container">
         <br/>
         <div class="brand-item-wrap">
-            <h6 class="title">موثوق به من قبل أكثر من 10000 شركة حول العالم</h6>
+            <h6 class="title">
+                {{ isset($page->content['partner_banner']['sub_heading']) ? $page->content['partner_banner']['sub_heading'] : 'موثوق به من قبل أكثر من 10000 شركة حول العالم' }}
+            </h6>
             <div class="row brand-active">
-                <div class="col-lg-12">
-                    <div class="brand-item">
-                        <img src="{{ asset('front/assets/img/brand/brand_img01.png') }}" alt="">
+                @isset($page->content['partner_banner']['thumbnails_id'])
+                    @foreach(GetAttachments($page->content['partner_banner']['thumbnails_id']) as $attachment)
+                        <div class="col-lg-12">
+                            <div class="brand-item">
+                                <img src="{{ upload_assets($attachment) }}" alt="">
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="col-lg-12">
+                        <div class="brand-item">
+                            <img src="{{ asset('front/assets/img/brand/brand_img01.png') }}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="brand-item">
-                        <img src="{{ asset('front/assets/img/brand/brand_img02.png') }}" alt="">
+                    <div class="col-lg-12">
+                        <div class="brand-item">
+                            <img src="{{ asset('front/assets/img/brand/brand_img02.png') }}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="brand-item">
-                        <img src="{{ asset('front/assets/img/brand/brand_img03.png') }}" alt="">
+                    <div class="col-lg-12">
+                        <div class="brand-item">
+                            <img src="{{ asset('front/assets/img/brand/brand_img03.png') }}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="brand-item">
-                        <img src="{{ asset('front/assets/img/brand/brand_img04.png') }}" alt="">
+                    <div class="col-lg-12">
+                        <div class="brand-item">
+                            <img src="{{ asset('front/assets/img/brand/brand_img04.png') }}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="brand-item">
-                        <img src="{{ asset('front/assets/img/brand/brand_img05.png') }}" alt="">
+                    <div class="col-lg-12">
+                        <div class="brand-item">
+                            <img src="{{ asset('front/assets/img/brand/brand_img05.png') }}" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="brand-item">
-                        <img src="{{ asset('front/assets/img/brand/brand_img03.png') }}" alt="">
+                    <div class="col-lg-12">
+                        <div class="brand-item">
+                            <img src="{{ asset('front/assets/img/brand/brand_img03.png') }}" alt="">
+                        </div>
                     </div>
-                </div>
+                @endisset
             </div>
         </div>
     </div>
 </section>
+@endif
 <!-- brand-area-end -->
 
 <!-- about-area -->
+@if(isset($page->content['about_banner']['enable']) && $page->content['about_banner']['enable'] == 'active')
 <section class="about-area-three">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 col-md-9">
                 <div class="about-img-wrap-three">
-                    <img src="{{ asset('front/assets/img/images/h2_about_img01.jpg') }}" alt="" data-aos="fade-down-right" data-aos-delay="0">
-                    <img src="{{ asset('front/assets/img/images/h2_about_img02.jpg') }}" alt="" data-aos="fade-left" data-aos-delay="400">
+                    <img src="{{ isset($page->content['about_banner']['thumbnail_id_big']) ? upload_assets($page->content['about_banner']['thumbnail_id_big'],true) : asset('front/assets/img/images/h2_about_img01.jpg') }}" alt="" data-aos="fade-down-right" data-aos-delay="0">
+                    <img src="{{ isset($page->content['about_banner']['thumbnail_id_small']) ? upload_assets($page->content['about_banner']['thumbnail_id_small'],true) : asset('front/assets/img/images/h2_about_img02.jpg') }}" alt="" data-aos="fade-left" data-aos-delay="400">
                     <div class="experience-wrap" data-aos="fade-up" data-aos-delay="300">
                         <h2 class="title">25 <span>عام</span></h2>
                         <p> من الخبرة في قطاع التجارة و الاستثمار فى الشرق الاوسط.</p>
@@ -103,14 +124,15 @@
             <div class="col-lg-6">
                 <div class="about-content-three">
                     <div class="section-title-two mb-20">
-                        <span class="sub-title">تعرف علينا</span>
-                        <h2 class="title" data-aos="fade-up" data-aos-delay="300">الخطوة الرائدة للتجارة و الاستثمار فى الشرق الأوسط</h2>
+                        <span class="sub-title">
+                            {{ isset($page->content['about_banner']['sub_heading']) ? $page->content['about_banner']['sub_heading']  : 'تعرف علينا' }}
+                        </span>
+                        <h2 class="title" data-aos="fade-up" data-aos-delay="300">
+                            {{ isset($page->content['about_banner']['heading']) ? $page->content['about_banner']['heading']  : 'الخطوة الرائدة للتجارة و الاستثمار فى الشرق الأوسط' }}
+                        </h2>
                     </div>
                     <p class="info-one">
-                        لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل المثال ... او نماذج مواقع انترنت ... وعند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                        ويتم وضع النصوص النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية بالتصميم قد تشغل المشاهد عن وضع الكثير من الملاحظات او الانتقادات للتصميم الاساسي.
-                        <br/> <br/> لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل المثال ... او نماذج مواقع انترنت ... وعند موافقه العميل
-                        المبدئيه على التصميم يتم ازالة هذا النص من التصميم ويتم وضع النصوص النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية بالتصميم قد تشغل المشاهد عن وضع الكثير من الملاحظات او الانتقادات للتصميم الاساسي.
+                        {!! isset($page->content['about_banner']['description']) ? $page->content['about_banner']['description']  : 'النص هنا'  !!}
                     </p>
 
                     <div class="about-author-info">
@@ -135,20 +157,24 @@
         <img src="{{ asset('front/assets/img/images/h2_about_shape03.png') }}" alt="" data-aos="fade-left" data-aos-delay="500">
     </div>
 </section>
+@endif
 <!-- about-area-end -->
 
 <!-- services-area -->
+@if(isset($page->content['services_banner']['enable']) && $page->content['services_banner']['enable'] == 'active')
 <section class="services-area services-bg" data-background="{{ asset('front/assets/img/bg/services_bg.jpg') }}">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8">
                 <div class="section-title white-title text-center mb-50">
-                    <span class="sub-title">خدماتنا المخصصة</span>
+                    <span class="sub-title">
+                        {{ isset($page->content['services_banner']['sub_heading']) ? $page->content['services_banner']['sub_heading']  : 'خدماتنا المخصصة' }}
+                    </span>
                     <h2 class="title">
-                        تسليط الضوء على البعض الخدمات المهمة لدينا
+                        {{ isset($page->content['services_banner']['heading']) ? $page->content['services_banner']['heading']  : 'تسليط الضوء على البعض الخدمات المهمة لدينا' }}
                     </h2>
                     <p>
-                        تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات فريدة و متنوعة
+                        {{ isset($page->content['services_banner']['description']) ? $page->content['services_banner']['description']  : 'تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات فريدة و متنوعة' }}
                     </p>
                 </div>
             </div>
@@ -165,7 +191,7 @@
                         </div>
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">عرض الخدمة</a>
+                            <a href="services-details.html" class="btns transparent-btns">عرض الخدمة</a>
                         </div>
                         <div class="list-wrap text-right">
                             <h6>تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات</h6>
@@ -184,7 +210,7 @@
                         </div>
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">عرض الخدمة</a>
+                            <a href="services-details.html" class="btns transparent-btn">عرض الخدمة</a>
                         </div>
                         <div class="list-wrap text-right">
                             <h6>تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات</h6>
@@ -203,7 +229,7 @@
                         </div>
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">عرض الخدمة</a>
+                            <a href="services-details.html" class="btns transparent-btns">عرض الخدمة</a>
                         </div>
                         <div class="list-wrap text-right">
                             <h6>تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات</h6>
@@ -222,7 +248,7 @@
                         </div>
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">عرض الخدمة</a>
+                            <a href="services-details.html" class="btns transparent-btn">عرض الخدمة</a>
                         </div>
                         <div class="list-wrap text-right">
                             <h6>تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات</h6>
@@ -241,7 +267,7 @@
                         </div>
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">عرض الخدمة</a>
+                            <a href="services-details.html" class="btns transparent-btn">عرض الخدمة</a>
                         </div>
                         <div class="list-wrap text-right">
                             <h6>تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات</h6>
@@ -254,15 +280,17 @@
         </div>
     </div>
 </section>
+@endif
 <!-- services-area-end -->
 
 <!-- about-area -->
+@if(isset($page->content['introduce_banner']['enable']) && $page->content['introduce_banner']['enable'] == 'active')
 <section class="about-area about-bg" data-background="{{ asset('front/assets/img/bg/about_bg.jpg') }}">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5">
                 <div class="about-img-wrap">
-                    <img src="{{ asset('front/assets/img/images/about_img01.png') }}" data-aos="fade-right" data-aos-delay="0" alt="" class="main-img">
+                    <img src="{{ isset($page->content['introduce_banner']['thumbnail_id']) ? upload_assets($page->content['introduce_banner']['thumbnail_id'],true) : asset('front/assets/img/images/about_img01.png') }}" data-aos="fade-right" data-aos-delay="0" alt="" class="main-img">
                     <img src="{{ asset('front/assets/img/images/about_img_shape01.png') }}" alt="">
                     <img src="{{ asset('front/assets/img/images/about_img_shape02.png') }}" alt="">
                 </div>
@@ -270,33 +298,42 @@
             <div class="col-lg-7">
                 <div class="about-content">
                     <div class="section-title mb-25">
-                        <span class="sub-title">ماذا نحن نقدم</span>
-                        <h2 class="title" data-aos="fade-in" data-aos-delay="0">تغيير طريقة العمل لأفضل حلول الأعمال</h2>
+                        <span class="sub-title">
+                            {{ isset($page->content['introduce_banner']['sub_heading']) ? $page->content['introduce_banner']['sub_heading'] : 'ماذا نحن نقدم' }}
+                        </span>
+                        <h2 class="title" data-aos="fade-in" data-aos-delay="0">
+                            {{ isset($page->content['introduce_banner']['heading']) ? $page->content['introduce_banner']['heading'] : 'تغيير طريقة العمل لأفضل حلول الأعمال' }}
+                        </h2>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="10">
-                        لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل المثال ... او نماذج مواقع انترنت ... وعند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                        ويتم وضع النصوص النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية بالتصميم قد تشغل المشاهد عن وضع الكثير من الملاحظات او الانتقادات للتصميم الاساسي.
+                        {!! isset($page->content['introduce_banner']['description']) ? $page->content['introduce_banner']['description'] : 'تغيير طريقة العمل لأفضل حلول الأعمال' !!}
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif
 <!-- about-area-end -->
 
 <!-- project-area -->
+@if(isset($page->content['products_banner']['enable']) && $page->content['products_banner']['enable'] == 'active')
 <section class="project-area slider project-bg" data-background="{{ asset('front/assets/img/bg/project_bg.jpg') }}">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-xl-5 col-lg-6 col-md-8">
                 <div class="section-title-two mb-50">
-                    <span class="sub-title">منتجاتنا الرقمية</span>
-                    <h4 class="title">توفر الخطوة الرائدة العديد من المنتجات الرقمية المتميزة </h4>
+                    <span class="sub-title">
+                        {{ isset($page->content['products_banner']['sub_heading']) ? $page->content['products_banner']['sub_heading'] : 'منتجاتنا الرقمية' }}
+                    </span>
+                    <h4 class="title">
+                        {{ isset($page->content['products_banner']['heading']) ? $page->content['products_banner']['heading'] : 'توفر الخطوة الرائدة العديد من المنتجات الرقمية المتميزة' }}
+                    </h4>
                 </div>
             </div>
             <div class="col-xl-7 col-lg-6 col-md-4">
-                <div class="view-all-btn text-end mb-30">
-                    <a href="services.html" class="btn btn-secondary-color">عرض كل المنتجات</a>
+                <div class="view-all-btns text-end mb-30">
+                    <a href="services.html" class="btns btns-secondary-color">عرض كل المنتجات</a>
                 </div>
             </div>
         </div>
@@ -312,7 +349,7 @@
                         </div> -->
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">
+                            <a href="services-details.html" class="btns transparent-btn">
                                 Purchase Now
                             </a>
                         </div>
@@ -348,7 +385,7 @@
                         </div> -->
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">
+                            <a href="services-details.html" class="btns transparent-btns">
                                 Purchase Now
                             </a>
                         </div>
@@ -384,7 +421,7 @@
                         </div> -->
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">
+                            <a href="services-details.html" class="btns transparent-btn">
                                 Purchase Now
                             </a>
                         </div>
@@ -420,7 +457,7 @@
                         </div> -->
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">
+                            <a href="services-details.html" class="btns transparent-btns">
                                 Purchase Now
                             </a>
                         </div>
@@ -456,7 +493,7 @@
                         </div> -->
                         <div class="services-thumb">
                             <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btn transparent-btn">
+                            <a href="services-details.html" class="btns transparent-btns">
                                 Purchase Now
                             </a>
                         </div>
@@ -484,9 +521,11 @@
         </div>
     </div>
 </section>
+@endif
 <!-- project-area-two -->
 
 <!-- request-area -->
+@if(isset($page->content['contact_banner']['enable']) && $page->content['contact_banner']['enable'] == 'active')
 <section class="request-area-two">
     <div class="container">
         <div class="row align-items-center">
@@ -494,11 +533,11 @@
                 <div class="request-content-two">
                     <div class="section-title-two white-title mb-15">
                         <h2 class="title">
-                            قم بتواصل معنا
+                            {{ isset($page->content['contact_banner']['heading']) ? $page->content['contact_banner']['heading'] : 'قم بتواصل معنا' }}
                         </h2>
                     </div>
                     <p>
-                        تعتمد الوكالة على التواصل مع عملائها و متابعيها بشكل دائم من اجل حل مشاكلهم و الاطلاع على استفساراتهم و ملاحظاتهم
+                        {{ isset($page->content['contact_banner']['description']) ? $page->content['contact_banner']['description'] : 'تعتمد الوكالة على التواصل مع عملائها و متابعيها بشكل دائم من اجل حل مشاكلهم و الاطلاع على استفساراتهم و ملاحظاتهم' }}
                     </p>
                 </div>
             </div>
@@ -522,7 +561,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <button type="submit">Send Now</button>
+                                <button type="submit">تواصل معنا</button>
                             </div>
                         </div>
                     </form>
@@ -535,28 +574,41 @@
         <img src="{{ asset('front/assets/img/images/h2_request_shape02.png') }}" alt="" data-aos="fade-left" data-aos-delay="200">
     </div>
 </section>
+@endif
 <!-- request-area-end -->
 
 <!-- choose-area -->
+@if(isset($page->content['why_choice_us_banner']['enable']) && $page->content['why_choice_us_banner']['enable'] == 'active')
 <section class="choose-area-two">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <div class="choose-img-two">
-                    <img src="{{ asset('front/assets/img/images/h4_choose_img.png') }}" alt="">
-                    <img src="{{ asset('front/assets/img/images/choose_img_shape01.png') }}" alt="">
-                    <img src="{{ asset('front/assets/img/images/choose_img_shape02.png') }}" alt="">
+                <div class="about-img-wrap-four">
+                    <div class="mask-img-wrap">
+                        <img src="{{ isset($page->content['why_choice_us_banner']['thumbnail_id']) ? upload_assets($page->content['why_choice_us_banner']['thumbnail_id'],true) : asset('front/assets/img/images/h3_about_img01.jpg') }}" alt="">
+                    </div>
+                    <div class="icon"><i class="flaticon-business-presentation"></i></div>
+                    <img src="{{ asset('front/assets/img/images/h3_about_img02.jpg') }}" alt="" class="img-two">
+                    <div class="about-shape-wrap-three">
+                        <img src="assets/img/images/h3_about_shape01.png" alt="">
+                        <img src="assets/img/images/h3_about_shape02.png" alt="">
+                        <img src="assets/img/images/h3_about_shape03.png" alt="">
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="choose-content-two">
                     <div class="section-title-two white-title mb-30">
-                        <span class="sub-title">لماذا نحن أفضل اختيار لك</span>
+                        <span class="sub-title">
+                            {{ isset($page->content['why_choice_us_banner']['sub_heading']) ? $page->content['why_choice_us_banner']['sub_heading'] : 'لماذا نحن أفضل اختيار لك' }}
+                        </span>
                         <h2 class="title" data-aos="fade-up" data-aos-delay="0">
-                            لدى الخطوة الرائدة العديد من المزايا و الخدمات المهمة و المفيدة
+                            {{ isset($page->content['why_choice_us_banner']['heading']) ? $page->content['why_choice_us_banner']['heading'] : 'لدى الخطوة الرائدة العديد من المزايا و الخدمات المهمة و المفيدة' }}
                         </h2>
                     </div>
-                    <p data-aos="fade-in" data-aos-delay="2">Morem ipsum dolor sit amet, consectetur adipiscing elita florai psum dolor sit amet, consecteture.Borem.</p>
+                    <p data-aos="fade-in" data-aos-delay="2">
+                        {!! isset($page->content['why_choice_us_banner']['description']) ? $page->content['why_choice_us_banner']['description'] : '' !!}
+                    </p>
                     <div class="choose-circle-wrap">
                         <div class="circle-item">
                             <div class="chart" data-percent="55">
@@ -591,15 +643,17 @@
         <img src="{{ asset('front/assets/img/images/choose_shape.png') }}" alt="" data-aos="fade-right" data-aos-delay="200">
     </div>
 </section>
+@endif
 <!-- choose-area-end -->
 
 <!-- testimonial-area -->
+@if(isset($page->content['our_reviews_banner']['enable']) && $page->content['our_reviews_banner']['enable'] == 'active')
 <section class="testimonial-area-five">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
                 <div class="testimonial-img-five">
-                    <img src="{{ asset('front/assets/img/images/h5_testimonial_img.png') }}" alt="">
+                    <img src="{{ isset($page->content['our_reviews_banner']['thumbnail_id']) ? upload_assets($page->content['our_reviews_banner']['thumbnail_id'],true) : asset('front/assets/img/images/h5_testimonial_img.png') }}" alt="">
                     <img src="{{ asset('front/assets/img/images/h5_testimonial_shape01.png') }}" alt="" class="shape-one">
                     <img src="{{ asset('front/assets/img/images/h5_testimonial_shape02.png') }}" alt="" class="shape-two">
                     <img src="{{ asset('front/assets/img/images/h5_testimonial_shape03.png') }}" alt="" class="shape-three">
@@ -608,8 +662,12 @@
             <div class="col-lg-6">
                 <div class="testimonial-content-five">
                     <div class="section-title title-three mb-50">
-                        <span class="sub-title">تجارب عملائنا و ارائهم</span>
-                        <h2 class="title">تهتم دائما منصتنا على تحسين خدماتها لتنول رضا عملائها </h2>
+                        <span class="sub-title">
+                            {{ isset($page->content['our_reviews_banner']['sub_heading']) ? $page->content['our_reviews_banner']['sub_heading'] : 'تجارب عملائنا و ارائهم' }}
+                        </span>
+                        <h2 class="title">
+                            {{ isset($page->content['our_reviews_banner']['heading']) ? $page->content['our_reviews_banner']['heading'] : 'تهتم دائما منصتنا على تحسين خدماتها لتنول رضا عملائها ' }}
+                        </h2>
                     </div>
                     <div class="testimonial-item-wrap-five">
                         <div class="testimonial-active-five">
@@ -673,5 +731,6 @@
         </div>
     </div>
 </section>
+@endif
 <!-- testimonial-area-end -->
 @endsection

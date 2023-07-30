@@ -62,13 +62,18 @@
                     <b>نوع المنتج</b>
                     <p>
                         <span class="badge bg-info">
-                           {{ $product->downloads ? ucfirst($product->downloads->download_type) : 'Not Selected' }} 
+                           {{ $product->downloads ? ucfirst($product->downloads->download_type) : 'Not Selected' }}
                         </span>
                     </p>
                     <br/>
-                    <button class="btn btn-secondary-color">
-                            شراء الأن
-                    </button>
+                    <form action="{{ route('buy_now') }}"" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                        <input type="hidden" name="qty"        value="1" />
+                        <button type="submit" class="btns btns-secondary-color">
+                                شراء الأن
+                        </button>
+                    </form>
                     <br/>
                     <br/>
                     <b>تفاصيل المنتج</b>

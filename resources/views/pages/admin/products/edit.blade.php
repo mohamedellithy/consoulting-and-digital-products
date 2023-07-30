@@ -67,11 +67,11 @@
                                 <label class="form-label" for="basic-default-fullname">نوع الملف</label>
                                 <select type="url" class="form-control" id="basic-default-fullname" placeholder=""
                                     name="download_type" value="{{ old('download_type') }}" required>
-                                    <option value="pdf"   @if($product->downloads->download_type == 'pdf') selected @endif>Pdf</option>
-                                    <option value="image" @if($product->downloads->download_type == 'image') selected @endif>Image</option>
-                                    <option value="video" @if($product->downloads->download_type == 'video') selected @endif>Video</option>
-                                    <option value="audio" @if($product->downloads->download_type == 'audio') selected @endif>Audio</option>
-                                    <option value="zip"   @if($product->downloads->download_type == 'zip') selected @endif>Zip</option>
+                                    <option value="pdf"   @isset($product->downloads) @if($product->downloads->download_type == 'pdf') selected @endif   @endisset>Pdf</option>
+                                    <option value="image" @isset($product->downloads) @if($product->downloads->download_type == 'image') selected @endif @endisset>Image</option>
+                                    <option value="video" @isset($product->downloads) @if($product->downloads->download_type == 'video') selected @endif @endisset>Video</option>
+                                    <option value="audio" @isset($product->downloads) @if($product->downloads->download_type == 'audio') selected @endif @endisset>Audio</option>
+                                    <option value="zip"   @isset($product->downloads) @if($product->downloads->download_type == 'zip') selected @endif   @endisset>Zip</option>
                                 </select>
                                 @error('download_type')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
@@ -82,7 +82,7 @@
                                     <button type="button" class="btn btn-info btn-sm upload-media" data-type-media="image" data-multiple-media="true">
                                         <i class='bx bx-upload' ></i>
                                         اضافة ملفات قابلة للتحميل
-                                        <input type="hidden" name="download_attachments_id" value="{{ $product->downloads->download_attachments_id  }}"
+                                        <input type="hidden" name="download_attachments_id" @isset($product->downloads) value="{{ $product->downloads->download_attachments_id  }}" @endisset
                                             class="form-control dob-picker uploaded-media-ids"/>
                                     </button>
                                     @error('download_attachments_id')
@@ -94,14 +94,24 @@
                                             لايوجد ملفات
                                         </div>
                                         <ul class="list-preview-thumbs">
-                                            @if($product->downloads->download_attachments_id)
-                                                @foreach(GetAttachments($product->downloads->download_attachments_id) as $attachment)
-                                                    <li class="preview-media-inner">
-                                                        <img src="{{ upload_assets($attachment) }}" />
-                                                        <i class='bx bxs-message-square-x remove' media-id="{{ $attachment->id }}"></i>
-                                                    </li>
-                                                @endforeach
-                                            @endif
+                                            @isset($product->downloads)
+                                                @if($product->downloads->download_attachments_id)
+                                                    @foreach(GetAttachments($product->downloads->download_attachments_id) as $attachment)
+                                                        <li class="preview-media-inner">
+                                                            @if($attachment->type == 'video/mp4')
+                                                                <video style="width:100%;height:100%" controls>
+                                                                    <source src="{{ upload_assets($attachment) }}" type="{{ $attachment->type }}"></source>
+                                                                </video>
+                                                            @elseif($attachment->type =='application/pdf')
+                                                                <i style="font-size: 120px;" class='bx bxs-file-pdf'></i>
+                                                            @else
+                                                                <img src="{{ upload_assets($attachment) }}"/>
+                                                            @endif
+                                                            <i class='bx bxs-message-square-x remove' media-id="{{ $attachment->id }}"></i>
+                                                        </li>
+                                                    @endforeach
+                                                @endif
+                                            @endisset
                                         </ul>
                                     </div>
                                 </div>
@@ -110,8 +120,8 @@
                                 <label class="form-label" for="basic-default-fullname">حالة الملف</label>
                                 <select type="url" class="form-control" id="basic-default-fullname" placeholder=""
                                     name="download_status" value="{{ old('download_status') }}" required>
-                                    <option value="download"         @if($product->downloads->download_status == 'download') selected @endif>تنزيل الملف او الفيديو</option>
-                                    <option value="without_download" @if($product->downloads->download_status == 'without_download') selected @endif>مشاهدة بدون تنزيل</option>
+                                    <option value="download"         @isset($product->downloads) @if($product->downloads->download_status == 'download') @endisset selected @endif>تنزيل الملف او الفيديو</option>
+                                    <option value="without_download" @isset($product->downloads) @if($product->downloads->download_status == 'without_download') @endisset selected @endif>مشاهدة بدون تنزيل</option>
                                 </select>
                                 @error('download_status')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
@@ -120,7 +130,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-fullname">رابط ملف التحميل ان وجدت</label>
                                 <input type="url" class="form-control" id="basic-default-fullname" placeholder=""
-                                    name="download_link" value="{{ $product->downloads->download_link ?: old('download_link') }}"/>
+                                    name="download_link"  @isset($product->downloads) value="{{ $product->downloads->download_link ?: old('download_link') }}" @endisset>
                                 @error('download_link')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
@@ -128,7 +138,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-fullname">اسم الملف التحميلات</label>
                                 <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
-                                    name="download_name" value="{{ $product->downloads->download_name ?: old('download_name') }}" required/>
+                                    name="download_name" @isset($product->downloads) value="{{ $product->downloads->download_name ?: old('download_name') }}" @endisset required/>
                                 @error('download_name')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
@@ -136,7 +146,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-fullname">وصف ملف التحميلات</label>
                                 <textarea type="text" class="form-control summernote" id="basic-default-fullname" placeholder=""
-                                    name="download_description" required>{{ $product->downloads->download_description ?: old('download_description') }}</textarea>
+                                    name="download_description" required>{{  $product->downloads ? $product->downloads->download_description : old('download_description') }}</textarea>
                                 @error('download_description')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror

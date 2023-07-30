@@ -1,9 +1,8 @@
 @extends('layouts.master_front')
 
-
 @section('content')
- <!-- project-details-area -->
- <section class="project-details-area pt-120 pb-120 page-bg">
+<!-- project-details-area -->
+<section class="project-details-area pt-120 pb-120 page-bg">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -26,12 +25,12 @@
                                         <strong> 1293848 </strong>
                                     </li>
                                     <li>
-                                        <button id="subscrib_on_service" class="btn btn-secondary-color btn-sm">
+                                        <button id="subscrib_on_service" class="btns btns-secondary-color btn-sm">
                                             الاشتراك فى الخدمة
                                         </button>
                                     </li>
                                     <li>
-                                        <a href="{{ 'https://wa.me/'.get_settings('website_whastapp').'?text='.urlencode(' طلب استفسار بخصوص خدمة ' . $service->name) }}" id="subscrib_on_service" class="btn btn-warning btn-sm">
+                                        <a href="{{ 'https://wa.me/'.get_settings('website_whastapp').'?text='.urlencode(' طلب استفسار بخصوص خدمة ' . $service->name) }}" id="subscrib_on_service" class="btns btns-warning btn-sm">
                                             التواصل من خلال الواتس
                                         </a>
                                     </li>
@@ -102,7 +101,7 @@
                             @enderror
                         </div>
                         <div class="form-group text-center" style="padding: 27px;">
-                            <button type="submit" class="btn btn-warning ">الاشتراك فى الخدمة</button>
+                            <button type="submit" class="btns btns-warning ">الاشتراك فى الخدمة</button>
                         </div>
                     </form>
                 </div>

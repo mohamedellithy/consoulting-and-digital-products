@@ -1,19 +1,29 @@
 @extends('layouts.master_front')
 
-@php 
+@php
+$page = ActivePagesMenus(['slug','=','shop'])[0];
 $order_by = request('order_by');
 $search   = request('search');
 @endphp
-@section('content')
 
+@section('meta_tags')
+<meta name="description" content="{{ isset($page->meta_description) ? $page->meta_description : get_settings('meta_description') }} ">
+<meta name="title" content="{{ isset($page->meta_title) ? $page->meta_title : get_settings('meta_title') }} ">
+@endsection
+
+@section('content')
 <!-- project-area -->
 <section class="project-area project-bg page-bg" data-background="assets/img/bg/project_bg.jpg">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-xl-6 col-lg-6 col-md-8">
                 <div class="section-title-two mb-50">
-                    <span class="sub-title">منتجاتنا الرقمية</span>
-                    <h4 class="title">توفر الخطوة الرائدة العديد من المنتجات الرقمية المتميزة </h4>
+                    <span class="sub-title">
+                        {{ isset($page['shop']['sub_heading']) ? $page['shop']['sub_heading'] : 'منتجاتنا الرقمية' }}
+                    </span>
+                    <h4 class="title">
+                        {{ isset($page['shop']['heading']) ? $page['shop']['heading'] : 'توفر الخطوة الرائدة العديد من المنتجات الرقمية المتميزة' }}
+                    </h4>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-8">

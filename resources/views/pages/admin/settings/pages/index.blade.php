@@ -119,7 +119,7 @@
                                                             تعديل
                                                         </a>
                                                         @if(IsPagesAllowDeletes($page->slug))
-                                                            <form action="{{ route('admin.services.destroy', $page->id) }}"
+                                                            <form action="{{ route('admin.settings.pages.destroy', $page->id) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -128,8 +128,8 @@
                                                                 </button>
                                                             </form>
                                                         @endif
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('admin.settings.pages.show', $page->id) }}"><i
+                                                        <a class="dropdown-item" target="_blank"
+                                                            href="{{ url($page->slug) }}"><i
                                                                 class="fa-regular fa-eye me-2"></i></i>عرض
                                                         </a>
                                                         

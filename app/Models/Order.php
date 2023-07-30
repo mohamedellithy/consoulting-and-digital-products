@@ -9,16 +9,11 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['order_status','order_no'];
+    protected $fillable = ['order_status','order_no','order_total','customer_id'];
 
     public function customer(){
         return $this->belongsTo(User::class,'customer_id','id');
     }
-
-    // public function product(){
-    //     return $this->hasOneThrough(Product::class, OrderItem::class,'order_id','product_id');
-    //     //return $this->belongsTo(Product::class,'product_id','id');
-    // }
 
     public function order_items(){
         return $this->hasOne(OrderItem::class,'order_id','id');
