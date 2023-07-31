@@ -121,7 +121,8 @@ if(!function_exists('IsPagesAllowDeletes')){
         if(!in_array($page,[
             '/',
             'shop',
-            'services'
+            'services',
+            'contact-us'
         ])):
             return true;
         endif;
@@ -229,4 +230,12 @@ if(!function_exists('getOriginalSizeWithOriginalUnit')){
 
 
 
+
+if(!function_exists('formateMediaType')){
+    function formateMediaType($type){
+        if(!isset($type)) return 'image';
+
+        return explode('/',$type);
+    }
+}
 

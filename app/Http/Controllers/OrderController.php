@@ -15,6 +15,7 @@ class OrderController extends Controller
     {
         //
         $orders   =  Order::query();
+        $orders   =  $orders ->with('customer','order_items','order_items.product');
         $per_page = 10;
         $orders->when(request('order_status') != null, function ($q) {
             return $q->where('order_status',request('order_status'));

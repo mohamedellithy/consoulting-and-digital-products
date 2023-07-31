@@ -50,7 +50,7 @@
                             </div>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
@@ -74,15 +74,16 @@
                                     class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                             </span>
                         </a>
-                    </li>
+                    </li> 
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
+                    --}}
                     <li>
                         <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
                             <i class="bx bx-power-off me-2"></i>
-                            <span class="align-middle">Log Out</span>
+                            <span class="align-middle">تسجيل الخروج</span>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf

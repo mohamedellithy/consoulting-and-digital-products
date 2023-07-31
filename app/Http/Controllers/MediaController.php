@@ -17,7 +17,7 @@ class MediaController extends Controller
         $medias = Image::query();
 
         $medias->when(request('media_type') != null,function($q){
-            return $q->where('type','IMAGE/'.request('media_type'));
+            return $q->where('type',request('media_type'));
         });
 
         $medias = $medias->paginate(100);

@@ -24,9 +24,13 @@ $media_type = request('media_type');
                                 <form id="filter-data" method="get">
                                     <select name="media_type" onchange="document.getElementById('filter-data').submit()" id="largeSelect" class="form-select  form-select-md">
                                         <option value="">كل الوسائط</option>
-                                        <option value="PNG"  @isset($media_type) @if($media_type == 'PNG') selected @endif @endisset>IMAGE/PNG</option>
-                                        <option value="JPG"  @isset($media_type) @if($media_type == 'JPG') selected @endif @endisset>IMAGE/JPG</option>
-                                        <option value="JPEG" @isset($media_type) @if($media_type == 'JPEG') selected @endif @endisset>IMAGE/JPEG</option>
+                                        <option value="image/png"  @isset($media_type) @if($media_type == 'image/png') selected @endif @endisset>IMAGE/PNG</option>
+                                        <option value="image/jpg"  @isset($media_type) @if($media_type == 'image/jpg') selected @endif @endisset>IMAGE/JPG</option>
+                                        <option value="image/jpeg" @isset($media_type) @if($media_type == 'image/jpeg') selected @endif @endisset>IMAGE/JPEG</option>
+                                        <option value="video/mp4"  @isset($media_type) @if($media_type == 'video/mp4') selected @endif @endisset>IMAGE/MP4</option>
+                                        <option value="application/pdf"  @isset($media_type) @if($media_type == 'application/pdf') selected @endif @endisset>Application/PDF</option>
+                                        <option value="text/csv"  @isset($media_type) @if($media_type == 'text/csv') selected @endif @endisset>Text/csv</option>
+                                        <option value="text/xlx"  @isset($media_type) @if($media_type == 'text/xlx') selected @endif @endisset>Text/xlx</option>
                                     </select>
                                 </form>
                             </div>

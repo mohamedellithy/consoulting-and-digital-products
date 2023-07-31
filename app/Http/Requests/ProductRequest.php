@@ -24,7 +24,9 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'         => 'required|string|max:255',
+            'name'         => 'required|string|max:255|unique:products,name,'.$this->product,
+            'price'        => 'required',
+            'meta_title'   => 'sometimes|string|max:255',
             'description'  => 'required|string',
             'thumbnail_id' => 'required'
         ];
@@ -35,7 +37,9 @@ class ProductRequest extends FormRequest
             'name.required' => 'حقل الاسم مطلوب',
             'name.string' => 'يرجى ادخال نص',
             'name.max' => 'الاسم يجب ان يكون اقل من 255 حرف',
+            'meta_title.max' => 'meta title يجب ان يكون اقل من 255 حرف',
             'description.required' => ' مطلوب',
+            'price.required'     => 'حقل السعر مطلوب',
             'description.string' => 'يرجى ادخال نص',
             'thumbnail_id.required' => 'حقل الصورة مطلوب'
         ];

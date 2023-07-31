@@ -33,9 +33,14 @@
                     </b>
                 </div>
                 <div class="frame-buy">
-                    <a href="product-details.html" class="btns btns-secondary-color">
-                        شراء المنتج
-                     </a>
+                     <form action="{{ route('buy_now') }}"" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                        <input type="hidden" name="qty"        value="1" />
+                        <button type="submit" class="btns btns-secondary-color">
+                            شراء المنتج
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

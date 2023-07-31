@@ -1,16 +1,22 @@
 <div class="image-media-card text-center">
     <span class="badge bg-primary" style="position: absolute;">
-        {{ $media->type ? explode('/',$media->type)[1] : 'mime' }}
+        {{ $media->type ? formateMediaType($media->type)[1] : 'mime' }}
     </span>
-    @if($media->type == 'video/mp4')
-        <video style="width:100%;height:100%" controls>
-            <source src="{{ upload_assets($media) }}" type="{{ $media->type }}"></source>
-        </video>
-    @elseif($media->type =='application/pdf')
-        <i style="font-size: 120px;" class='bx bxs-file-pdf'></i>
-    @else
-        <img src="{{ upload_assets($media) }}" />
-    @endif
+    <div class="container-image">
+        @if('video' == formateMediaType($media->type)[0])
+            <video controls>
+                <source src="{{ upload_assets($media) }}" type="{{ $media->type }}"></source>
+            </video>
+        @elseif('application' == formateMediaType($media->type)[0])
+            <i style="font-size: 120px;" class='bx bxs-file-pdf'></i>
+        @elseif('text' == formateMediaType($media->type)[0])
+            <i style="font-size: 120px;" class='bx bxs-file-txt'></i>
+        @elseif('image' == formateMediaType($media->type)[0])
+            <img src="{{ upload_assets($media) }}" />
+        @else
+            <i style="font-size: 120px;" class='bx bxs-file-blank'></i>
+        @endif
+    </div>
     <p class="title-media-card text-center">
         {{ TrimLongText($media->name ?: fetchImageInnerDetails($media),50) }}
     </p>

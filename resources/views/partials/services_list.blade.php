@@ -27,11 +27,13 @@
         </td>
         <td>
             <div class="dropdown">
-                <button type="button" class="btns p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i
-                        class="bx bx-dots-vertical-rounded"></i></button>
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                    data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                 <div class="dropdown-menu">
-                    <form action="{{ route('admin.services.destroy', $service->id) }}" method="POST">
-                        <a class="dropdown-item" href="{{ route('admin.services.edit', $service->id) }}"><i
+                    <form action="{{ route('admin.services.destroy', $service->id) }}"
+                        method="POST">
+                        <a class="dropdown-item"
+                            href="{{ route('admin.services.edit', $service->id) }}"><i
                                 class="bx bx-edit-alt me-2"></i>
                             تعديل</a>
                         @csrf
@@ -39,9 +41,8 @@
                         <button type="submit" class="dropdown-item">
                             <i class="bx bx-trash me-2"></i>حذف
                         </button>
-
-
-                        <a class="dropdown-item" href="{{ route('admin.services.show', $service->id) }}"><i
+                        <a class="dropdown-item" target="_blank"
+                            href="{{ url('service/'.$service->slug) }}"><i
                                 class="fa-regular fa-eye me-2"></i></i>عرض
 
                         </a>

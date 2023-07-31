@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\ApplicationOrder;
 class CustomerController extends Controller
 {
     /**
@@ -50,7 +51,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         //
-        $customer   =  User::customer()->find($id);
+        $customer   =  User::customer()->withCount('orders','application_orders')->find($id);
         return view('pages.admin.customers.show', compact('customer'));
     }
 
@@ -74,12 +75,20 @@ class CustomerController extends Controller
     }
 
     public function services_orders($id){
+        $rows  = request('rows') ?: 10;
         $customer =  User::customer()->find($id);
-        $orders   =  Order::query();
-        $orders->where('customer_id',$id);
-        $orders   =  filter_orders($orders);
-        $orders   =  $orders->paginate(10);
-        return view('pages.admin.customers.orders.services', compact('orders','customer'));
+        $application_orders   =  ApplicationOrder::query();
+        $application_orders   =  $application_orders->with('service','customer');
+        $application_orders->where('customer_id',$id);
+        $application_orders->when(request('search') != null, function ($q) {
+            return $q->WhereHas('customer',function($query){
+                $query->where('name', 'like', '%' . request('search') . '%');
+            })->orWhereHas('service',function($query){
+                $query->where('name', 'like', '%' . request('search') . '%');
+            });
+        });
+        $application_orders   =  $application_orders->paginate($rows);
+        return view('pages.admin.customers.orders.services', compact('application_orders','customer'));
     }
 
     public function products_orders($id){

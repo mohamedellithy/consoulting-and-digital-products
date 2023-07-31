@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\ServiceOrderController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -29,20 +30,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/master', function () {
-    return view('pages.dashboard');
-});
-
 
 Auth::routes();
 
 
-Route::group(['middleware' => 'auth','as' => 'admin.','prefix'=>'admin'],function(){
+Route::group(['middleware' => 'admin_auth','as' => 'admin.','prefix'=>'admin'],function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
     Route::resource('services',ServiceController::class);
     Route::resource('media-lists',MediaAjaxController::class);
     Route::resource('products',ProductController::class);
     Route::resource('orders',OrderController::class);
+    Route::resource('services-orders',ServiceOrderController::class);
     Route::resource('customers',CustomerController::class);
     Route::get('customers/services-orders/{id}' ,[CustomerController::class,'services_orders'])->name('customers.services-orders');
     Route::get('customers/products-orders/{id}',[CustomerController::class,'products_orders'])->name('customers.products-orders');
@@ -88,5 +86,6 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('download/{order_id}',[FrontController::class,'my_single_download'])->name('single_download');
     Route::post('update-account',[FrontController::class,'update_account'])->name('update-account');
 });
+
 
 Route::get('/{slug}',[FrontController::class,'custom_page']);

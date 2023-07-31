@@ -30,11 +30,11 @@ class ThawaniPayment{
         $this->order_data = $order_data;
 
         $data = [
-            "client_reference_id" => $this->order_data->id,
+            "client_reference_id" => $this->order_data->customer->id,
             "mode"                => "payment",
             "products"            => [
                 [
-                    "name"        => $this->order_data->order_items->product->name,
+                    "name"        => TrimLongText($this->order_data->order_items->product->name,35),
                     "quantity"    => 1,
                     "unit_amount" => ceil($this->order_data->order_total)
                 ]
@@ -67,6 +67,8 @@ class ThawaniPayment{
             ]);
 
             $this->redirectToPayment($this->result['data']['session_id']);
+        else:
+            return back();
         endif;
     }
 

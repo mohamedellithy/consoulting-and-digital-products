@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" class="light-style layout-menu-fixed" dir="rtl">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport"
@@ -73,16 +72,16 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
 
-                    @if (flash()->message)
+                    @if(flash()->message)
                         <div class="show-notify {{ flash()->class }}">
                             {{ flash()->message }}
                         </div>
+                    @endif
 
-                        @if(flash()->level === 'error')
-                            <div class="show-notify {{ flash()->class }}">
-                                This was an error.
-                            </div>
-                        @endif
+                    @if($errors->any())
+                        <div class="show-notify alert alert-danger">
+                            هناك خطأ يمكنك مراجعته
+                        </div>
                     @endif
 
                     <!-- Content -->

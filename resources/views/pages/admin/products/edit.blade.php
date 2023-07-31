@@ -90,9 +90,6 @@
                                     @enderror
                                     <div class="preview-thumbs">
                                         <br/>
-                                        <div class="alert alert-info ">
-                                            لايوجد ملفات
-                                        </div>
                                         <ul class="list-preview-thumbs">
                                             @isset($product->downloads)
                                                 @if($product->downloads->download_attachments_id)
@@ -170,9 +167,6 @@
                                     @enderror
                                     <div class="preview-thumbs">
                                         <br/>
-                                        <div class="alert alert-info ">
-                                            لايوجد صورة للمنتج
-                                        </div>
                                         <ul class="list-preview-thumbs">
                                             @if($product->thumbnail_id)
                                                 <li class="preview-media-inner">
@@ -201,9 +195,6 @@
                                     @enderror
                                     <div class="preview-thumbs">
                                         <br/>
-                                        <div class="alert alert-info ">
-                                            لايوجد صورة للمنتج
-                                        </div>
                                         <ul class="list-preview-thumbs">
                                             @if($product->attachments_id)
                                                 @foreach(GetAttachments($product->attachments_id) as $attachment)

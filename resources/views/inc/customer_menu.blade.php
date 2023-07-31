@@ -14,7 +14,7 @@
             <i class="fas fa-th-list"></i> الخدمات
         </a>
     </li>
-    <li class="{{ IsActiveOnlyIf(['my-downloads']) }}">
+    <li class="{{ IsActiveOnlyIf(['my-downloads','single_download']) }}">
         <a href="{{ route('my-downloads') }}">
             <i class="fas fa-th-list"></i> التحميلات
         </a>

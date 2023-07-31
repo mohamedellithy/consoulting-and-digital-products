@@ -53,7 +53,7 @@ class UploadImage
 
     public function generate_image_name()
     {
-        return Str::random(10) . time() . '.' . $this->image->getClientOriginalExtension();
+        return  pathinfo($this->image->getClientOriginalName(), PATHINFO_FILENAME).'_'. time() . '.' . $this->image->getClientOriginalExtension();
     }
 
     public function image_path()

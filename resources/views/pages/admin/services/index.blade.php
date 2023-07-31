@@ -113,8 +113,8 @@
                                                 <button type="submit" class="dropdown-item">
                                                     <i class="bx bx-trash me-2"></i>حذف
                                                 </button>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('admin.services.show', $service->id) }}"><i
+                                                <a class="dropdown-item" target="_blank"
+                                                    href="{{ url('service/'.$service->slug) }}"><i
                                                         class="fa-regular fa-eye me-2"></i></i>عرض
 
                                                 </a>

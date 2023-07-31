@@ -529,7 +529,7 @@
                     font-size: 33px;
                 }
                 .services-item {
-                    box-shadow: 0px 10px 10px 6px #eee;
+                    /* box-shadow: 0px 10px 10px 6px #eee; */
                 }
                 .services-content .content-top .icon {
                     color: #07a38d;
@@ -638,18 +638,165 @@
                     background-color: #ee4c30;
                     color: white !important;
                 }
+                .user_dropdown {
+                    border: 0px solid #eee;
+                }
+                .navbar-wrap ul li.active a {
+                    color: #07a28c;
+                }
                 @media (max-width: 1800px) {
                     .about-shape-wrap-two img:nth-child(1) {
                         right: 3%;
                     }
                 }
-                @media(max-width:1000px) {
+                @media (max-width:1200px) {
                     .menu-account {
                         display: none;
                     }
                     .dashboard .content-page {
                         padding-top: 3%;
                         width: auto;
+                    }
+                    .banner-content-two {
+                        width: 100%;
+                    }
+                    .menu-nav {
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                    }
+                    .mobile-menu .nav-logo {
+                        text-align: center;
+                    }
+                    .nav-logo img {
+                        max-width: 97px;
+                    }
+                    .about-img-wrap-three .experience-wrap {
+                        padding: 5px 17px 6px 69px !important;
+                    }
+                    .about-img-wrap-three img:nth-child(2) {
+                        left: -63px;
+                        display: unset;
+                    }
+                    .about-shape-wrap-two img:nth-child(2) {
+                        top: -2%;
+                    }
+                    .services-thumb {
+                        height: 226px;
+                    }
+                    .testimonial-content-five {
+                        padding-left: 30px;
+                    }
+                    .price-value {
+                        left: 20px;
+                        top: 110px;
+                    }
+                    .login-form {
+                        flex-wrap: wrap;
+                        padding: 0px 40px;
+                    }
+                    .register-form {
+                        flex-wrap: wrap;
+                        padding: 0px 40px;
+                    }
+                    .page-bg {
+                        padding: 130px 0 65px;
+                    }
+                    /* main.fix {
+                        padding: 10px;
+                    } */
+                    .alert-info-success {
+                        width: 100% !important;
+                    }
+                    .container-thanks {
+                        flex-wrap: wrap;
+                    }
+                    .container-thanks .right-thank {
+                        width: 100%;
+                    }
+                    .order_details {
+                        margin: 5px;
+                    }
+                    .header-style-two .heder-top-wrap {
+                        display: block;
+                    }
+                    .sticky-menu .heder-top-wrap {
+                        display: none;
+                    }
+                    .user_dropdown {
+                        margin: 6px;
+                        border-radius: 10px;
+                        padding: 1px 17px;
+                    }
+                    .menu-account {
+                        width: 100%;
+                        display: block;
+                        padding: 3px;
+                    }
+                    .menu-account ul {
+                        display: flex;
+                        flex-wrap: wrap;
+                        padding: 0px;
+                    }
+                    .menu-account ul li {
+                        padding: 4px 14px;
+                        border-radius: 10px;
+                        margin: 5px 2px;
+                    }
+                    .menu-account ul li.active a {
+                        font-size: 12px;
+                    }
+                    .dashboard .content-page {
+                        overflow-x: auto;
+                    }
+                    .dashboard .content-page table.table {
+                        font-size: 12px;
+                    }
+                    .table:not(.table-dark) tr th:first-child,
+                    .table:not(.table-dark) tr th:nth-child(2) {
+                        position: sticky;
+                        right: 0;
+                        background-color: white;
+                    }
+                    .table:not(.table-dark) tr td:first-child,
+                    .table:not(.table-dark) tr td:nth-child(2) {
+                        position: sticky;
+                        right: 0;
+                        background-color: white;
+                    }
+                    .dashboard .content-page table.table button {
+                        padding: 5px;
+                        font-size: 12px;
+                    }
+                    .login-form .form-group {
+                        padding: 0px 4px 9px 2px;
+                    }
+                    .dashboard {
+                        border: 0px solid #eee;
+                    }
+                    .service-details-thumb {
+                        height: 290px;
+                    }
+                    .col-6.application-inner {
+                        width: 95%;
+                    }
+                    .services-application-close span {
+                        top: 0px;
+                    }
+                    .search-wrap .application-inner .title {
+                        font-size: 24px;
+                    }
+                    .content-custom-page {
+                        display: flex;
+                        flex-wrap: wrap;
+                    }
+                    .choose-content-two {
+                        text-align: right;
+                        margin-top: 0px;
+                    }
+                    .thumbnail-custom-page {
+                        padding: 20px;
                     }
                 }
                 @media(min-width:1000px) {

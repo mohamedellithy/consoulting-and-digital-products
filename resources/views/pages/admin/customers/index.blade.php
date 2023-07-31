@@ -90,11 +90,11 @@ $rows   = request()->query('rows')   ?: 10;
                                                     class="fa-regular fa-eye me-2"></i></i>
                                                 عرض
                                             </a>
-                                            <a class="dropdown-item"
+                                            {{-- <a class="dropdown-item"
                                                 href="{{ route('admin.customers.show', $customer->id) }}"><i
                                                     class="fa-regular fa-eye me-2"></i></i>
                                                 تعديل كلمة المرور
-                                            </a>
+                                            </a> --}}
                                             @if($customer->status == 'active')
                                                 <form action="{{ route("admin.customers.update",$customer->id) }}" method="post">
                                                     @method('PUT')

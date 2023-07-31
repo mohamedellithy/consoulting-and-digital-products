@@ -31,8 +31,8 @@ $rows   = request()->query('rows')   ?: 10;
                             <option>فلتر المنتجات</option>
                             <option value="high-price" @isset($filter) @if($filter == 'high-price') selected @endif @endisset>الاعلي سعرا</option>
                             <option value="low-price"  @isset($filter) @if($filter == 'low-price') selected @endif @endisset>الاقل سعرا</option>
-                            <option value="more-sale"  @isset($filter) @if($filter == 'more-sale') selected @endif @endisset>الاكثر طلبا</option>
-                            <option value="less-sale"  @isset($filter) @if($filter == 'less-sale') selected @endif @endisset>الاقل طلبا</option>
+                            {{-- <option value="more-sale"  @isset($filter) @if($filter == 'more-sale') selected @endif @endisset>الاكثر طلبا</option>
+                            <option value="less-sale"  @isset($filter) @if($filter == 'less-sale') selected @endif @endisset>الاقل طلبا</option> --}}
                         </select>
                     </div>
                 </div>
@@ -97,8 +97,8 @@ $rows   = request()->query('rows')   ?: 10;
                                                 <button type="submit" class="dropdown-item">
                                                     <i class="bx bx-trash me-2"></i>حذف
                                                 </button>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('admin.products.show', $product->id) }}"><i
+                                                <a class="dropdown-item" target="_blank"
+                                                    href="{{ url('product/'.$product->slug) }}"><i
                                                         class="fa-regular fa-eye me-2"></i></i>عرض
 
                                                 </a>

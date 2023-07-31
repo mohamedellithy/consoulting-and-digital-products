@@ -90,9 +90,6 @@
                                     @enderror
                                     <div class="preview-thumbs">
                                         <br/>
-                                        <div class="alert alert-info ">
-                                            لايوجد ملفات
-                                        </div>
                                         <ul class="list-preview-thumbs">
                                         </ul>
                                     </div>
@@ -152,9 +149,6 @@
                                     @enderror
                                     <div class="preview-thumbs">
                                         <br/>
-                                        <div class="alert alert-info ">
-                                            لايوجد صورة للمنتج
-                                        </div>
                                         <ul class="list-preview-thumbs">
                                         </ul>
                                     </div>
@@ -177,9 +171,6 @@
                                     @enderror
                                     <div class="preview-thumbs">
                                         <br/>
-                                        <div class="alert alert-info ">
-                                            لايوجد صورة للمنتج
-                                        </div>
                                         <ul class="list-preview-thumbs">
                                         </ul>
                                     </div>

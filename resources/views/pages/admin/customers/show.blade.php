@@ -1,5 +1,25 @@
 @extends('layouts.master')
 
+@push('style')
+<style>
+    .customer-details.left-details .form-group{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .customer-details.left-details .form-group.odd
+    {
+        padding: 10px;
+        background-color: #eee;
+        text-align: center;
+    }
+    .customer-details.left-details .form-group.even {
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+@endpush
+
 @section('content')
     <!-- Content -->
 
@@ -31,7 +51,7 @@
                             <!-- Account -->
                             <div class="card-body">
                                 <div class="d-flex align-items-start align-items-sm-center gap-4 heading">
-                                    <img src="{{ upload_assets(null,"assets/img/avatars/user_avatar.png") }}" alt="service-avatar"
+                                    <img src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" alt="service-avatar"
                                         class="d-block rounded" style="margin: auto;" height="100" width="100" id="uploadedAvatar" />
 
                                 </div>
@@ -48,7 +68,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>حالة الزبون</label>
-                                            <p>{{ $customer->status ?: '-' }}</p>
+                                            <p>{{ $customer->status == 'active' ? 'مفعل' : 'محظور' }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6 ">
@@ -74,28 +94,47 @@
                     <div class="col-md-6">
                         <div class="card mb-4">
                             <h5 class="card-header">تفاصيل طلبات العميل</h5>
-                            <div class="row customer-details">
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                            <div class="row customer-details left-details">
+                                <div class="col-md-12">
+                                    <div class="form-group odd">
                                         <label>اجمالى الطلبات</label>
-                                        <p>123948</p>
+                                        <p>
+                                            <span class="badge bg-info">
+                                                {{ $customer->orders_count + $customer->application_orders_count }} طلبيات
+                                            </span>
+                                        </p>
                                     </div>
-                                    <div class="form-group">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group even">
                                         <label>طلبات الخدمات</label>
-                                        <p>123948</p>
+                                        <p>
+                                            <span class="badge bg-info">
+                                                {{ $customer->application_orders_count }} طلبيات
+                                            </span>
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="col-md-6 ">
-                                    <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="form-group odd">
                                         <label>طلبات المنتجات الرقمية</label>
-                                        <p>1239428</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>اجمالى المدفوعات</label>
-                                        <p>1239428 USD</p>
+                                        <p>
+                                            <span class="badge bg-info">
+                                                {{ $customer->orders_count }} طلبيات
+                                            </span>
+                                        </p>
                                     </div>
                                 </div>
-
+                                <div class="col-md-12">
+                                    <div class="form-group even">
+                                        <label>اجمالى المدفوعات</label>
+                                        <p>
+                                            <span class="badge bg-info">
+                                            {{ formate_price($customer->orders()->where('order_status','completed')->sum('order_total')) }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                             <hr class="my-0" />
                             <!-- /Account -->
@@ -108,3 +147,4 @@
     </div>
     <!-- / Content -->
 @endsection
+
