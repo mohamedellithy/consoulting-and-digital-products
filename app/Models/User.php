@@ -65,4 +65,8 @@ class User extends Authenticatable
     public function application_orders(){
         return $this->hasMany(ApplicationOrder::class,'customer_id','id');
     }
+
+    public function reviews(){
+        return $this->HasMany(Review::class,'customer_id','id');
+    }
 }

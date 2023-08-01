@@ -644,6 +644,33 @@
                 .navbar-wrap ul li.active a {
                     color: #07a28c;
                 }
+                .clients-reviews {
+                    margin-top: 20px;
+                }
+                .reviewer-avatar {
+                    width: 50px;
+                }
+                .rating i.active {
+                    color: orange;
+                }
+                .review-card-section {
+                    padding: 10px;
+                    border-bottom: 1px solid #eee;
+                }
+                .bottom-section-give {
+                    padding-right: 50px;
+                }
+                .bottom-section-give textarea {
+                    background-color: #eee;
+                }
+                .top-section-review {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .bottom-section-review {
+                    padding: 0px 63px;
+                }
                 @media (max-width: 1800px) {
                     .about-shape-wrap-two img:nth-child(1) {
                         right: 3%;
@@ -797,6 +824,9 @@
                     }
                     .thumbnail-custom-page {
                         padding: 20px;
+                    }
+                    .bottom-section-review {
+                        padding: 0px 20px;
                     }
                 }
                 @media(min-width:1000px) {

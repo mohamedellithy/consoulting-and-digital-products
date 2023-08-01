@@ -81,9 +81,193 @@
                        {!! $product->description !!}
                     </p>
                 </div>
+                <div class="row">
+                    <div class="clients-reviews">
+                        <h5> يسعدنا تقيمك على المنتج</h5>
+                            @if(auth()->user() && ($my_review = auth()->user()->reviews()->where('product_id',$product->id)->first()))
+                            <div id="my-review-show" class="review-card-section my-review col-md-12">
+                                <div class="top-section-review">
+                                    <div class="right-review">
+                                        <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
+                                        <span class="reviewr-name">
+                                            {{ $my_review->customer->name }}
+                                        </span>
+                                    </div>
+                                    <div class="review-points">
+                                        <div class="rating">
+                                            @if($my_review ->degree > 5)
+                                                @php $my_review->degree = 5 @endphp
+                                            @endif
+
+                                            ( {{ $my_review->degree }} )
+                                            @for($i = 1;$i <= $my_review->degree;$i++)
+                                                <i class="fas fa-star active"></i>
+                                            @endfor
+
+                                            @for($i=1;$i <= 5-$my_review->degree;$i++)
+                                                <i class="fas fa-star"></i>
+                                            @endfor
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-section-review">
+                                    <p>
+                                        {{ $my_review->review }}
+                                    </p>
+                                </div>
+                                <div class="give-me" style="text-align: left;padding: 15px 0px;">
+                                    <button id="toggleEditReview" class="btn btn-info btn-sm" style="margin:auto">
+                                        تعديل التقيم
+                                    </button>
+                                </div>
+                            </div>
+                            @endif
+                            <form id="form-review" action="{{ route('add_review_on_product',$product->id) }}#my-review-show" @if(auth()->user() && $my_review) style="display:none" @endif method="post">
+                                @csrf
+                                <input type="hidden" @if(auth()->user() && $my_review) value="{{ $my_review->degree }}" @endif id="my-review-start" name="degree" required/>
+                                <div class="review-card-section col-md-12">
+                                    <div class="top-section-review">
+                                        <div class="right-review">
+                                            <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
+                                            <span class="reviewr-name">{{ auth()->user() ? auth()->user()->name : ''  }}</span>
+                                        </div>
+                                        <div class="review-points">
+                                            <div class="rating give-rate">
+                                                @if(auth()->user() && $my_review)
+                                                    @if($my_review->degree > 5)
+                                                        @php $my_review->degree = 5 @endphp
+                                                    @endif
+
+                                                    ( {{ $my_review->degree }} )
+                                                    @for($i = 1;$i <= $my_review->degree;$i++)
+                                                        <i class="fas fa-star active"></i>
+                                                    @endfor
+
+                                                    @for($i=1;$i <= 5-$my_review->degree;$i++)
+                                                        <i class="fas fa-star"></i>
+                                                    @endfor
+                                                @else
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-section-give" style="paading:0px">
+                                        <textarea rows="5" name="review" class="form-control" required>@if(auth()->user() && $my_review) {{ $my_review->review }}  @endif</textarea>
+                                    </div>
+                                    <div class="give-me" style="text-align: left;padding: 15px 0px;">
+                                        <button type="submit" class="btn btn-success btn-sm" style="margin:auto">
+                                            اضافة تقيم
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                    <div class="clients-reviews list-client-reviews">
+                        <h5> اراء العملاء</h5>
+                        @forelse($reviews as $review)
+                            <div class="review-card-section col-md-12">
+                                <div class="top-section-review">
+                                    <div class="right-review">
+                                        <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
+                                        <span class="reviewr-name">
+                                            {{ $review->customer->name }}
+                                        </span>
+                                    </div>
+                                    <div class="review-points">
+                                        <div class="rating">
+                                            @if($review->degree > 5)
+                                                @php $review->degree = 5 @endphp
+                                            @endif
+
+                                            ( {{ $review->degree }} )
+                                            @for($i = 1;$i <= $review->degree;$i++)
+                                                <i class="fas fa-star active"></i>
+                                            @endfor
+
+                                            @for($i=1;$i <= 5-$review->degree;$i++)
+                                                <i class="fas fa-star"></i>
+                                            @endfor
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-section-review">
+                                    <p>
+                                        {{ $review->review }}
+                                    </p>
+                                </div>
+                            </div>
+                        @empty
+                        <div class="alert alert-warning">
+                            التقيمات غير متوفرة على هذا المنتج
+                        </div>
+                        @endforelse
+                    </div>
+                    @if(!$reviews->isEmpty())
+                        <div class="load-more" style="text-align: left;">
+                            <button onClick="ajax_load_medias()" class="btn btn-warning btn-sm" style="margin:auto">
+                                تحميل المزيد
+                            </button>
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
 </section>
 <!-- team-details-area-end -->
 @endsection
+
+@push('scripts')
+<script>
+    jQuery(document).ready(function(){
+        jQuery('.rating.give-rate i').on('mouseover',function(){
+            jQuery(this).toggleClass('active');
+            jQuery(this).prevAll().addClass('active');
+            jQuery(this).nextAll().removeClass('active');
+        });
+        jQuery('.rating.give-rate i').on('mouseout',function(){
+            jQuery('#my-review-start').val(jQuery('.rating.give-rate i.active').length);
+        });
+        jQuery('#toggleEditReview').on('click',function(){
+            jQuery('.review-card-section.my-review').slideUp(100);
+            jQuery('#form-review').slideDown(100);
+        });
+    });
+</script>
+
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    // ajax call
+    let offset = 5;
+    function ajax_load_medias(data = {}) {
+        offset +=5;
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('ajax-paginate-review-lists') }}",
+            data: {
+                product_id:"{{ $product->id }}",
+                offset: offset
+            },
+            success: function(data) {
+                jQuery('.list-client-reviews').append(data._result);
+                if (data._result.length == 0) {
+                    jQuery('.load-more').hide();
+                }
+            }
+        });
+    }
+</script>
+
+
+@endpush

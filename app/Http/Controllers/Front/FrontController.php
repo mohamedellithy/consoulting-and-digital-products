@@ -15,6 +15,7 @@ use App\Services\ThawaniPayment;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Review;
 class FrontController extends Controller
 {
     //
@@ -48,29 +49,38 @@ class FrontController extends Controller
     }
 
     public function single_product($slug){
-        $product  = Product::with('image_info','downloads')->where('slug',$slug)->first();
-        return view('pages.front.shop.product-details',compact('product'));
+        $product    = Product::with('image_info','downloads','reviews')->where('slug',$slug)->first();
+        $reviews    = Review::query()->where([
+            'product_id' => $product->id
+        ]);
+
+        if(auth()->user()):
+            $reviews->where('customer_id','!=',auth()->user()->id);
+        endif;
+        $reviews = $reviews->paginate(5);
+        return view('pages.front.shop.product-details',compact('product','reviews'));
+    }
+
+    public function ajax_paginate_review_lists(){
+        $reviews    = Review::query()->where([
+            'product_id' => request('product_id')
+        ]);
+
+        if(auth()->user()):
+            $reviews->where('customer_id','!=',auth()->user()->id);
+        endif;
+
+        $reviews = $reviews->offset(request('offset'))->limit(5)->get();
+
+        return response()->json([
+            'status'  => 'success',
+            '_result' => view('partials.reviews_list',compact('reviews'))->render()
+        ]);
     }
 
     public function services(){
         $services = Service::query();
-
         $services->with('image_info');
-
-        // if(request('search')):
-        //     $products = $products->where('name', 'like', '%' . request('search') . '%')->orWhere('name', 'like', '%' . request('search') . '%');
-        // endif;
-
-        // if(request('order_by')):
-        //     if(request('order_by') == 'high-price'):
-        //         $products = $products->orderBy('price','desc');
-        //     elseif(request('order_by') == 'low-price'):
-        //         $products = $products->orderBy('price','asc');
-        //     endif;
-        // else:
-        //     $products = $products->orderBy('created_at', 'desc');
-        // endif;
-
         $services = $services->paginate(10);
 
         return view('pages.front.services.all-services',compact('services'));
@@ -148,7 +158,7 @@ class FrontController extends Controller
     }
 
     public function buy_now(Request $request){
-        // here add payment 
+        // here add payment
         if($request->has('product_id')):
             $product = Product::find($request->input('product_id'));
             $order   = Order::Create([
@@ -230,5 +240,18 @@ class FrontController extends Controller
     public function custom_page($slug){
         $page = Page::where('slug',$slug)->first();
         return view('pages.front.custom_page',compact('page'));
+    }
+
+    public function add_review_on_product(Request $request ,$id){
+        $review = Review::updateOrCreate([
+            'customer_id' => auth()->user()->id,
+            'product_id'  => $id
+        ],[
+            'degree' => $request->input('degree'),
+            'review' => $request->input('review')
+        ]);
+
+        flash()->success('تم اضافة تقيمك بنجاح');
+        return back();
     }
 }

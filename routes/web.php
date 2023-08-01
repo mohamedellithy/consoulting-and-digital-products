@@ -85,7 +85,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('view-attachments/{attachment_id}',[StreamingController::class,'view_attachments'])->name('view_attachments');
     Route::get('download/{order_id}',[FrontController::class,'my_single_download'])->name('single_download');
     Route::post('update-account',[FrontController::class,'update_account'])->name('update-account');
+    Route::post('add-review-on-product/{id}',[FrontController::class,'add_review_on_product'])->name('add_review_on_product');
 });
 
-
+Route::get('ajax-paginate-review-lists',[FrontController::class,'ajax_paginate_review_lists'])->name('ajax-paginate-review-lists');
 Route::get('/{slug}',[FrontController::class,'custom_page']);

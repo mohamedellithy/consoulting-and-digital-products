@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                     <div class="me-2">
-                                        <small class="text-muted d-block mb-1">{{ $last_order->payment->getaway }}</small>
+                                        <small class="text-muted d-block mb-1">{{ $last_order->payment ? $last_order->payment->getaway : '-' }}</small>
                                         <h6 class="mb-0">#{{ $last_order->order_no }}</h6>
                                     </div>
                                     <div class="">
