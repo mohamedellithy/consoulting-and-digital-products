@@ -25,7 +25,8 @@ class SettingController extends Controller
             'website_logo',
             'meta_title',
             'meta_description',
-            'website_address'
+            'website_address',
+            'website_location_map'
         ]);
         foreach($settings as $name => $value):
             Setting::updateOrCreate([
@@ -74,7 +75,7 @@ class SettingController extends Controller
         endforeach;
 
         \Artisan::call('cache:clear');
-        
+
         flash()->success('تم تحديث اعدادات بوابات الدفع بنجاح ');
 
         return redirect()->back();

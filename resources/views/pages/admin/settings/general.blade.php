@@ -50,13 +50,6 @@ $settings = platformSettings();
                                 <label class="form-label" for="basic-default-fullname">رقم الواتس </label>
                                 <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
                                     name="website_whastapp" value="{{ $settings['website_whastapp'] ?: old('website_whastapp') }}"/>
-
-                                {{-- <select type="text" class="form-control" id="basic-default-fullname" placeholder=""
-                                    name="admin_whatsapp" value="{{ old('admin_whatsapp') }}" required>
-                                    <option value="header">القائمة العلوية</option>
-                                    <option value="footer">القائمة السفلية</option>
-                                    <option value="both"  >كلا القائمتين   </option>
-                                </select> --}}
                                 @error('website_whastapp')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
@@ -193,6 +186,25 @@ $settings = platformSettings();
                                 <textarea type="text" id="basic-icon-default-company" class="form-control"
                                     name="meta_description">{{ isset($settings['meta_description']) ? $settings['meta_description'] : old('meta_description') }}</textarea>
                                 @error('meta_description')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="mb-3">
+                                <h5 for="basic-default-fullname">اضافة خريطة </h5>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <label class="form-label d-flex" for="basic-default-fullname">
+                                   خريطة
+                                </label>
+                                <textarea type="text" class="form-control" rows="10" id="basic-default-fullname" placeholder=""
+                                    name="website_location_map" >{{ isset($settings['website_location_map']) ? $settings['website_location_map'] : old('website_location_map') }}"</textarea>
+                                @error('title')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
