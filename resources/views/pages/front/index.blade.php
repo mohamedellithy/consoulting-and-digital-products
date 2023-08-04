@@ -180,7 +180,7 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
             </div>
         </div>
         <div class="row services-active">
-            <div class="col-lg-4">
+            {{-- <div class="col-lg-4">
                 <div class="services-item">
                     <div class="services-content">
                         <div class="content-top">
@@ -198,85 +198,12 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="services-item">
-                    <div class="services-content">
-                        <div class="content-top">
-                            <div class="icon">
-                                <i class="flaticon-briefcase"></i>
-                            </div>
-                            <h2 class="title">Business Analysis</h2>
-                        </div>
-                        <div class="services-thumb">
-                            <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btns transparent-btn">عرض الخدمة</a>
-                        </div>
-                        <div class="list-wrap text-right">
-                            <h6>تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="services-item">
-                    <div class="services-content">
-                        <div class="content-top">
-                            <div class="icon">
-                                <i class="flaticon-briefcase"></i>
-                            </div>
-                            <h2 class="title">Business Analysis</h2>
-                        </div>
-                        <div class="services-thumb">
-                            <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btns transparent-btns">عرض الخدمة</a>
-                        </div>
-                        <div class="list-wrap text-right">
-                            <h6>تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="services-item">
-                    <div class="services-content">
-                        <div class="content-top">
-                            <div class="icon">
-                                <i class="flaticon-briefcase"></i>
-                            </div>
-                            <h2 class="title">Business Analysis</h2>
-                        </div>
-                        <div class="services-thumb">
-                            <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btns transparent-btn">عرض الخدمة</a>
-                        </div>
-                        <div class="list-wrap text-right">
-                            <h6>تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="services-item">
-                    <div class="services-content">
-                        <div class="content-top">
-                            <div class="icon">
-                                <i class="flaticon-briefcase"></i>
-                            </div>
-                            <h2 class="title">Business Analysis</h2>
-                        </div>
-                        <div class="services-thumb">
-                            <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btns transparent-btn">عرض الخدمة</a>
-                        </div>
-                        <div class="list-wrap text-right">
-                            <h6>تقدم وكالة الخطوة الرائدة للتجارة و الاستثمار خدمات</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+            </div> --}}
+            @forelse($services as $service)
+                @include('partials.services_list_card_1')
+            @empty
+            @endforelse
+            
         </div>
     </div>
 </section>
@@ -333,191 +260,51 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
             </div>
             <div class="col-xl-7 col-lg-6 col-md-4">
                 <div class="view-all-btns text-end mb-30">
-                    <a href="services.html" class="btns btns-secondary-color">عرض كل المنتجات</a>
+                    <a href="{{ route('shop') }}" class="btns btns-secondary-color">عرض كل المنتجات</a>
                 </div>
             </div>
         </div>
         <div class="row products-active slide">
-            <div class="col-lg-4">
-                <div class="services-item">
-                    <div class="services-content">
-                        <!-- <div class="content-top">
-                            <div class="icon">
-                                <i class="flaticon-briefcase"></i>
-                            </div>
-                            <h2 class="title">Business Analysis</h2>
-                        </div> -->
-                        <div class="services-thumb">
-                            <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btns transparent-btn">
-                                Purchase Now
-                            </a>
-                        </div>
-                        <div class="list-wrap">
-                            <h6 class="title">Tax Strategy</h6>
-                            <div class="bottom-content d-flex">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span style="color:black">
-                                        ( 12 )
-                                    </span>
+            @forelse($products as $product)
+                {{-- <div class="col-lg-4">
+                    <div class="services-item">
+                        <div class="services-content">
+                            <!-- <div class="content-top">
+                                <div class="icon">
+                                    <i class="flaticon-briefcase"></i>
                                 </div>
-                                <b>
-                                    1234.23 USD
-                                </b>
+                                <h2 class="title">Business Analysis</h2>
+                            </div> -->
+                            <div class="services-thumb">
+                                <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
+                                <a href="services-details.html" class="btns transparent-btn">
+                                    Purchase Now
+                                </a>
+                            </div>
+                            <div class="list-wrap">
+                                <h6 class="title">Tax Strategy</h6>
+                                <div class="bottom-content d-flex">
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span style="color:black">
+                                            ( 12 )
+                                        </span>
+                                    </div>
+                                    <b>
+                                        1234.23 USD
+                                    </b>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="services-item">
-                    <div class="services-content">
-                        <!-- <div class="content-top">
-                            <div class="icon">
-                                <i class="flaticon-briefcase"></i>
-                            </div>
-                            <h2 class="title">Business Analysis</h2>
-                        </div> -->
-                        <div class="services-thumb">
-                            <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btns transparent-btns">
-                                Purchase Now
-                            </a>
-                        </div>
-                        <div class="list-wrap">
-                            <h6 class="title">Tax Strategy</h6>
-                            <div class="bottom-content d-flex">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span style="color:black">
-                                        ( 12 )
-                                    </span>
-                                </div>
-                                <b>
-                                    1234.23 USD
-                                </b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="services-item">
-                    <div class="services-content">
-                        <!-- <div class="content-top">
-                            <div class="icon">
-                                <i class="flaticon-briefcase"></i>
-                            </div>
-                            <h2 class="title">Business Analysis</h2>
-                        </div> -->
-                        <div class="services-thumb">
-                            <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btns transparent-btn">
-                                Purchase Now
-                            </a>
-                        </div>
-                        <div class="list-wrap">
-                            <h6 class="title">Tax Strategy</h6>
-                            <div class="bottom-content d-flex">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span style="color:black">
-                                        ( 12 )
-                                    </span>
-                                </div>
-                                <b>
-                                    1234.23 USD
-                                </b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="services-item">
-                    <div class="services-content">
-                        <!-- <div class="content-top">
-                            <div class="icon">
-                                <i class="flaticon-briefcase"></i>
-                            </div>
-                            <h2 class="title">Business Analysis</h2>
-                        </div> -->
-                        <div class="services-thumb">
-                            <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btns transparent-btns">
-                                Purchase Now
-                            </a>
-                        </div>
-                        <div class="list-wrap">
-                            <h6 class="title">Tax Strategy</h6>
-                            <div class="bottom-content d-flex">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span style="color:black">
-                                        ( 12 )
-                                    </span>
-                                </div>
-                                <b>
-                                    1234.23 USD
-                                </b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="services-item">
-                    <div class="services-content">
-                        <!-- <div class="content-top">
-                            <div class="icon">
-                                <i class="flaticon-briefcase"></i>
-                            </div>
-                            <h2 class="title">Business Analysis</h2>
-                        </div> -->
-                        <div class="services-thumb">
-                            <img src="{{ asset('front/assets/img/services/services_img01.jpg') }}" alt="">
-                            <a href="services-details.html" class="btns transparent-btns">
-                                Purchase Now
-                            </a>
-                        </div>
-                        <div class="list-wrap">
-                            <h6 class="title">Tax Strategy</h6>
-                            <div class="bottom-content d-flex">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span style="color:black">
-                                        ( 12 )
-                                    </span>
-                                </div>
-                                <b>
-                                    1234.23 USD
-                                </b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </div> --}}
+                @include('partials.product_list_1')
+            @empty
+            @endforelse
         </div>
     </div>
 </section>

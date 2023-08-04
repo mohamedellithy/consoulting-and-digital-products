@@ -121,7 +121,7 @@
                                 </h2>
                                 <div id="collapse{{ $key }}" class="accordion-collapse collapse @if($loop->index == 0) show @endif" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        @if($attachment->type == 'video/mp4')
+                                        @if(formateMediaType($attachment->type)[0] == 'video')
                                             <video
                                                 id="my-video"
                                                 class="video-js"
@@ -131,8 +131,13 @@
                                                 height="464"
                                                 data-setup="{}"
                                             >
-                                                <source src='/view-attachments/{{ $attachment->id  }}' type="video/mp4" />
-                                                <source src='/view-attachments/{{ $attachment->id }}' type="video/webm" />
+                                                @if(isset($order->order_items->product->downloads->download_link))
+                                                    <source src='{{ $order->order_items->product->downloads->download_link  }}' type="video/mp4" />
+                                                    <source src='{{ $order->order_items->product->downloads->download_link }}' type="video/webm" />
+                                                @else
+                                                    <source src='/view-attachments/{{ $attachment->id  }}' type="video/mp4" />
+                                                    <source src='/view-attachments/{{ $attachment->id }}' type="video/webm" />
+                                                @endif
                                                 <p class="vjs-no-js">
                                                 To view this video please enable JavaScript, and consider upgrading to a
                                                 web browser that
@@ -141,8 +146,23 @@
                                                 >
                                                 </p>
                                             </video>
-                                        @elseif($attachment->type == 'application/pdf')
-                                            <iframe src='/view-attachments/{{ $attachment->id }}#toolbar=0' width="100%" height="500px"></iframe>
+                                        @elseif(formateMediaType($attachment->type)[0] == 'audio')
+                                            <audio controls controlsList="nodownload">
+                                                @if(isset($order->order_items->product->downloads->download_link))
+                                                    <source src='{{ $order->order_items->product->downloads->download_link  }}' >
+                                                    <source src='{{ $order->order_items->product->downloads->download_link }}'  >
+                                                @else
+                                                    <source src='/view-attachments/{{ $attachment->id  }}' >
+                                                    <source src='/view-attachments/{{ $attachment->id  }}'>
+                                                @endif
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                        @elseif('pdf' == formateMediaType($attachment->type)[1])
+                                            @if(isset($order->order_items->product->downloads->download_link))
+                                                <iframe src='{{ $order->order_items->product->downloads->download_link }}#toolbar=0' width="100%" height="500px"></iframe>
+                                            @else
+                                                <iframe src='/view-attachments/{{ $attachment->id }}#toolbar=0' width="100%" height="500px"></iframe>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>

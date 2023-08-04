@@ -26,6 +26,7 @@ return new class extends Migration
             $table->text('meta_description')->nullable();
             $table->string('slug');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

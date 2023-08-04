@@ -95,14 +95,20 @@
                                                 @if($product->downloads->download_attachments_id)
                                                     @foreach(GetAttachments($product->downloads->download_attachments_id) as $attachment)
                                                         <li class="preview-media-inner">
-                                                            @if($attachment->type == 'video/mp4')
+                                                            @if(formateMediaType($attachment->type)[0] == 'video')
                                                                 <video style="width:100%;height:100%" controls>
                                                                     <source src="{{ upload_assets($attachment) }}" type="{{ $attachment->type }}"></source>
                                                                 </video>
-                                                            @elseif($attachment->type =='application/pdf')
+                                                            @elseif(formateMediaType($attachment->type)[1] =='pdf')
                                                                 <i style="font-size: 120px;" class='bx bxs-file-pdf'></i>
-                                                            @else
+                                                            @elseif(formateMediaType($attachment->type)[0] == 'audio')
+                                                                <audio style="width:100%;height:100%" controls>
+                                                                    <source src="{{ upload_assets($attachment) }}" type="{{ $attachment->type }}"></source>
+                                                                </audio>
+                                                            @elseif(formateMediaType($attachment->type)[0] =='image')
                                                                 <img src="{{ upload_assets($attachment) }}"/>
+                                                            @else
+                                                                <i style="font-size: 120px;" class='bx bxs-file-blank'></i>
                                                             @endif
                                                             <i class='bx bxs-message-square-x remove' media-id="{{ $attachment->id }}"></i>
                                                         </li>

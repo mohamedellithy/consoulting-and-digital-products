@@ -21,6 +21,7 @@ return new class extends Migration
             $table->double('order_total',2);
             $table->string('order_status')->default('pending');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

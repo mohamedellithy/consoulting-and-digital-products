@@ -35,6 +35,8 @@ class SettingController extends Controller
                 'type' => 'general'
             ]);
         endforeach;
+
+        \Artisan::call('cache:clear');
         flash()->success('تم تحديث اعدادات المنصة بنجاح ');
         return redirect()->back();
     }
@@ -71,6 +73,8 @@ class SettingController extends Controller
             endforeach;
         endforeach;
 
+        \Artisan::call('cache:clear');
+        
         flash()->success('تم تحديث اعدادات بوابات الدفع بنجاح ');
 
         return redirect()->back();

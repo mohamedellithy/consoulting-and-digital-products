@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->text('alt')->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

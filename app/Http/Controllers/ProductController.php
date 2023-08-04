@@ -37,6 +37,8 @@ class ProductController extends Controller
             'download_type'
         ]));
 
+        \Artisan::call('cache:clear');
+
         flash()->success('تم اضافة منتج جديد بنجاح ');
         return redirect()->route('admin.products.index')->with('success_message', 'تم انشاء الخدمة');
     }
@@ -103,6 +105,8 @@ class ProductController extends Controller
             'download_type'
         ]));
 
+        \Artisan::call('cache:clear');
+
         flash()->success('تم تعديل المنتج بنجاح');
 
         return redirect()->route('admin.products.index');
@@ -119,6 +123,7 @@ class ProductController extends Controller
         $product = Product::destroy($id);
 
         flash()->success('تم حذف المنتج بنجاح');
+        \Artisan::call('cache:clear');
         return redirect()->route('admin.products.index');
 
     }

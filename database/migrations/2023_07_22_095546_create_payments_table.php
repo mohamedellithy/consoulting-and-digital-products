@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('getaway')->default('thawani');
             $table->double('total_payment',2);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

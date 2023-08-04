@@ -11,17 +11,25 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\Page;
 use Illuminate\Support\Str;
-use App\Services\ThawaniPayment;
+use App\services\ThawaniPayment;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Review;
+use Illuminate\Support\Facades\Cache;
 class FrontController extends Controller
 {
     //
 
     public function index(){
-        return view('pages.front.index');
+        $products = Cache::rememberForever('all-products',function(){
+            return $products = Product::all();
+        });
+
+        $services = Cache::rememberForever('all-services',function(){
+            return $products = Service::all();
+        });
+        return view('pages.front.index',compact('products','services'));
     }
 
     public function shop(){

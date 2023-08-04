@@ -24,6 +24,8 @@ class ServiceController extends Controller
             'slug'
         ]));
 
+        \Artisan::call('cache:clear');
+
         flash()->success('تم اضافة خدمة جديد بنجاح ');
         return redirect()->route('admin.services.index')->with('success_message', 'تم انشاء الخدمة');
     }
@@ -50,6 +52,8 @@ class ServiceController extends Controller
         $service->slug = $request->input('slug');
         $service->save();
 
+        \Artisan::call('cache:clear');
+
         flash()->success('تم تحديث الخدمة بنجاح ');
         return redirect()->route('admin.services.index');
         // return redirect()->back();
@@ -63,6 +67,7 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $service = Service::destroy($id);
+        \Artisan::call('cache:clear');
         flash()->success('تم حذف الخدمة بنجاح ');
         return redirect()->route('admin.services.index');
 

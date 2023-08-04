@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Image;
-use App\Services\UploadImage;
+use App\services\UploadImage;
 class MediaAjaxController extends Controller
 {
     /**

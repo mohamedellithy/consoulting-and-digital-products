@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('download_status')->default('download');
             $table->string('download_type')->default('pdf');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

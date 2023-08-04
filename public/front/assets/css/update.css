@@ -4,7 +4,7 @@
                 max-height: 70px;
             }
             
-            html[dir="rtl"] {
+            /*html[dir="rtl"] {*/
                 .navbar-wrap ul li a {
                     color: #555656;
                 }
@@ -828,10 +828,18 @@
                     .bottom-section-review {
                         padding: 0px 20px;
                     }
+                    .custom-container .heder-top-wrap > .row{
+                        background-color: #07a38d;
+                    }
+                    .header-top-btn a{
+                        flex-wrap: wrap;
+                            font-size: 12px;
+                        align-items: center;
+                    }
                 }
                 @media(min-width:1000px) {
                     .mobile-menu-account {
                         display: none;
                     }
                 }
-            }
+            /*}*/

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('value')->nullable();
             $table->string('type')->default('general');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

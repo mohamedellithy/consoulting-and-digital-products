@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('status')->default('active');
             $table->integer('replay_on')->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
