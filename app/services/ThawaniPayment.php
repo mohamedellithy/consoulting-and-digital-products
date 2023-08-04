@@ -62,7 +62,7 @@ class ThawaniPayment{
                 'order_id' => $this->order_data->id,
                 'transaction_id' => $this->result['data']['invoice']
             ],[
-                'total_payment'  => $this->result['data']['total_amount'],
+                'total_payment'  => $this->result['data']['total_amount'] / 1000,
                 'status_payment' => $this->result['data']['payment_status']
             ]);
 
