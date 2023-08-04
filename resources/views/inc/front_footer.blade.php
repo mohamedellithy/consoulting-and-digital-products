@@ -42,11 +42,13 @@
                             <div class="footer-link">
                                 <ul class="list-wrap">
                                     @forelse(ActivePagesMenus(['position','!=' , 'header']) as $page)
-                                        <li>
-                                            <a href="{{ url($page->slug) }}">
-                                                {{  $page->title }}
-                                            </a>
-                                        </li>
+                                        @if($page->position != 'hidden')
+                                            <li>
+                                                <a href="{{ url($page->slug) }}">
+                                                    {{  $page->title }}
+                                                </a>
+                                            </li>
+                                        @endif
                                     @empty
                                     @endforelse
                                 </ul>
@@ -98,7 +100,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="copyright-text-two text-center">
-                            <p>جميع حقوق النشر محفوطة © لدى الخطوة الرائدة للتجارة و الاستثمار</p>
+                            <p>جميع حقوق النشر محفوطة © {{ date('Y') }} لدى الخطوة الرائدة للتجارة و الاستثمار</p>
                         </div>
                     </div>
                 </div>

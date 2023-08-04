@@ -80,24 +80,26 @@
                                 <ul class="navigation">
                                     @php $current_page = isset($page) ? $page : null @endphp 
                                     @forelse(ActivePagesMenus(['position','!=' , 'footer']) as $page)
-                                        @if($loop->iteration < 6)
-                                            <li class="@if($current_page == $page) active @endif">
-                                                <a href="{{ url($page->slug) }}">
-                                                    {{  $page->title }}
-                                                </a>
-                                            </li>
-                                        @elseif($loop->iteration >= 6)
-                                            @if($loop->iteration == 6)
-                                                <li class="menu-item-has-children"><a href="#">صفحات أخري</a>
-                                                    <ul class="sub-menu">
-                                                        <li class="@if($current_page == $page) active @endif"><a href="{{ url($page->slug) }}">{{ $page->title }}</a></li>
-                                            @else
-                                                <li class="@if($current_page == $page) active @endif"><a href="{{ url($page->slug) }}">{{ $page->title }}</a></li>
-                                            @endif
+                                        @if($page->position != 'hidden')
+                                            @if($loop->iteration < 6)
+                                                <li class="@if($current_page == $page) active @endif">
+                                                    <a href="{{ url($page->slug) }}">
+                                                        {{  $page->title }}
+                                                    </a>
+                                                </li>
+                                            @elseif($loop->iteration >= 6)
+                                                @if($loop->iteration == 6)
+                                                    <li class="menu-item-has-children"><a href="#">صفحات أخري</a>
+                                                        <ul class="sub-menu">
+                                                            <li class="@if($current_page == $page) active @endif"><a href="{{ url($page->slug) }}">{{ $page->title }}</a></li>
+                                                @else
+                                                    <li class="@if($current_page == $page) active @endif"><a href="{{ url($page->slug) }}">{{ $page->title }}</a></li>
+                                                @endif
 
-                                            @if($loop->last)
-                                                </ul>
-                                            </li>
+                                                @if($loop->last)
+                                                    </ul>
+                                                </li>
+                                                @endif
                                             @endif
                                         @endif
                                     @empty
@@ -146,11 +148,21 @@
                             </div>
                             <div class="social-links">
                                 <ul class="clearfix list-wrap">
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    @if(get_settings('social_facebook'))
+                                        <li><a href="{{ get_settings('social_facebook') }}"><i class="fab fa-facebook-f"></i></a></li>
+                                    @endif
+
+                                    @if(get_settings('social_twitter'))
+                                        <li><a href="{{ get_settings('social_twitter') }}"><i class="fab fa-twitter"></i></a></li>
+                                    @endif
+
+                                    @if(get_settings('social_insta'))
+                                        <li><a href="{{ get_settings('social_insta') }}"><i class="fab fa-instagram"></i></a></li>
+                                    @endif
+
+                                    @if(get_settings('social_youtube'))
+                                        <li><a href="{{ get_settings('social_youtube') }}"><i class="fab fa-youtube"></i></a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </nav>
@@ -210,31 +222,22 @@
                 <p>example.mail@hum.com</p>
             </div>
         </div>
-        <ul class="side-instagram list-wrap">
-            <li>
-                <a href="#"><img src="{{ asset('front/assets/img/images/sb_insta01.jpg') }} " alt=""></a>
-            </li>
-            <li>
-                <a href="#"><img src="{{ asset('front/assets/img/images/sb_insta02.jpg') }} " alt=""></a>
-            </li>
-            <li>
-                <a href="#"><img src="{{ asset('front/assets/img/images/sb_insta03.jpg') }} " alt=""></a>
-            </li>
-            <li>
-                <a href="#"><img src="{{ asset('front/assets/img/images/sb_insta04.jpg') }} " alt=""></a>
-            </li>
-            <li>
-                <a href="#"><img src="{{ asset('front/assets/img/images/sb_insta05.jpg') }} " alt=""></a>
-            </li>
-            <li>
-                <a href="#"><img src="{{ asset('front/assets/img/images/sb_insta06.jpg') }} " alt=""></a>
-            </li>
-        </ul>
         <div class="social-icon-right mt-30">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            @if(get_settings('social_facebook'))
+                <li><a href="{{ get_settings('social_facebook') }}"><i class="fab fa-facebook-f"></i></a></li>
+            @endif
+
+            @if(get_settings('social_twitter'))
+                <li><a href="{{ get_settings('social_twitter') }}"><i class="fab fa-twitter"></i></a></li>
+            @endif
+
+            @if(get_settings('social_insta'))
+                <li><a href="{{ get_settings('social_insta') }}"><i class="fab fa-instagram"></i></a></li>
+            @endif
+
+            @if(get_settings('social_youtube'))
+                <li><a href="{{ get_settings('social_youtube') }}"><i class="fab fa-youtube"></i></a></li>
+            @endif
         </div>
     </div>
     <div class="offcanvas-overly"></div>

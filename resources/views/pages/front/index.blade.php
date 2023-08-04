@@ -28,8 +28,8 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                         {{ isset($page->content['slider_banner']['description']) ? $page->content['slider_banner']['description']  : 'تمتلك وكالة الخطوة الرائدة للتجارة و الاستثمار امكانيات فريدة و متميزة لتحقيق النتائج السريعة و تحقيق أعلى مكاسب' }}
                     </p>
                     <div class="banner-btn">
-                        <a href="#" class="btns" data-aos="fade-left" data-aos-delay="700">خدماتنا</a>
-                        <a href="https://www.youtube.com/watch?v=6mkoGSqTqFI" class="play-btns popup-video" data-aos="fade-right" data-aos-delay="700"><i class="fas fa-play"></i> <span>مشاهدة الفيديو التعريفي</span></a>
+                        <a href="{{ route('services') }}" class="btns" data-aos="fade-left" data-aos-delay="700">خدماتنا</a>
+                        <a href="{{ isset($page->content['slider_banner']['video_link']) ? $page->content['slider_banner']['video_link']  : (isset($page->content['slider_banner']['video_id']) ? upload_assets($page->content['slider_banner']['video_id'],true) : '#') }}" class="play-btns popup-video" data-aos="fade-right" data-aos-delay="700"><i class="fas fa-play"></i> <span>مشاهدة الفيديو التعريفي</span></a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,10 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                     @foreach(GetAttachments($page->content['partner_banner']['thumbnails_id']) as $attachment)
                         <div class="col-lg-12">
                             <div class="brand-item">
-                                <img src="{{ upload_assets($attachment) }}" alt="">
+                                @php $media = upload_assets($attachment) @endphp
+                                <a href="{{ $media }}" class="popup-image">
+                                    <img src="{{ $media }}"  alt="">
+                                </a>
                             </div>
                         </div>
                     @endforeach
@@ -75,27 +78,27 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                     </div>
                     <div class="col-lg-12">
                         <div class="brand-item">
-                            <img src="{{ asset('front/assets/img/brand/brand_img02.png') }}" alt="">
+                            <img src="{{ asset('front/assets/img/brand/brand_img02.png') }}" class="popup-image" alt="">
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="brand-item">
-                            <img src="{{ asset('front/assets/img/brand/brand_img03.png') }}" alt="">
+                            <img src="{{ asset('front/assets/img/brand/brand_img03.png') }}" class="popup-image" alt="">
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="brand-item">
-                            <img src="{{ asset('front/assets/img/brand/brand_img04.png') }}" alt="">
+                            <img src="{{ asset('front/assets/img/brand/brand_img04.png') }}" class="popup-image" alt="">
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="brand-item">
-                            <img src="{{ asset('front/assets/img/brand/brand_img05.png') }}" alt="">
+                            <img src="{{ asset('front/assets/img/brand/brand_img05.png') }}" class="popup-image" alt="">
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="brand-item">
-                            <img src="{{ asset('front/assets/img/brand/brand_img03.png') }}" alt="">
+                            <img src="{{ asset('front/assets/img/brand/brand_img03.png') }}" class="popup-image" alt="">
                         </div>
                     </div>
                 @endisset
@@ -116,8 +119,8 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                     <img src="{{ isset($page->content['about_banner']['thumbnail_id_big']) ? upload_assets($page->content['about_banner']['thumbnail_id_big'],true) : asset('front/assets/img/images/h2_about_img01.jpg') }}" alt="" data-aos="fade-down-right" data-aos-delay="0">
                     <img src="{{ isset($page->content['about_banner']['thumbnail_id_small']) ? upload_assets($page->content['about_banner']['thumbnail_id_small'],true) : asset('front/assets/img/images/h2_about_img02.jpg') }}" alt="" data-aos="fade-left" data-aos-delay="400">
                     <div class="experience-wrap" data-aos="fade-up" data-aos-delay="300">
-                        <h2 class="title">25 <span>عام</span></h2>
-                        <p> من الخبرة في قطاع التجارة و الاستثمار فى الشرق الاوسط.</p>
+                        <h2 class="title">{{ isset($page->content['about_banner']['expereince_years']) ? $page->content['about_banner']['expereince_years'] : '25' }} <span>عام</span></h2>
+                        <p> {{ isset($page->content['about_banner']['expereince_description']) ? $page->content['about_banner']['expereince_description'] : ''  }}</p>
                     </div>
                 </div>
             </div>
@@ -137,14 +140,14 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
 
                     <div class="about-author-info">
                         <div class="thumb">
-                            <img src="{{ asset('front/assets/img/images/about_author.png') }}" alt="">
+                            <img src="{{ isset($page->content['about_banner']['thumbnail_ceo_id']) ?  upload_assets($page->content['about_banner']['thumbnail_ceo_id'],true) : asset('front/assets/img/images/about_author.png') }}" alt="">
                         </div>
                         <div class="content">
-                            <h2 class="title">Mark Stranger</h2>
-                            <span>CEO, Gerow Finance</span>
+                            <h2 class="title">{{ isset($page->content['about_banner']['ceo_name']) ? $page->content['about_banner']['ceo_name'] : '' }}</h2>
+                            <span>{{ isset($page->content['about_banner']['ceo_position']) ? $page->content['about_banner']['ceo_position'] : '' }}</span>
                         </div>
                         <div class="signature">
-                            <img src="{{ asset('front/assets/img/images/signature.png') }}" alt="">
+                            <img src="{{ isset($page->content['about_banner']['thumbnail_signature_id']) ?  upload_assets($page->content['about_banner']['thumbnail_signature_id'],true) : asset('front/assets/img/images/signature.png') }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -203,7 +206,7 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                 @include('partials.services_list_card_1')
             @empty
             @endforelse
-            
+
         </div>
     </div>
 </section>
@@ -398,29 +401,36 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                     </p>
                     <div class="choose-circle-wrap">
                         <div class="circle-item">
-                            <div class="chart" data-percent="55">
+                            <div class="chart" data-percent="{{ isset($page->content['why_choice_us_banner']['percentage_number'][0]) ? $page->content['why_choice_us_banner']['percentage_number'][0] : 100 }}">
                                 <div class="circle-content">
-                                    <span class="percentage">99%</span>
-                                    <p>رضاء عملائنا</p>
+                                    <span class="percentage">{{ isset($page->content['why_choice_us_banner']['percentage_number'][0]) ? $page->content['why_choice_us_banner']['percentage_number'][0] : 100 }}%</span>
+                                    <p>
+                                        {{ isset($page->content['why_choice_us_banner']['percentage_title'][0]) ? $page->content['why_choice_us_banner']['percentage_title'][0] : 100 }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                         <div class="circle-item">
-                            <div class="chart" data-percent="85">
+                            <div class="chart" data-percent="{{ isset($page->content['why_choice_us_banner']['percentage_number'][1]) ? $page->content['why_choice_us_banner']['percentage_number'][1] : 100 }}">
                                 <div class="circle-content">
-                                    <span class="percentage">90%</span>
-                                    <p>استثمارتنا الناجحة</p>
+                                    <span class="percentage">{{ isset($page->content['why_choice_us_banner']['percentage_number'][1]) ? $page->content['why_choice_us_banner']['percentage_number'][1] : 100 }}%</span>
+                                    <p>
+                                        {{ isset($page->content['why_choice_us_banner']['percentage_title'][1]) ? $page->content['why_choice_us_banner']['percentage_title'][1] : 100 }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                         <div class="circle-item">
-                            <div class="chart" data-percent="98">
+                            <div class="chart" data-percent="{{ isset($page->content['why_choice_us_banner']['percentage_number'][2]) ? $page->content['why_choice_us_banner']['percentage_number'][2] : 100 }}">
                                 <div class="circle-content">
-                                    <span class="percentage">100%</span>
-                                    <p>منتجات مضمونة</p>
+                                    <span class="percentage">{{ isset($page->content['why_choice_us_banner']['percentage_number'][2]) ? $page->content['why_choice_us_banner']['percentage_number'][2] : 100 }}%</span>
+                                    <p>
+                                        {{ isset($page->content['why_choice_us_banner']['percentage_title'][2]) ? $page->content['why_choice_us_banner']['percentage_title'][2] : 100 }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -458,58 +468,37 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                     </div>
                     <div class="testimonial-item-wrap-five">
                         <div class="testimonial-active-five">
-                            <div class="testimonial-item">
-                                <div class="testimonial-content">
-                                    <div class="content-top">
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
+                            @isset($page->content['our_reviews_banner']['reviewer_name'])
+                                @if(count($page->content['our_reviews_banner']['reviewer_name']) > 0)
+                                    @for($i = 0; $i < count($page->content['our_reviews_banner']['reviewer_name']);$i++)
+                                        <div class="testimonial-item">
+                                            <div class="testimonial-content">
+                                                <div class="content-top">
+                                                    <div class="rating">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    <div class="testimonial-quote">
+                                                        <img src="{{ asset('front/assets/img/icons/quote.svg') }}" alt="">
+                                                    </div>
+                                                </div>
+                                                <p>“ {{ isset($page->content['our_reviews_banner']['reviewer_description'][$i]) ? $page->content['our_reviews_banner']['reviewer_description'][$i] : '-' }}</p>
+                                                <div class="testimonial-avatar">
+                                                    <div class="avatar-thumb">
+                                                        <img src="{{ asset('front/assets/img/user_avatar.png') }}" alt="">
+                                                    </div>
+                                                    <div class="avatar-info">
+                                                        <h2 class="title">{{ isset($page->content['our_reviews_banner']['reviewer_name'][$i]) ? $page->content['our_reviews_banner']['reviewer_name'][$i] : '-' }}</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="testimonial-quote">
-                                            <img src="{{ asset('front/assets/img/icons/quote.svg') }}" alt="">
-                                        </div>
-                                    </div>
-                                    <p>“ لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل المثال ... او نماذج مواقع انترنت.</p>
-                                    <div class="testimonial-avatar">
-                                        <div class="avatar-thumb">
-                                            <img src="{{ asset('front/assets/img/images/testi_avatar01.png') }}" alt="">
-                                        </div>
-                                        <div class="avatar-info">
-                                            <h2 class="title">Mr.Robey Alexa</h2>
-                                            <span>CEO, Gerow Agency</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="testimonial-content">
-                                    <div class="content-top">
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <div class="testimonial-quote">
-                                            <img src="{{ asset('front/assets/img/icons/quote.svg') }}" alt="">
-                                        </div>
-                                    </div>
-                                    <p>“ لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل ليتصور طريقه وضع النصوص بالتصاميم سواء كانت تصاميم مطبوعه ... بروشور او فلاير على سبيل المثال ... او نماذج مواقع انترنت.</p>
-                                    <div class="testimonial-avatar">
-                                        <div class="avatar-thumb">
-                                            <img src="{{ asset('front/assets/img/images/testi_avatar02.png') }}" alt="">
-                                        </div>
-                                        <div class="avatar-info">
-                                            <h2 class="title">Mr.Robey Alexa</h2>
-                                            <span>CEO, Gerow Agency</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    @endfor
+                                @endif
+                            @endisset
                         </div>
                         <div class="testimonial-nav-five"></div>
                     </div>

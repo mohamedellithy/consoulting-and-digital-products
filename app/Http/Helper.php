@@ -168,7 +168,9 @@ if(!function_exists('ActivePagesMenus')){
     function ActivePagesMenus($whereCondition = []){
 
         $pages = Cache::rememberForever('all-pages',function(){
-            $pages = Page::where('status','active')->get();
+            $pages = Page::where([
+                ['status','=','active'],
+            ])->get();
             return $pages;
         });
 

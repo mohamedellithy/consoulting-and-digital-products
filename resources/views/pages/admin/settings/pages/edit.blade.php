@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@php 
+@php
 // dd($page->content)
 @endphp
 @section('content')
@@ -78,15 +78,34 @@
                                                     </button>
                                                     <div class="preview-thumbs">
                                                         <br/>
-                                                        <div class="alert alert-info ">
-                                                            لايوجد صورة للمنتج
-                                                        </div>
                                                         <ul class="list-preview-thumbs">
                                                             @isset($page->content['slider_banner']['thumbnail_id'])
-                                                                <li class="preview-media-inner">
-                                                                    <img src="{{ upload_assets($page->content['slider_banner']['thumbnail_id'],true) }}" />
-                                                                    <i class='bx bxs-message-square-x remove' media-id="{{ $page->content['slider_banner']['thumbnail_id'] }}"></i>
-                                                                </li>
+                                                                @include('partials.media_preview_list',['media_id' => $page->content['slider_banner']['thumbnail_id']])
+                                                            @endisset
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label> رابط الفيديو ( يويتيوب )</label>
+                                                <input name="content[slider_banner][video_link]" @isset($page->content['slider_banner']['video_link']) value="{{ $page->content['slider_banner']['video_link'] }}" @endisset  class="form-control"/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label> أو </label>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="container-uploader">
+                                                    <button type="button" class="btn btn-outline-warning btn-sm upload-media" data-type-media="video">
+                                                        <i class='bx bx-upload' ></i>
+                                                        اضافة فيديو
+                                                       <input type="hidden" name="content[slider_banner][video_id]" @isset($page->content['slider_banner']['video_id']) value="{{ $page->content['slider_banner']['video_id'] }}" @endisset
+                                                            class="form-control dob-picker uploaded-media-ids" required/>
+                                                    </button>
+                                                    <div class="preview-thumbs">
+                                                        <br/>
+                                                        <ul class="list-preview-thumbs">
+                                                            @isset($page->content['slider_banner']['video_id'])
+                                                                @include('partials.media_preview_list',['media_id' => $page->content['slider_banner']['video_id']])
                                                             @endisset
                                                         </ul>
                                                     </div>
@@ -130,16 +149,10 @@
                                                     </button>
                                                     <div class="preview-thumbs">
                                                         <br/>
-                                                        <div class="alert alert-info ">
-                                                            لايوجد صورة للمنتج
-                                                        </div>
                                                         <ul class="list-preview-thumbs">
                                                             @isset($page->content['partner_banner']['thumbnails_id'])
                                                                 @foreach(GetAttachments($page->content['partner_banner']['thumbnails_id']) as $attachment)
-                                                                    <li class="preview-media-inner">
-                                                                        <img src="{{ upload_assets($attachment) }}" />
-                                                                        <i class='bx bxs-message-square-x remove' media-id="{{ $attachment->id }}"></i>
-                                                                    </li>
+                                                                    @include('partials.media_preview_list',['media_id' => $attachment->id ,'media' => $attachment])
                                                                 @endforeach
                                                             @endisset
                                                         </ul>
@@ -180,6 +193,14 @@
                                                 <input name="content[about_banner][sub_heading]" @isset($page->content['about_banner']['sub_heading']) value="{{ $page->content['about_banner']['sub_heading'] }}" @endisset  class="form-control"/>
                                             </div>
                                             <div class="mb-3">
+                                                <label>عدد سنين الخبرة</label>
+                                                <input name="content[about_banner][expereince_years]" @isset($page->content['about_banner']['expereince_years']) value="{{ $page->content['about_banner']['expereince_years'] }}" @endisset  class="form-control"/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>وصف الخبرة</label>
+                                                <input name="content[about_banner][expereince_description]" @isset($page->content['about_banner']['expereince_description']) value="{{ $page->content['about_banner']['expereince_description'] }}" @endisset  class="form-control"/>
+                                            </div>
+                                            <div class="mb-3">
                                                 <label>نص وصفي</label>
                                                 <textarea name="content[about_banner][description]" class="form-control summernote">@isset($page->content['about_banner']['description']) {{ $page->content['about_banner']['description'] }} @endisset</textarea>
                                             </div>
@@ -187,21 +208,15 @@
                                                 <div class="container-uploader">
                                                     <button type="button" class="btn btn-outline-warning btn-sm upload-media" data-type-media="image">
                                                         <i class='bx bx-upload' ></i>
-                                                        اضافة صورة
+                                                         اضافة صورة رئيسية
                                                        <input type="hidden" name="content[about_banner][thumbnail_id_big]" @isset($page->content['about_banner']['thumbnail_id_big']) value="{{ $page->content['about_banner']['thumbnail_id_big'] }}" @endisset
                                                             class="form-control dob-picker uploaded-media-ids" required/>
                                                     </button>
                                                     <div class="preview-thumbs">
                                                         <br/>
-                                                        <div class="alert alert-info ">
-                                                            لايوجد صورة للمنتج
-                                                        </div>
                                                         <ul class="list-preview-thumbs">
                                                             @isset($page->content['about_banner']['thumbnail_id_big'])
-                                                                <li class="preview-media-inner">
-                                                                    <img src="{{ upload_assets($page->content['about_banner']['thumbnail_id_big'],true) }}" />
-                                                                    <i class='bx bxs-message-square-x remove' media-id="{{ $page->content['about_banner']['thumbnail_id_big'] }}"></i>
-                                                                </li>
+                                                                @include('partials.media_preview_list',['media_id' => $page->content['about_banner']['thumbnail_id_big']])
                                                             @endisset
                                                         </ul>
                                                     </div>
@@ -211,25 +226,63 @@
                                                 <div class="container-uploader">
                                                     <button type="button" class="btn btn-outline-warning btn-sm upload-media" data-type-media="image">
                                                         <i class='bx bx-upload' ></i>
-                                                        اضافة صورة
+                                                        اضافة صورة فرعية
                                                        <input type="hidden" name="content[about_banner][thumbnail_id_small]" @isset($page->content['about_banner']['thumbnail_id_small']) value="{{ $page->content['about_banner']['thumbnail_id_small'] }}" @endisset
                                                             class="form-control dob-picker uploaded-media-ids" required/>
                                                     </button>
                                                     <div class="preview-thumbs">
                                                         <br/>
-                                                        <div class="alert alert-info ">
-                                                            لايوجد صورة للمنتج
-                                                        </div>
                                                         <ul class="list-preview-thumbs">
                                                             @isset($page->content['about_banner']['thumbnail_id_small'])
-                                                                <li class="preview-media-inner">
-                                                                    <img src="{{ upload_assets($page->content['about_banner']['thumbnail_id_small'],true) }}" />
-                                                                    <i class='bx bxs-message-square-x remove' media-id="{{ $page->content['about_banner']['thumbnail_id_small'] }}"></i>
-                                                                </li>
+                                                                @include('partials.media_preview_list',['media_id' => $page->content['about_banner']['thumbnail_id_small']])
                                                             @endisset
                                                         </ul>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="container-uploader">
+                                                    <button type="button" class="btn btn-outline-warning btn-sm upload-media" data-type-media="image">
+                                                        <i class='bx bx-upload' ></i>
+                                                         اضافة صورة المدير
+                                                       <input type="hidden" name="content[about_banner][thumbnail_ceo_id]" @isset($page->content['about_banner']['thumbnail_ceo_id']) value="{{ $page->content['about_banner']['thumbnail_ceo_id'] }}" @endisset
+                                                            class="form-control dob-picker uploaded-media-ids" required/>
+                                                    </button>
+                                                    <div class="preview-thumbs">
+                                                        <br/>
+                                                        <ul class="list-preview-thumbs">
+                                                            @isset($page->content['about_banner']['thumbnail_ceo_id'])
+                                                                @include('partials.media_preview_list',['media_id' => $page->content['about_banner']['thumbnail_ceo_id']])
+                                                            @endisset
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="container-uploader">
+                                                    <button type="button" class="btn btn-outline-warning btn-sm upload-media" data-type-media="image">
+                                                        <i class='bx bx-upload' ></i>
+                                                         اضافة صورة التوقيع
+                                                       <input type="hidden" name="content[about_banner][thumbnail_signature_id]" @isset($page->content['about_banner']['thumbnail_signature_id']) value="{{ $page->content['about_banner']['thumbnail_signature_id'] }}" @endisset
+                                                            class="form-control dob-picker uploaded-media-ids" required/>
+                                                    </button>
+                                                    <div class="preview-thumbs">
+                                                        <br/>
+                                                        <ul class="list-preview-thumbs">
+                                                            @isset($page->content['about_banner']['thumbnail_signature_id'])
+                                                                @include('partials.media_preview_list',['media_id' => $page->content['about_banner']['thumbnail_signature_id']])
+                                                            @endisset
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>اسم المدير</label>
+                                                <input name="content[about_banner][ceo_name]" @isset($page->content['about_banner']['ceo_name']) value="{{ $page->content['about_banner']['ceo_name'] }}" @endisset  class="form-control"/>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label>المنصب الوظيفي</label>
+                                                <input name="content[about_banner][ceo_position]" @isset($page->content['about_banner']['ceo_position']) value="{{ $page->content['about_banner']['ceo_position'] }}" @endisset  class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
@@ -317,10 +370,7 @@
                                                         <br/>
                                                         <ul class="list-preview-thumbs">
                                                             @isset($page->content['introduce_banner']['thumbnail_id'])
-                                                                <li class="preview-media-inner">
-                                                                    <img src="{{ upload_assets($page->content['introduce_banner']['thumbnail_id'],true) }}" />
-                                                                    <i class='bx bxs-message-square-x remove' media-id="{{ $page->content['introduce_banner']['thumbnail_id'] }}"></i>
-                                                                </li>
+                                                                @include('partials.media_preview_list',['media_id' => $page->content['introduce_banner']['thumbnail_id']])
                                                             @endisset
                                                         </ul>
                                                     </div>
@@ -441,14 +491,64 @@
                                                         <br/>
                                                         <ul class="list-preview-thumbs">
                                                             @isset($page->content['why_choice_us_banner']['thumbnail_id'])
-                                                                <li class="preview-media-inner">
-                                                                    <img src="{{ upload_assets($page->content['why_choice_us_banner']['thumbnail_id'],true) }}" />
-                                                                    <i class='bx bxs-message-square-x remove' media-id="{{ $page->content['why_choice_us_banner']['thumbnail_id'] }}"></i>
-                                                                </li>
+                                                                @include('partials.media_preview_list',['media_id' => $page->content['why_choice_us_banner']['thumbnail_id']])
                                                             @endisset
                                                         </ul>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>النسب المئوية</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>رقم </label>
+                                                                    <input name="content[why_choice_us_banner][percentage_number][0]" @isset($page->content['why_choice_us_banner']['percentage_number'][0]) value="{{ $page->content['why_choice_us_banner']['percentage_number'][0] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>عنوان </label>
+                                                                    <input name="content[why_choice_us_banner][percentage_title][0]" @isset($page->content['why_choice_us_banner']['percentage_title'][0]) value="{{ $page->content['why_choice_us_banner']['percentage_title'][0] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>رقم </label>
+                                                                    <input name="content[why_choice_us_banner][percentage_number][1]" @isset($page->content['why_choice_us_banner']['percentage_number'][1]) value="{{ $page->content['why_choice_us_banner']['percentage_number'][1] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>عنوان </label>
+                                                                    <input name="content[why_choice_us_banner][percentage_title][1]" @isset($page->content['why_choice_us_banner']['percentage_title'][1]) value="{{ $page->content['why_choice_us_banner']['percentage_title'][1] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>رقم </label>
+                                                                    <input name="content[why_choice_us_banner][percentage_number][2]" @isset($page->content['why_choice_us_banner']['percentage_number'][2]) value="{{ $page->content['why_choice_us_banner']['percentage_number'][2] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>عنوان </label>
+                                                                    <input name="content[why_choice_us_banner][percentage_title][2]" @isset($page->content['why_choice_us_banner']['percentage_title'][2]) value="{{ $page->content['why_choice_us_banner']['percentage_title'][2] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -495,14 +595,78 @@
                                                         <br/>
                                                         <ul class="list-preview-thumbs">
                                                             @isset($page->content['our_reviews_banner']['thumbnail_id'])
-                                                                <li class="preview-media-inner">
-                                                                    <img src="{{ upload_assets($page->content['our_reviews_banner']['thumbnail_id'],true) }}" />
-                                                                    <i class='bx bxs-message-square-x remove' media-id="{{ $page->content['our_reviews_banner']['thumbnail_id'] }}"></i>
-                                                                </li>
+                                                                @include('partials.media_preview_list',['media_id' => $page->content['our_reviews_banner']['thumbnail_id']])
                                                             @endisset
                                                         </ul>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>أراء العملاء </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>اسم العميل</label>
+                                                                    <input name="content[our_reviews_banner][reviewer_name][0]" @isset($page->content['our_reviews_banner']['reviewer_name'][0]) value="{{ $page->content['our_reviews_banner']['reviewer_name'][0] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>نص التقيم </label>
+                                                                    <textarea name="content[our_reviews_banner][reviewer_description][0]" class="form-control">{{ isset($page->content['our_reviews_banner']['reviewer_description'][0]) ? $page->content['our_reviews_banner']['reviewer_description'][0] : '' }}</textarea>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>اسم العميل</label>
+                                                                    <input name="content[our_reviews_banner][reviewer_name][1]" @isset($page->content['our_reviews_banner']['reviewer_name'][1]) value="{{ $page->content['our_reviews_banner']['reviewer_name'][1] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>نص التقيم </label>
+                                                                    <textarea name="content[our_reviews_banner][reviewer_description][1]" class="form-control">{{ isset($page->content['our_reviews_banner']['reviewer_description'][1]) ? $page->content['our_reviews_banner']['reviewer_description'][1] : '' }}</textarea>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>اسم العميل</label>
+                                                                    <input name="content[our_reviews_banner][reviewer_name][2]" @isset($page->content['our_reviews_banner']['reviewer_name'][2]) value="{{ $page->content['our_reviews_banner']['reviewer_name'][2] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>نص التقيم </label>
+                                                                    <textarea name="content[our_reviews_banner][reviewer_description][2]" class="form-control">{{ isset($page->content['our_reviews_banner']['reviewer_description'][2]) ? $page->content['our_reviews_banner']['reviewer_description'][2] : '' }}</textarea>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>اسم العميل</label>
+                                                                    <input name="content[our_reviews_banner][reviewer_name][3]" @isset($page->content['our_reviews_banner']['reviewer_name'][3]) value="{{ $page->content['our_reviews_banner']['reviewer_name'][3] }}" @endisset  class="form-control"/>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="mb-3">
+                                                                    <label>نص التقيم </label>
+                                                                    <textarea name="content[our_reviews_banner][reviewer_description][3]" class="form-control">{{ isset($page->content['our_reviews_banner']['reviewer_description'][3]) ? $page->content['our_reviews_banner']['reviewer_description'][3] : '' }}</textarea>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -577,6 +741,7 @@
                                     <option value="header" @if($page->position == 'header') selected @endif>القائمة العلوية</option>
                                     <option value="footer" @if($page->position == 'footer') selected @endif>القائمة السفلية</option>
                                     <option value="both"   @if($page->position == 'both')   selected @endif>كلا القائمتين   </option>
+                                    <option value="hidden" @if($page->position == 'hidden')   selected @endif>بدون قائمة  </option>
                                 </select>
                                 @error('position')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>

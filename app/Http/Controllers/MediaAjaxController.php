@@ -12,10 +12,16 @@ class MediaAjaxController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $medias = Image::paginate(10);
+        $medias = Image::query();
+        if(!request('typeMedia') || request('typeMedia') != 'all'):
+            $medias->where('type','Like','%'.request('typeMedia').'%');
+        endif;
+
+        $medias = $medias->paginate(10);
+
         return response()->json([
             'status'  => 'success',
             '_result' => view('partials.media_list_1',compact('medias'))->render()

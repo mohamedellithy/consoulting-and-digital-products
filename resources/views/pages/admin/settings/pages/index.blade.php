@@ -96,7 +96,15 @@
                                                 {{ $page->slug }}
                                             </td>
                                             <td>
-                                                {{ $page->position }}
+                                                @if($page->position == 'header')
+                                                    القائمة العلوية
+                                                @elseif($page->position == 'footer')
+                                                    القائمة السفلية
+                                                @elseif($page->position == 'both')
+                                                    كلا القائمتين       
+                                                @elseif($page->position == 'hidden')
+                                                    بدون قائمة  
+                                                @endif
                                             </td>
                                             <td>
                                                 <span class="badge bg-label-danger me-1">

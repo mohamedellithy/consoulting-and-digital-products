@@ -40,7 +40,7 @@
 
     <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
-    
+
     <!-- Helpers -->
     <script src="{{ asset('/assets/vendor/js/helpers.js') }}"></script>
 
@@ -50,7 +50,7 @@
     {{-- jquery --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link   href="{{ asset('assets/editor/summernote-lite.min.css') }}" rel="stylesheet">
-    
+
     @stack('style')
 </head>
 
@@ -105,7 +105,7 @@
     <!-- / Layout wrapper -->
 
     <!-- Core JS -->
-    
+
     <script src="{{ asset('/assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
@@ -132,6 +132,7 @@
             // paginate page 1
             let page = 1;
             let params = {};
+            let typeMedia = 'all';
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -164,13 +165,16 @@
                 jQuery('.list-medias').html('');
                 page = 1;
                 global_media_ids = this;
-                multiple_upload = jQuery(this).attr('data-multiple-media');
-                ajax_load_medias();
+                multiple_upload  = jQuery(this).attr('data-multiple-media');
+                typeMedia        = jQuery(this).attr('data-type-media');
+                params.typeMedia = typeMedia;
+                ajax_load_medias(params);
             });
 
             jQuery('.load-more-medias').click(function() {
                 page += 1;
                 params.page = page;
+                params.typeMedia = typeMedia;
                 ajax_load_medias(params);
             });
 
@@ -278,7 +282,7 @@
                                 </video>
                                 <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
                             </li>`);
-                        } else { 
+                        } else {
                             preview_thumbs.append(`<li class="preview-media-inner">
                                 <img src="${media_path}" />
                                 <i class='bx bxs-message-square-x remove' media-id="${media_id}"></i>
