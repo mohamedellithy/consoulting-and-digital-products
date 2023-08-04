@@ -757,13 +757,13 @@
                                 <select type="text" class="form-control" id="basic-default-fullname" placeholder=""
                                     name="menu_position" value="{{ old('menu_position') }}" required>
                                     <option value="10" @if('10' == $page->menu_position) selected @endif> اول القائمة </option>
-                                    @foreach($pages as $page)
-                                        @php $page_prev = ( $page->menu_position != null ? $page->menu_position : $page->id) - 1  @endphp
-                                        @php $page_next = ( $page->menu_position != null ? $page->menu_position : $page->id) + 1  @endphp
-                                        <option value="{{ $page_prev }}" @if($page_prev == $page->menu_position) selected @endif> قبل {{ $page->title }}  </option>
-                                        <option value="{{ $page_next }}" @if($page_next == $page->menu_position) selected @endif> بعد {{ $page->title }}  </option>
+                                    @foreach($pages as $custom_page)
+                                        @php $page_prev = ( $custom_page->menu_position != null ? $custom_page->menu_position : $custom_page->id) - 1  @endphp
+                                        @php $page_next = ( $custom_page->menu_position != null ? $custom_page->menu_position : $custom_page->id) + 1  @endphp
+                                        <option value="{{ $page_prev }}" @if($page_prev == $page->menu_position) selected @endif> قبل {{ $custom_page->title }}  </option>
+                                        <option value="{{ $page_next }}" @if($page_next == $page->menu_position) selected @endif> بعد {{ $custom_page->title }}  </option>
                                     @endforeach
-                                    <option value="1000" @if('1000' == $page->menu_position) selected @endif> أخر القائمة</option>
+                                    <option value="1000" @if('1000' == $custom_page->menu_position) selected @endif> أخر القائمة</option>
                                 </select>
                                 @error('menu_position')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
