@@ -36,7 +36,7 @@ class ThawaniPayment{
                 [
                     "name"        => TrimLongText($this->order_data->order_items->product->name,35),
                     "quantity"    => 1,
-                    "unit_amount" => ceil($this->order_data->order_total)
+                    "unit_amount" => ceil($this->order_data->order_total) * 100
                 ]
             ],
             "success_url" => route('payments.success',['order_no' => $this->order_data->order_no]),
