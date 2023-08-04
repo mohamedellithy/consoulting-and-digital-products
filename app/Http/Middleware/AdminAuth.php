@@ -20,7 +20,7 @@ class AdminAuth
             if($request->user()->role != 0) return \Response::view('pages.404');
             return $next($request);
         else:
-            return \Response::view('pages.404');
+            return route('login');
         endif;
     }
 }
