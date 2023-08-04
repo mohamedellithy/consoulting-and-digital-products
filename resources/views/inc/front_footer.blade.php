@@ -100,7 +100,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="copyright-text-two text-center">
-                            <p>جميع حقوق النشر محفوطة © {{ date('Y') }} لدى الخطوة الرائدة للتجارة و الاستثمار</p>
+                            <p>جميع حقوق النشر محفوطة © {{ date('Y') }} لدى شركة الخطوة الرائدة للتجارة و الاستثمار</p>
                         </div>
                     </div>
                 </div>

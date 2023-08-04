@@ -109,6 +109,7 @@ class FrontController extends Controller
             'customer_id',
             'service_id',
             'name',
+            'email',
             'phone',
             'subscriber_notic'
         ]));

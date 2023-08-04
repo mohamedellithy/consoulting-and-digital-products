@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('service_id')->nullable();
             $table->foreign('service_id')->references('id')->on('services')->onDelete('set null');
             $table->string('name');
+            $table->string('email');
             $table->string('phone');
             $table->text('subscriber_notic');
             $table->timestamps();

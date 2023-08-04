@@ -21,26 +21,22 @@
                                         <strong> {{ $service->name }} </strong>
                                     </li>
                                     <li>
-                                        <label>المشتركين فى الخدمة : </label>
-                                        <strong> 1293848 </strong>
-                                    </li>
-                                    <li>
                                         <button id="subscrib_on_service" class="btns btns-secondary-color btn-sm">
-                                            الاشتراك فى الخدمة
+                                            طلب تسعير خدمة
                                         </button>
                                     </li>
                                     <li>
                                         <a href="{{ 'https://wa.me/'.get_settings('website_whastapp').'?text='.urlencode(' طلب استفسار بخصوص خدمة ' . $service->name) }}" id="subscrib_on_service" class="btns btns-warning btn-sm">
-                                            التواصل من خلال الواتس
+                                            تواصل معنا عبر الواتساب
                                         </a>
                                     </li>
                                     <li class="social">
-                                        <label>Share:</label>
+                                        <label> مشاركة على روابط التواصل الاجتماعي :</label>
                                         <ul class="list-wrap">
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                            <li><a href="{{ "https://www.facebook.com/sharer/sharer.php?u=".url('service/',$service->slug) }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="{{ "https://twitter.com/intent/tweet?text=".url('service/',$service->slug) }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="{{ "https://wa.me/?text=".$service->slug.'%0A'.'رابط الخدمة'.'%0A%20%20%20'.url('service/',$service->slug) }}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                                            <li><a href="{{ "https://pinterest.com/pin/create/button/?url=".url('service/',$service->slug).'&media='.upload_assets($service->image_info).'&description='.$service->name }}" target="_blank"><i class="fab fa-pinterest-p"></i></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -76,32 +72,39 @@
                     <form action="{{ route('application-submit',$service->id) }}" method="post">
                         @csrf
                         <div class="heading">
-                            <h4 class="title text-center">فورم التسجيل فى الخدمة </h4>
+                            <h4 class="title text-center">نموذج طلب تسعير خدمة</h4>
                             <h6 class="sub-title text-center"> {{ $service->name }}</h6>
                         </div>
                         <div class="form-group">
                             <label>اسم المشترك</label>
-                            <input name="name" type="text" class="form-control" required/>
+                            <input name="name" @auth value="{{ auth()->user()->name }}" @endauth type="text" class="form-control" required/>
                             @error('name')
                                 <span class="text-danger w-100 fs-6">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>البريد الالكترونى</label>
+                            <input name="email"  @auth value="{{ auth()->user()->email }}" @endauth type="email" class="form-control" required/>
+                            @error('email')
+                                <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label>رقم الجوال</label>
-                            <input name="phone" type="text" class="form-control" required/>
+                            <input name="phone" @auth value="{{ auth()->user()->phone }}" @endauth type="tel" class="form-control" required/>
                             @error('phone')
                                 <span class="text-danger w-100 fs-6">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>وصف المطلوب</label>
+                            <label>تفاصيل الخدمة المطلوبة</label>
                             <textarea name="subscriber_notic" rows="3" name="" class="form-control" required></textarea>
                             @error('subscriber_notic')
                                 <span class="text-danger w-100 fs-6">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group text-center" style="padding: 27px;">
-                            <button type="submit" class="btns btns-warning ">الاشتراك فى الخدمة</button>
+                            <button type="submit" class="btns btns-warning ">ارسال</button>
                         </div>
                     </form>
                 </div>

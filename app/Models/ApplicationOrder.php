@@ -13,6 +13,7 @@ class ApplicationOrder extends Model
         'customer_id',
         'service_id',
         'name',
+        'email',
         'phone',
         'subscriber_notic'
     ];
