@@ -56,8 +56,6 @@ class ThawaniPayment{
 
         $this->result = $response->json();
 
-        dd($response->json());
-
         if($response->successful()):
 
             $this->order_data->payment()->updateOrCreate([
