@@ -72,14 +72,15 @@ class PageController extends Controller
             'thumbnail_id'     => $request->input('thumbnail_id'),
             'meta_title'       => $request->input('meta_title'),
             'meta_description' => $request->input('meta_description'),
-            'position'         => $request->input('position')
+            'position'         => $request->input('position'),
+            'menu_position'    => $request->input('menu_position')
         ];
 
         if(request('slug')):
             $slug         = str_replace(' ','-',$request->input('slug') ?: $request->input('title'));
             $data['slug'] = $slug;
         endif;
-        
+
         $page = Page::where('id',$id)->update($data);
 
         \Artisan::call('cache:clear');

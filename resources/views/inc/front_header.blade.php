@@ -78,18 +78,18 @@
                             </div>
                             <div class="navbar-wrap main-menu d-none d-lg-flex">
                                 <ul class="navigation">
-                                    @php $current_page = isset($page) ? $page : null @endphp 
+                                    @php $current_page = isset($page) ? $page : null @endphp
                                     @forelse(ActivePagesMenus(['position','!=' , 'footer']) as $page)
                                         @if($page->position != 'hidden')
-                                            @if($loop->iteration < 6)
+                                            @if($loop->iteration < 7)
                                                 <li class="@if($current_page == $page) active @endif">
                                                     <a href="{{ url($page->slug) }}">
                                                         {{  $page->title }}
                                                     </a>
                                                 </li>
-                                            @elseif($loop->iteration >= 6)
-                                                @if($loop->iteration == 6)
-                                                    <li class="menu-item-has-children"><a href="#">صفحات أخري</a>
+                                            @elseif($loop->iteration >= 7)
+                                                @if($loop->iteration == 7)
+                                                    <li class="menu-item-has-children"><a href="#">صفحات أخرى</a>
                                                         <ul class="sub-menu">
                                                             <li class="@if($current_page == $page) active @endif"><a href="{{ url($page->slug) }}">{{ $page->title }}</a></li>
                                                 @else

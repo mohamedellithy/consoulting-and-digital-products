@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('status')->default('active')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->string('menu_position')->default(1000);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

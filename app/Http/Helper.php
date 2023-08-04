@@ -39,6 +39,7 @@ if(!function_exists('IsActiveOnlyIf')){
 if(!function_exists('TrimLongText')){
     function TrimLongText($text,$length = 100){
         $text = trim(strip_tags($text));
+        $text  = str_replace('&nbsp;', ' ', $text);
         return mb_substr($text,0,$length).' ... ';
     }
 }
@@ -170,7 +171,7 @@ if(!function_exists('ActivePagesMenus')){
         $pages = Cache::rememberForever('all-pages',function(){
             $pages = Page::where([
                 ['status','=','active'],
-            ])->get();
+            ])->orderby('menu_position','asc')->get();
             return $pages;
         });
 

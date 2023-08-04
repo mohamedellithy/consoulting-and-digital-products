@@ -17,7 +17,8 @@ class Page extends Model
         'content',
         'position',
         'meta_title',
-        'meta_description'
+        'meta_description',
+        'menu_position'
     ];
 
     public function slug(): Attribute
