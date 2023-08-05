@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Review;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\ApplicationServiceRequest;
 class FrontController extends Controller
 {
     //
@@ -99,10 +100,14 @@ class FrontController extends Controller
         return view('pages.front.services.show-service',compact('service'));
     }
 
-    public function application_submit(Request $request,$id){
+    public function application_submit(ApplicationServiceRequest $request,$id){
         $request->merge([
            'customer_id' => auth()->user() ? auth()->user()->id : null,
            'service_id'  => $id
+        ]);
+
+        $request->merge([
+            'phone' => request('phone_code').request('phone')
         ]);
 
         $application_service = ApplicationOrder::create($request->only([
@@ -114,7 +119,7 @@ class FrontController extends Controller
             'subscriber_notic'
         ]));
 
-        flash()->success('تم ملئ الطلب بنجاح');
+        flash()->success('تم ملئ نموذج طلب التسعير بنجاح');
         return redirect()->back();
     }
 
@@ -150,6 +155,11 @@ class FrontController extends Controller
     }
 
     public function update_account(Request $request){
+
+        $request->validate([
+            'phone' => 'unique:users,phone,'.auth()->user()->id
+        ]);
+
         $data = [
             'name'     => $request->input('name'),
             'phone'    => $request->input('phone')

@@ -33,6 +33,10 @@
                                             <span>{{ $application->phone }}</span>
                                         </p>
                                         <p>
+                                            <label style="color: #0e51b4;font-size: 15px;font-weight: bold;">البريد الالكترونى</label>
+                                            <span>{{ $application->email }}</span>
+                                        </p>
+                                        <p>
                                             <label style="color: #0e51b4;font-size: 15px;font-weight: bold;">تفاصيل الطلب</label>
                                             <span>{{ $application->subscriber_notic }}</strong>
                                         </p>

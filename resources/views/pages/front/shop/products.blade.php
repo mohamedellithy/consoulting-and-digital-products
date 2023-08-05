@@ -32,8 +32,8 @@ $search   = request('search');
                         <div class="form-group">
                             <select name="order_by" onchange="document.getElementById('filter-form').submit()" class="form-control">
                                 <option value="">ترتيب</option>
-                                <option value="high-price" @isset($order_by) @if($order_by == 'high-price') selected @endif @endisset>الاعلي سعرا</option>
-                                <option value="low-price"  @isset($order_by) @if($order_by ==  'low-price') selected @endif @endisset>الاقل سعرا</option>
+                                <option value="high-price" @isset($order_by) @if($order_by == 'high-price') selected @endif @endisset>الأعلى سعراً</option>
+                                <option value="low-price"  @isset($order_by) @if($order_by ==  'low-price') selected @endif @endisset>الأقل سعراً</option>
                             </select>
                         </div>
                         <div class="form-group">

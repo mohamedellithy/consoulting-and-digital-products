@@ -1,5 +1,20 @@
 @extends('layouts.master_front')
-
+@push('style')
+<style>
+    .login-form input{
+        border-radius: 44px;
+        text-align: right;
+    }
+    .field-phone select {
+        width: 66%;
+    }
+    .login-form .btn {
+        padding: 10px 18px;
+        border-radius: 35px;
+        margin: 10px 0px;
+    }
+</style>
+@endpush
 @section('content')
 <section class="container register page-bg">
     <div class="row">
@@ -15,7 +30,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">البريد الالكترونى</label>
-                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="البريد الالكترونى">
+                        <input name="email" type="email" value="{{ old('email') }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="البريد الالكترونى">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -24,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">كلمة المرور</label>
-                        <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="كلمة المرور">
+                        <input name="password" type="password" value="{{ old('password') }}" class="form-control" id="exampleInputPassword1" placeholder="كلمة المرور">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -56,16 +56,16 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
 
     @include('inc.front_header')
 
-    @if (flash()->message)
+    @if(flash()->message)
         <div class="show-notify {{ flash()->class }}">
             {{ flash()->message }}
         </div>
+    @endif
 
-        @if(flash()->level === 'error')
-            <div class="show-notify {{ flash()->class }}">
-                This was an error.
-            </div>
-        @endif
+    @if($errors->any())
+        <div class="show-notify alert alert-danger">
+            هناك خطأ ما يمكنك مراجعته
+        </div>
     @endif
     <!-- main-area -->
     <main class="fix">

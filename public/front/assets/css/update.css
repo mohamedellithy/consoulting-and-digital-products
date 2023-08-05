@@ -545,6 +545,7 @@
             .services-application-form .application-inner .form-group textarea {
                 height: 50px;
                 border-radius: 40px;
+                text-align: right;
             }
             
             .services-application-close span {
@@ -556,6 +557,15 @@
                 z-index: 1000000;
                 font-size: 30px;
                 color: var(--tg-primary-color);
+            }
+            
+            .field-phone select {
+                width: 35%;
+                border-radius: 0px 25px 25px 0px;
+            }
+            
+            .field-phone input {
+                border-radius: 25px 0px 0px 25px !important;
             }
             
             .application-inner .btns::before {
@@ -684,7 +694,7 @@
                 margin: 24px 0px;
                 box-shadow: 5px 5px 6px 5px #e5e5e5;
                 border-radius: 4px;
-                opacity: 0;
+                /* opacity: 0; */
                 z-index: 10;
             }
             

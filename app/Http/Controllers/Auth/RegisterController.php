@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Illuminate\Database\Query\Builder;
 
 class RegisterController extends Controller
 {
@@ -51,9 +53,14 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'phone_code'=>['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone'  => ['required']
+            'phone'  => [
+                'required',
+                'size:'.LengthCountriesPhonesNo($data['phone_code']),
+                'unique:users'
+            ]
         ]);
     }
 
@@ -66,11 +73,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role'     => 1,
-            'phone'  => $data['phone']
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => Hash::make($data['password']),
+            'role'      => 1,
+            'phone_code'=> $data['phone_code'],
+            'phone'     => $data['phone']
         ]);
     }
 }

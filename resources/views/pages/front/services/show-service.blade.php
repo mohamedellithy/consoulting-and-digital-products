@@ -79,32 +79,41 @@
                             <label>اسم المشترك</label>
                             <input name="name" @auth value="{{ auth()->user()->name }}" @endauth type="text" class="form-control" required/>
                             @error('name')
-                                <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                <span class="text-danger w-100 fs-6" style="color: #a21212 !important;">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>البريد الالكترونى</label>
                             <input name="email"  @auth value="{{ auth()->user()->email }}" @endauth type="email" class="form-control" required/>
                             @error('email')
-                                <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                <span class="text-danger w-100 fs-6" style="color: #a21212 !important;">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>رقم الجوال</label>
-                            <input name="phone" @auth value="{{ auth()->user()->phone }}" @endauth type="tel" class="form-control" required/>
+                            <div class="field-phone d-flex">
+                                <select name="phone_code" id="phone_code" class="form-control phone-cdoe" required>
+                                    @foreach(CountriesPhonesCode() as $code => $phone_code)
+                                        <option value="{{ $code }}" @if($code == '966') selected @endif>{{ $phone_code }}</option>
+                                    @endforeach
+                                </select>
+                                <input name="phone" placeholder="رقم الجوال" @auth value="{{ auth()->user()->phone }}" @endauth type="tel" class="form-control" required/>
+                            </div>
                             @error('phone')
-                                <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                <span class="text-danger w-100 fs-6" style="color: #a21212 !important;">{{ $message }}</span>
+                            @else
+                              <p id="frame_phone_alert" style="color:#ffc107;font-size:12px;">قم بكتابة رقم الجوال مكون من  <span id="phoneno">8</span> أرقام</p>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>تفاصيل الخدمة المطلوبة</label>
                             <textarea name="subscriber_notic" rows="3" name="" class="form-control" required></textarea>
                             @error('subscriber_notic')
-                                <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                <span class="text-danger w-100 fs-6" style="color: #a21212 !important;">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group text-center" style="padding: 27px;">
-                            <button type="submit" class="btns btns-warning ">ارسال</button>
+                            <button type="submit" class="btns btns-warning">ارسال</button>
                         </div>
                     </form>
                 </div>
@@ -116,5 +125,14 @@
 @endsection
 
 @push('scripts')
-
+<script>
+    jQuery('document').ready(function(){
+        let all_phones = @json(LengthCountriesPhonesNo());
+        console.log(all_phones);
+        jQuery('#phone_code').on('change',function(){
+            jQuery('#phoneno').html(all_phones[jQuery(this).val()]);
+            jQuery('#frame_phone_alert').show();
+        });
+    });
+</script>
 @endpush

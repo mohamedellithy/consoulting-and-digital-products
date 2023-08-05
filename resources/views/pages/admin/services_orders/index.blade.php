@@ -21,6 +21,13 @@ $rows   = request()->query('rows')   ?: 10;
                         <input type="text" class="search form-control border-0 shadow-none" placeholder="البحث ...."
                             @isset($search) value="{{ $search }}" @endisset id="search" name="search"/>
                     </div>
+                    <div class="nav-item d-flex align-items-center m-2" >
+                        <select name="filter" id="largeSelect"  onchange="document.getElementById('filter-data').submit()" class="form-select form-select-md">
+                            <option>فلتر المنتجات</option>
+                            <option value="sort_asc"   @isset($filter) @if($filter == 'sort_asc') selected @endif @endisset>الطلبات الاقدم</option>
+                            <option value="sort_desc"  @isset($filter) @if($filter == 'sort_desc') selected @endif @endisset>الطلبات الأحدث</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="d-flex">
                     <div class="nav-item d-flex align-items-center m-2" >
@@ -45,6 +52,7 @@ $rows   = request()->query('rows')   ?: 10;
                             <th>تفاصيل الاشتراك</th>
                             <th>رقم الجوال</th>
                             <th>تاريخ الاشتراك</th>
+                            <th>مقروء</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -58,7 +66,7 @@ $rows   = request()->query('rows')   ?: 10;
                                         class="rounded-circle">
                                 </td>
                                 <td class="width-16">
-                                    {{ $order->customer->name }}
+                                    {{ $order->name }}
                                 </td>
                                 <td>
                                     {{ TrimLongText($order->subscriber_notic) }}
@@ -70,6 +78,10 @@ $rows   = request()->query('rows')   ?: 10;
                                     <span class="badge bg-label-primary me-1">
                                         {{ $order->created_at }}
                                     </span>
+                                </td>
+                                <td>
+                                    <i class='bx bxs-circle' style="font-size: 12px;color:red" title="غير مقروء بعد"></i>
+                                    {{-- <i class='bx bxs-circle' style="font-size: 12px;color:#eee" title="مقروء"></i> --}}
                                 </td>
                                 <td>
                                     <div class="dropdown">

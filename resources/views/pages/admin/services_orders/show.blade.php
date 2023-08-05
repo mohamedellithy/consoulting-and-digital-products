@@ -18,11 +18,15 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">اسم المشترك</label>
-                                        <h6 style="line-height: 1.3em;">{{ $application_order->name }}</h6>
+                                        <h6 style="line-height: 1.3em;">{{ $application_order->name ?: 'غير متوفر' }}</h6>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basic-default-fullname">ايميل المشترك</label>
+                                        <h6 style="line-height: 1.3em;">{{ $application_order->email ?: 'غير متوفر' }}</h6>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">رقم جوال المشترك</label>
-                                        <h6 style="line-height: 1.3em;">{{ $application_order->phone }}</h6>
+                                        <h6 style="line-height: 1.3em;">{{ $application_order->phone ?: 'غير متوفر' }}</h6>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">وصف الاشتراك</label>

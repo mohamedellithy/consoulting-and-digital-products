@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>رقم الجوال</label>
-                                            <p>{{ $customer->phone ?: '-' }}</p>
+                                            <p>{{ $customer->full_phone ?: '-' }}</p>
                                         </div>
                                         <div class="form-group">
                                             <label>حالة الزبون</label>

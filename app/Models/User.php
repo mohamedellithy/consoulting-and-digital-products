@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -23,7 +24,8 @@ class User extends Authenticatable
         'password',
         'role',
         'status',
-        'phone'
+        'phone',
+        'phone_code'
     ];
 
     /**
@@ -44,6 +46,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // protected $appends = [
+    //     'full_phone'
+    // ]; 
 
 
      /**
@@ -68,5 +74,9 @@ class User extends Authenticatable
 
     public function reviews(){
         return $this->HasMany(Review::class,'customer_id','id');
+    }
+
+    public function getFullPhoneAttribute() {
+        return $this->phone_code.$this->phone ?: 'غير متوفر';
     }
 }

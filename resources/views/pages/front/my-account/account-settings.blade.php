@@ -1,5 +1,22 @@
 @extends('layouts.master_front')
 
+@push('style')
+<style>
+    .dashboard input{
+        border-radius: 44px;
+        text-align: right;
+    }
+    .field-phone select {
+        width: 66%;
+    }
+    .dashboard .btn {
+        padding: 10px 18px;
+        border-radius: 35px;
+        margin: 10px 0px;
+    }
+</style>
+@endpush
+
 @section('content')
  <!-- project-details-area -->
  <section class="project-details-area pt-120 pb-120 page-bg">
@@ -29,12 +46,19 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">رقم الجوال</label>
-                                        <input type="text" name="phone" value="{{ auth()->user()->phone }}" class="form-control" id="exampleInputPassword1" placeholder="رقم الجوال">
+                                        <label>رقم الجوال</label>
+                                        <div class="field-phone d-flex">
+                                            <select name="phone_code" id="phone_code" class="form-control phone-cdoe" required>
+                                                @foreach(CountriesPhonesCode() as $code => $phone_code)
+                                                    <option value="{{ $code }}" @if($code == auth()->user()->phone_code) selected @endif>{{ $phone_code }}</option>
+                                                @endforeach
+                                            </select>
+                                            <input name="phone" placeholder="رقم الجوال" @auth value="{{ auth()->user()->phone }}" @endauth type="tel" class="form-control" required/>
+                                        </div>
                                         @error('phone')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <span class="text-danger w-100 fs-6" style="color: #a21212 !important;">{{ $message }}</span>
+                                        @else
+                                          <p id="frame_phone_alert" style="color:#ffc107;font-size:12px;">قم بكتابة رقم الجوال مكون من  <span id="phoneno">8</span> أرقام</p>
                                         @enderror
                                     </div>
                                 </div>
@@ -83,3 +107,16 @@
 </section>
 <!-- project-details-area-end -->
 @endsection
+
+@push('scripts')
+<script>
+    jQuery('document').ready(function(){
+        let all_phones = @json(LengthCountriesPhonesNo());
+        console.log(all_phones);
+        jQuery('#phone_code').on('change',function(){
+            jQuery('#phoneno').html(all_phones[jQuery(this).val()]);
+            jQuery('#frame_phone_alert').show();
+        });
+    });
+</script>
+@endpush

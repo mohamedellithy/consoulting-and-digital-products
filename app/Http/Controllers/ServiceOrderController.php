@@ -30,6 +30,18 @@ class ServiceOrderController extends Controller
             $per_page = $request->query('rows');
         endif;
 
+        $application_orders->when(request('filter') == 'sort_asc', function ($q) {
+            return $q->orderBy('created_at','asc');
+        });
+
+        $application_orders->when(request('filter') == 'sort_desc', function ($q) {
+            return $q->orderBy('created_at','desc');
+        });
+
+        $application_orders->when(!request('filter'), function ($q) {
+            return $q->orderBy('created_at','desc');
+        });
+
         $application_orders   = $application_orders->paginate($per_page);
         return view('pages.admin.services_orders.index', compact('application_orders'));
     }

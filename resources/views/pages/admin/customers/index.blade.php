@@ -68,7 +68,7 @@ $rows   = request()->query('rows')   ?: 10;
                                     {{ $customer->email }}
                                 </td>
                                 <td class="width-16">
-                                    {{ $customer->email }}
+                                    {{ $customer->full_phone }}
                                 </td>
                                 <td>
                                     <span class="badge bg-label-primary me-1">

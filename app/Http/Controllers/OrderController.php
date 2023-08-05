@@ -34,6 +34,10 @@ class OrderController extends Controller
         $orders->when(request('filter') == 'sort_desc', function ($q) {
             return $q->orderBy('created_at','desc');
         });
+            
+        $orders->when(!request('filter'), function ($q) {
+            return $q->orderBy('created_at','desc');
+        });
 
         if($request->has('rows')):
             $per_page = $request->query('rows');
