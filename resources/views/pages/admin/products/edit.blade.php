@@ -65,7 +65,7 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-fullname">نوع الملف</label>
-                                <select type="url" class="form-control" id="basic-default-fullname" placeholder=""
+                                <select type="url" class="form-control download-type" id="basic-default-fullname" placeholder=""
                                     name="download_type" value="{{ old('download_type') }}" required>
                                     <option value="pdf"   @isset($product->downloads) @if($product->downloads->download_type == 'pdf') selected @endif   @endisset>Pdf</option>
                                     <option value="image" @isset($product->downloads) @if($product->downloads->download_type == 'image') selected @endif @endisset>Image</option>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="mb-3">
                                 <div class="container-uploader">
-                                    <button type="button" class="btn btn-info btn-sm upload-media" data-type-media="image" data-multiple-media="true">
+                                    <button type="button" class="btn btn-info btn-sm download-files upload-media" data-type-media="pdf" data-multiple-media="true">
                                         <i class='bx bx-upload' ></i>
                                         اضافة ملفات قابلة للتحميل
                                         <input type="hidden" name="download_attachments_id" @isset($product->downloads) value="{{ $product->downloads->download_attachments_id  }}" @endisset
@@ -243,3 +243,13 @@
     </div>
     <!-- / Content -->
 @endsection
+
+@push('script')
+<script>
+    jQuery('document').ready(function(){
+        jQuery('.download-type').on('change',function(){
+           jQuery('.download-files').attr('data-type-media',jQuery(this).val());
+        });
+    });
+</script>
+@endpush
