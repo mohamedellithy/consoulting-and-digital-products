@@ -273,6 +273,9 @@
     .container-media .media-card {
         display: flex !important;
         flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: flex-end;
+        align-items: stretch;
     }
     
     .form-create-page .form-group {
