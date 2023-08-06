@@ -75,8 +75,8 @@
                 </div>
                 <div class="row">
                     <div class="clients-reviews">
-                        <h5> يسعدنا تقيمك على المنتج</h5>
-                            @if(auth()->user() && ($my_review = auth()->user()->reviews()->where('product_id',$product->id)->first()))
+                        @if(auth()->user() && ($my_review = auth()->user()->reviews()->where('product_id',$product->id)->first()))
+                            <h5> يسعدنا تقيمك على المنتج</h5>
                             <div id="my-review-show" class="review-card-section my-review col-md-12">
                                 <div class="top-section-review">
                                     <div class="right-review">
@@ -114,50 +114,52 @@
                                 </div>
                             </div>
                             @endif
-                            <form id="form-review" action="{{ route('add_review_on_product',$product->id) }}#my-review-show" @if(auth()->user() && $my_review) style="display:none" @endif method="post">
-                                @csrf
-                                <input type="hidden" @if(auth()->user() && $my_review) value="{{ $my_review->degree }}" @endif id="my-review-start" name="degree" required/>
-                                <div class="review-card-section col-md-12">
-                                    <div class="top-section-review">
-                                        <div class="right-review">
-                                            <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
-                                            <span class="reviewr-name">{{ auth()->user() ? auth()->user()->name : ''  }}</span>
-                                        </div>
-                                        <div class="review-points">
-                                            <div class="rating give-rate">
-                                                @if(auth()->user() && $my_review)
-                                                    @if($my_review->degree > 5)
-                                                        @php $my_review->degree = 5 @endphp
-                                                    @endif
+                            @if($my_review)
+                                <form id="form-review" action="{{ route('add_review_on_product',$product->id) }}#my-review-show" @if(auth()->user() && $my_review) style="display:none" @endif method="post">
+                                    @csrf
+                                    <input type="hidden" @if(auth()->user() && $my_review) value="{{ $my_review->degree }}" @endif id="my-review-start" name="degree" required/>
+                                    <div class="review-card-section col-md-12">
+                                        <div class="top-section-review">
+                                            <div class="right-review">
+                                                <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
+                                                <span class="reviewr-name">{{ auth()->user() ? auth()->user()->name : ''  }}</span>
+                                            </div>
+                                            <div class="review-points">
+                                                <div class="rating give-rate">
+                                                    @if(auth()->user() && $my_review)
+                                                        @if($my_review->degree > 5)
+                                                            @php $my_review->degree = 5 @endphp
+                                                        @endif
 
-                                                    ( {{ $my_review->degree }} )
-                                                    @for($i = 1;$i <= $my_review->degree;$i++)
-                                                        <i class="fas fa-star active"></i>
-                                                    @endfor
+                                                        ( {{ $my_review->degree }} )
+                                                        @for($i = 1;$i <= $my_review->degree;$i++)
+                                                            <i class="fas fa-star active"></i>
+                                                        @endfor
 
-                                                    @for($i=1;$i <= 5-$my_review->degree;$i++)
+                                                        @for($i=1;$i <= 5-$my_review->degree;$i++)
+                                                            <i class="fas fa-star"></i>
+                                                        @endfor
+                                                    @else
                                                         <i class="fas fa-star"></i>
-                                                    @endfor
-                                                @else
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                @endif
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="bottom-section-give" style="paading:0px">
+                                            <textarea rows="5" name="review" class="form-control" required>@if(auth()->user() && $my_review) {{ $my_review->review }}  @endif</textarea>
+                                        </div>
+                                        <div class="give-me" style="text-align: left;padding: 15px 0px;">
+                                            <button type="submit" class="btn btn-success btn-sm" style="margin:auto">
+                                                اضافة تقيم
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="bottom-section-give" style="paading:0px">
-                                        <textarea rows="5" name="review" class="form-control" required>@if(auth()->user() && $my_review) {{ $my_review->review }}  @endif</textarea>
-                                    </div>
-                                    <div class="give-me" style="text-align: left;padding: 15px 0px;">
-                                        <button type="submit" class="btn btn-success btn-sm" style="margin:auto">
-                                            اضافة تقيم
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            @endif
                     </div>
                     <div class="clients-reviews list-client-reviews">
                         <h5> اراء العملاء</h5>
