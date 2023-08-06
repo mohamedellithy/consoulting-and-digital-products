@@ -1,6 +1,6 @@
 <div class="image-media-card text-center">
     <span class="badge bg-primary" style="position: absolute;">
-        {{ $media->type ? formateMediaType($media->type)[1] : 'mime' }}
+        {{ $media->type ? (formateMediaType($media->type)[1] == 'vnd.openxmlformats-officedocument.spreadsheetml.sheet' ? 'xlsx' : formateMediaType($media->type)[1]) : 'mime' }}
     </span>
     <div class="container-image">
         @if('video' == formateMediaType($media->type)[0])
