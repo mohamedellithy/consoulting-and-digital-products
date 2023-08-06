@@ -174,7 +174,7 @@
                     </div>
                     @if(!$reviews->isEmpty())
                         <div class="load-more" style="text-align: left;">
-                            <button onClick="ajax_load_medias()" class="btn btn-warning btn-sm" style="margin:auto">
+                            <button onClick="ajax_load_medias()" class="btn btn-warning btn-sm" style="margin:auto;margin-top: 13px;">
                                 تحميل المزيد
                             </button>
                         </div>
