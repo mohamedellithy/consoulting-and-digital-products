@@ -74,7 +74,7 @@
                     </p>
                 </div>
                 <div class="row">
-                    @php $my_review = auth()->user()->reviews()->isEmpty() ? null : auth()->user()->reviews()->where('product_id',$product->id)->first() @endphp
+                    @php $my_review = auth()->user()->reviews() ? auth()->user()->reviews()->where('product_id',$product->id)->first() : null @endphp
                     <div class="clients-reviews">
                         @if(auth()->user() && ($my_review))
                             <h5> يسعدنا تقيمك على المنتج</h5>
