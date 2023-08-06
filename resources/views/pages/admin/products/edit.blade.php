@@ -123,8 +123,8 @@
                                 <label class="form-label" for="basic-default-fullname">حالة الملف</label>
                                 <select type="url" class="form-control" id="basic-default-fullname" placeholder=""
                                     name="download_status" value="{{ old('download_status') }}" required>
-                                    <option value="download"         @isset($product->downloads) @if($product->downloads->download_status == 'download') @endisset selected @endif>تنزيل الملف او الفيديو</option>
-                                    <option value="without_download" @isset($product->downloads) @if($product->downloads->download_status == 'without_download') @endisset selected @endif>مشاهدة بدون تنزيل</option>
+                                    <option value="download"         @isset($product->downloads) @if($product->downloads->download_status == 'download')  selected  @endif @endisset>تنزيل الملف او الفيديو</option>
+                                    <option value="without_download" @isset($product->downloads) @if($product->downloads->download_status == 'without_download')  selected @endif @endisset>مشاهدة بدون تنزيل</option>
                                 </select>
                                 @error('download_status')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
