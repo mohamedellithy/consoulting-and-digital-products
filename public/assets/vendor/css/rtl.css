@@ -304,6 +304,8 @@
         position: absolute;
         right: 0;
         top: 0;
+        overflow: hidden;
+        max-width: 62px;
     }
     
     .show-notify {
