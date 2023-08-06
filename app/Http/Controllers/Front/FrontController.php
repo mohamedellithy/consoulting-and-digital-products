@@ -136,17 +136,17 @@ class FrontController extends Controller
     }
 
     public function my_orders(){
-        $orders = Order::with('order_items','order_items.product')->where('customer_id',auth()->user()->id)->paginate(10);
+        $orders = Order::with('order_items','order_items.product')->where('customer_id',auth()->user()->id)->orderBy('created_at','desc')->paginate(10);
         return view('pages.front.my-account.orders',compact('orders'));
     }
 
     public function my_services(){
-        $applications = ApplicationOrder::with('customer','service')->where('customer_id',auth()->user()->id)->paginate(10);
+        $applications = ApplicationOrder::with('customer','service')->where('customer_id',auth()->user()->id)->orderBy('created_at','desc')->paginate(10);
         return view('pages.front.my-account.services',compact('applications'));
     }
 
     public function my_downloads(){
-        $orders = Order::with('order_items','order_items.product','order_items.product.downloads')->whereHas('order_items.product.downloads')->where('customer_id',auth()->user()->id)->paginate(10);
+        $orders = Order::with('order_items','order_items.product','order_items.product.downloads')->whereHas('order_items.product.downloads')->where('customer_id',auth()->user()->id)->orderBy('created_at','desc')->paginate(10);
         return view('pages.front.my-account.downloads',compact('orders'));
     }
 
