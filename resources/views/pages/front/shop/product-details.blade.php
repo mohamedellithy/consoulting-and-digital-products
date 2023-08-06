@@ -44,15 +44,7 @@
                     <span>
                         منتج رقمي
                     </span>
-
-                    <div class="rating" style="color:orange">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <span>(123)</span>
-                    </div>
+                        @include('partials.stars_list')
                     <br/>
                     <b>نبذة عن المنتج</b>
                     <p>
@@ -95,7 +87,7 @@
                                     </div>
                                     <div class="review-points">
                                         <div class="rating">
-                                            @if($my_review ->degree > 5)
+                                            @if($my_review->degree > 5)
                                                 @php $my_review->degree = 5 @endphp
                                             @endif
 
@@ -170,37 +162,7 @@
                     <div class="clients-reviews list-client-reviews">
                         <h5> اراء العملاء</h5>
                         @forelse($reviews as $review)
-                            <div class="review-card-section col-md-12">
-                                <div class="top-section-review">
-                                    <div class="right-review">
-                                        <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
-                                        <span class="reviewr-name">
-                                            {{ $review->customer->name }}
-                                        </span>
-                                    </div>
-                                    <div class="review-points">
-                                        <div class="rating">
-                                            @if($review->degree > 5)
-                                                @php $review->degree = 5 @endphp
-                                            @endif
-
-                                            ( {{ $review->degree }} )
-                                            @for($i = 1;$i <= $review->degree;$i++)
-                                                <i class="fas fa-star active"></i>
-                                            @endfor
-
-                                            @for($i=1;$i <= 5-$review->degree;$i++)
-                                                <i class="fas fa-star"></i>
-                                            @endfor
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bottom-section-review">
-                                    <p>
-                                        {{ $review->review }}
-                                    </p>
-                                </div>
-                            </div>
+                            @include('partials.reviews_list_1')
                         @empty
                         <div class="alert alert-warning">
                             التقيمات غير متوفرة على هذا المنتج

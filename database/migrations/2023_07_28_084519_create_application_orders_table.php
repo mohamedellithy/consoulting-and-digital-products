@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->text('subscriber_notic');
+            $table->integer('read')->default(0);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

@@ -241,8 +241,8 @@ if(!function_exists('formateMediaType')){
 
 
 if(!function_exists('CountriesPhonesCode')){
-    function CountriesPhonesCode(){
-        return $array = [
+    function CountriesPhonesCode($code = null){
+        $codes = [
             '44' => 'UK (+44)',
             '1' => 'USA (+1)',
             '213' => 'Algeria (+213)',
@@ -458,6 +458,8 @@ if(!function_exists('CountriesPhonesCode')){
             '260' => 'Zambia (+260)',
             '263' => 'Zimbabwe (+263)',
         ];
+
+        return $code ? $codes[$code] : $codes;
     }
 }
 

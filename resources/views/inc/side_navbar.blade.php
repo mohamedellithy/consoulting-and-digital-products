@@ -84,11 +84,27 @@
             </ul>
         </li>
 
+         <!-- reviews -->
+         <li class="menu-item {{ IsActiveOnlyIf(['admin.reviews.index','admin.reviews.show']) }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='bx bxs-comment-detail'></i>
+                <div data-i18n="Layouts">تقيمات المنتجات</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.reviews.index']) }}">
+                    <a href="{{ route('admin.reviews.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar">عرض</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <!-- orders -->
         <li class="menu-item {{ IsActiveOnlyIf(['admin.services-orders.index','admin.services-orders.show']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-package'></i>
-                <div data-i18n="Layouts">اشتراكات الخدمات</div>
+                <div data-i18n="Layouts">طلبات تسعير الخدمات</div>
             </a>
 
             <ul class="menu-sub">

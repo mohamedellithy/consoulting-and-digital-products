@@ -36,7 +36,7 @@ class FrontController extends Controller
     public function shop(){
         $products = Product::query();
 
-        $products->with('image_info')->where('status','active');
+        $products->with('image_info')->withCount('reviews')->withAvg('reviews','degree')->where('status','active');
 
         if(request('search')):
             $products = $products->where('name', 'like', '%' . request('search') . '%')->orWhere('name', 'like', '%' . request('search') . '%');
@@ -58,15 +58,19 @@ class FrontController extends Controller
     }
 
     public function single_product($slug){
-        $product    = Product::with('image_info','downloads','reviews')->where('slug',$slug)->first();
+        $product    = Product::with('image_info','downloads','reviews')->withCount('reviews')->withAvg('reviews','degree')->where('slug',$slug)->first();
         $reviews    = Review::query()->where([
             'product_id' => $product->id
         ]);
 
+        $reviews->whereNull('replay_on');
+
+        $reviews->where('status','active');
+
         if(auth()->user()):
             $reviews->where('customer_id','!=',auth()->user()->id);
         endif;
-        $reviews = $reviews->paginate(5);
+        $reviews = $reviews->orderBy('created_at','desc')->paginate(5);
         return view('pages.front.shop.product-details',compact('product','reviews'));
     }
 
@@ -75,11 +79,15 @@ class FrontController extends Controller
             'product_id' => request('product_id')
         ]);
 
+        $reviews->whereNull('replay_on');
+
+        $reviews->where('status','active');
+
         if(auth()->user()):
             $reviews->where('customer_id','!=',auth()->user()->id);
         endif;
 
-        $reviews = $reviews->offset(request('offset'))->limit(5)->get();
+        $reviews = $reviews->orderBy('created_at','desc')->offset(request('offset'))->limit(5)->get();
 
         return response()->json([
             'status'  => 'success',

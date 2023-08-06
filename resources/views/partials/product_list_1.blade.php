@@ -18,16 +18,7 @@
                     {{ $product->name }}
                 </h6>
                 <div class="bottom-content d-flex">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <span style="color:black">
-                        ( 12 )
-                    </span>
-                    </div>
+                    @include('partials.stars_list')
                     <b>
                         {{ formate_price($product->price) }}
                     </b>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('customer_id')->references('id')->on('users')->onDelete('set null');
             $table->double('order_total',2);
             $table->string('order_status')->default('pending');
+            $table->integer('read')->default(0);
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

@@ -56,6 +56,11 @@ class ServiceOrderController extends Controller
     {
         //
         $application_order = ApplicationOrder::with('customer','service')->where('id',$id)->first();
+        if($application_order->read == 0):
+            $application_order->update([
+                'read' => 1
+            ]);
+        endif;
         return view('pages.admin.services_orders.show', compact('application_order'));
     }
 }

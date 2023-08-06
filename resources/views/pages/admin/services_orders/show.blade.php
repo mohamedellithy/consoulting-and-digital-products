@@ -49,15 +49,15 @@
                                 <div class="mb-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">اسم الزبون</label>
-                                        <h6 style="line-height: 1.3em;    color: #746e6e;">{{ $application_order->customer->name }}</h6>
+                                        <h6 style="line-height: 1.3em;    color: #746e6e;">{{ $application_order->customer->name ?: '-' }}</h6>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">البريد الالكترونى الزبون</label>
-                                        <h6 style="line-height: 1.3em;    color: #746e6e;">{{ $application_order->customer->email }}</h6>
+                                        <h6 style="line-height: 1.3em;    color: #746e6e;">{{ $application_order->customer->email ?: '-' }}</h6>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-fullname">رقم تليفون الزبون</label>
-                                        <h6 style="line-height: 1.3em;    color: #746e6e;">{{ $application_order->customer->phone ?: '-' }}</h6>
+                                        <h6 style="line-height: 1.3em;    color: #746e6e;">{{ $application_order->customer->full_phone ?: '-' }}</h6>
                                     </div>
                                 </div>
                             @else

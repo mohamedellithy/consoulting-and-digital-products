@@ -248,6 +248,9 @@
             .products-active .bottom-content .rating {
                 width: 55%;
                 font-size: 12px;
+            }
+
+            .products-active .bottom-content .rating  i.active {
                 color: orange;
             }
             
@@ -837,6 +840,11 @@
                 overflow: hidden;
                 margin: 10px;
                 margin-right: 15px;
+            }
+
+            .replay-review-card-section{
+                padding: 17px 47px !important;
+                border-top: 0px solid #eeee !important;
             }
             
             @media (max-width: 1800px) {

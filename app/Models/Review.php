@@ -22,6 +22,10 @@ class Review extends Model
         return $this->belongsTo(Product::class,'product_id','id');
     }
 
+    public function replays(){
+        return $this->hasMany(Review::class,'replay_on','id');
+    }
+
     public function customer(){
         return $this->belongsTo(User::class,'customer_id','id');
     }

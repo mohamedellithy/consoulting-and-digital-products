@@ -12,6 +12,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ServiceOrderController;
+use App\Http\Controllers\ReviewController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,7 @@ Route::group(['middleware' => 'admin_auth','as' => 'admin.','prefix'=>'admin'],f
     Route::get('customers/services-orders/{id}' ,[CustomerController::class,'services_orders'])->name('customers.services-orders');
     Route::get('customers/products-orders/{id}',[CustomerController::class,'products_orders'])->name('customers.products-orders');
     Route::resource('payments',PaymentController::class);
+    Route::resource('reviews',ReviewController::class);
     Route::group(['as' => 'settings.'],function(){
         Route::resource('pages'   ,PageController::class);
     });

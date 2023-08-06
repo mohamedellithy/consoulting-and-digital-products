@@ -1,17 +1,14 @@
 @extends('layouts.master')
 @php
 $search = request()->query('search') ?: null;
-$order_status = request()->query('order_status') ?: null;
 $filter = request()->query('filter') ?: null;
 $rows   = request()->query('rows')   ?: 10;
 @endphp
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="row">
-            <h4 class="fw-bold py-3 mb-4">
-                طلبات تسعير الخدمات
-            </h4>
-        </div>
+        <h4 class="fw-bold py-3 mb-4">
+            تقيمات المنتجات
+        </h4>
         <!-- Basic Bootstrap Table -->
         <div class="card" style="padding-top: 3%;">
             <form id="filter-data" method="get">
@@ -45,45 +42,61 @@ $rows   = request()->query('rows')   ?: 10;
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>اسم الخدمة </th>
-                            <th>صورة الخدمة</th>
-                            <th>اسم المشترك</th>
-                            <th>تفاصيل الاشتراك</th>
-                            <th>رقم الجوال</th>
-                            <th>تاريخ الاشتراك</th>
-                            <th>مقروء</th>
+                            <th>اسم الزبون</th>
+                            <th>المنتج</th>
+                            <th>نص التقيم</th>
+                            <th>التقيم</th>
+                            <th>تاريخ التقيم</th>
+                            <th>حالة التقيم</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0 alldata">
-                        @foreach($application_orders as $order)
+                        @foreach($reviews as $review)
                             <tr>
-                                <td>{{ $order->id }}</td>
-                                <td class="width-16">{{ $order->service->name }}</td>
-                                <td>
-                                    <img src="{{ upload_assets($order->service->image_info) }}" alt="Avatar"
-                                        class="rounded-circle">
-                                </td>
+                                <td class="width-16">{{ $review->customer->name }}</td>
                                 <td class="width-16">
-                                    {{ $order->name }}
+                                    {{ $review->product->name }}
+                                </td>
+                                <td class="">
+                                    {{ TrimLongText($review->review) }}
+                                </td>
+                                <td class="width-16 rating">
+                                    @if($review->degree)
+                                        @if($review->degree > 5)
+                                            @php $review->degree = 5 @endphp
+                                        @endif
+
+                                        ( {{ $review->degree }} )
+                                        @for($i = 1;$i <= $review->degree;$i++)
+                                            <i class="fas fa-star active" style="font-size: 12px;"></i>
+                                        @endfor
+
+                                        @for($i=1;$i <= 5-$review->degree;$i++)
+                                            <i class="fas fa-star" style="font-size: 12px;"></i>
+                                        @endfor
+                                    @else
+                                        <i class="fas fa-star" style="font-size: 12px;"></i>
+                                        <i class="fas fa-star" style="font-size: 12px;"></i>
+                                        <i class="fas fa-star" style="font-size: 12px;"></i>
+                                        <i class="fas fa-star" style="font-size: 12px;"></i>
+                                        <i class="fas fa-star" style="font-size: 12px;"></i>
+                                    @endif
                                 </td>
                                 <td>
-                                    {{ TrimLongText($order->subscriber_notic) }}
-                                </td>
-                                <td>
-                                   {{ $order->phone }}
-                                </td>
-                                <td>
-                                    <span class="badge bg-label-primary me-1">
-                                        {{ $order->created_at }}
+                                    <span class="badge" style="color:black">
+                                        {{ $review->created_at }}
                                     </span>
                                 </td>
                                 <td>
-                                    @if($order->read == 0)
-                                        <i class='bx bxs-circle' style="font-size: 12px;color:red" title="غير مقروء بعد"></i>
-                                    @elseif($order->read == 1)
-                                        <i class='bx bxs-circle' style="font-size: 12px;color:#dcadad" title="مقروء"></i>
+                                    @if($review->status == 'active')
+                                        <span class="badge bg-label-primary me-1">
+                                            معروض
+                                        </span>
+                                    @else
+                                        <span class="badge bg-label-danger me-1">
+                                            مخفي
+                                        </span>
                                     @endif
                                 </td>
                                 <td>
@@ -92,7 +105,7 @@ $rows   = request()->query('rows')   ?: 10;
                                             data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item"
-                                                href="{{ route('admin.services-orders.show', $order->id) }}"><i
+                                                href="{{ route('admin.reviews.show', $review->id) }}"><i
                                                     class="fa-regular fa-eye me-2"></i></i>
                                                 عرض
                                             </a>
@@ -105,7 +118,7 @@ $rows   = request()->query('rows')   ?: 10;
                 </table>
                 <br/>
                 <div class="d-flex flex-row justify-content-center">
-                    {{ $application_orders->links() }}
+                    {{ $reviews->links() }}
                 </div>
             </div>
         </div>

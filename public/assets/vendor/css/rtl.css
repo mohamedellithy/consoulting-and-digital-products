@@ -339,7 +339,9 @@
     .app-brand-link {
         margin: auto;
     }
-    
+    .rating i.active {
+        color: orange;
+    }
     @keyframes fromBottomToTop {
         to {
             top: 8%;

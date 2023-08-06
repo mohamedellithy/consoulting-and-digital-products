@@ -42,6 +42,6 @@ class Product extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class,'product_id','id');
+        return $this->hasMany(Review::class,'product_id','id')->whereNull('replay_on');
     }
 }

@@ -96,11 +96,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-fullname">رقم تليفون الزبون</label>
-                                    <h6 style="line-height: 1.3em;">{{ $order->customer->phone ?: '-' }}</h6>
+                                    <h6 style="line-height: 1.3em;">{{ $order->customer->full_phone ?: '-' }}</h6>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-fullname">دولة </label>
-                                    <h6 style="line-height: 1.3em;">{{ $order->customer->phone ?: '-' }}</h6>
+                                    <h6 style="line-height: 1.3em;">{{ $order->customer->phone_code ? CountriesPhonesCode($order->customer->phone_code) : '-' }}</h6>
                                 </div>
                             </div>
                         </div>

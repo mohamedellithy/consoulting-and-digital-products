@@ -15,6 +15,7 @@ class ApplicationOrder extends Model
         'name',
         'email',
         'phone',
+        'read',
         'subscriber_notic'
     ];
 

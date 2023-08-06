@@ -30,5 +30,25 @@
             </p>
         </div>
     </div>
+    @if(!$review->replays->isEmpty())
+        @foreach($review->replays as $replay)
+            <div class="review-card-section replay-review-card-section col-md-12">
+                <h6>ردود المسؤلين</h6>
+                <div class="top-section-review">
+                    <div class="right-review">
+                        <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
+                        <span class="reviewr-name">
+                            {{ $replay->customer->name }}
+                        </span>
+                    </div>
+                </div>
+                <div class="bottom-section-review">
+                    <p>
+                        {{ $replay->review }}
+                    </p>
+                </div>
+            </div>
+        @endforeach
+    @endif
 @empty
 @endforelse

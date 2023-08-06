@@ -60,6 +60,7 @@ $rows   = request()->query('rows')   ?: 10;
                             <th>اجمالى سعر الطلبية</th>
                             <th>حالة الطلبية</th>
                             <th>تاريخ الطلبية</th>
+                            <th>مقروء</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -86,6 +87,13 @@ $rows   = request()->query('rows')   ?: 10;
                                     <span class="badge bg-label-primary me-1">
                                         {{ $order->created_at }}
                                     </span>
+                                </td>
+                                <td>
+                                    @if($order->read == 0)
+                                        <i class='bx bxs-circle' style="font-size: 12px;color:red" title="غير مقروء بعد"></i>
+                                    @elseif($order->read == 1)
+                                        <i class='bx bxs-circle' style="font-size: 12px;color:#dcadad" title="مقروء"></i>
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="dropdown">
