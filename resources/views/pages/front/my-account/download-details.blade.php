@@ -94,12 +94,12 @@
             overflow: auto !important;
         }
         .accordion-button.collapsed{
-            background-color: #eee;
+            background-color: var(--bs-orange);
             color:black;
         }
         .accordion-button:not(.collapsed) {
-            background-color: #aaefc9;
-            color:green;
+            background-color: var(--tg-metallic-blue);
+            color: white;
         }
     </style>
   <script>

@@ -1,4 +1,4 @@
-@php 
+@php
 
 $logo_url = upload_assets(get_settings('website_logo'),true);
 @endphp
@@ -32,6 +32,15 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
     <link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('front/assets/css/update.css') }}">
     @stack('style')
+    <style>
+        .accordion .accordion-collapse .accordion-body{
+            max-height: 500px;
+            overflow: auto;
+        }
+        .accordion .accordion-item{
+            margin: 18px;
+        }
+    </style>
 </head>
 
 <body>
@@ -71,7 +80,7 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
     <main class="fix">
 
         @yield('content')
-       
+
     </main>
 
     @include('inc.front_footer')

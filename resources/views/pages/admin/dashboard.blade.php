@@ -131,7 +131,7 @@
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                                    <img src="{{ asset('assets/img/icons/unicons/paypal.png') }}" alt="Credit Card" class="rounded" />
                                 </div>
                             </div>
                             <span class="d-block mb-1">الطلبات</span>
@@ -148,7 +148,7 @@
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                                    <img src="{{ asset('assets/img/icons/unicons/cc-primary.png') }}" alt="Credit Card" class="rounded" />
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">المدفوعات</span>
@@ -160,13 +160,47 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/avatars/user_avatar.png') }}" alt="Credit Card" class="rounded" />
+                                </div>
+                            </div>
+                            <span>المستخدمين</span>
+                            <h3 class="card-title text-nowrap mb-1">
+                                {{ $data['count_users'] ?: 0 }}
+                            </h3>
+                            <small class="text-success fw-semibold"><i
+                                    class="bx bx-up-arrow-alt"></i></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/chart.png') }}" alt="Credit Card" class="rounded" />
+                                </div>
+                            </div>
+                            <span>طلبات التسعير</span>
+                            <h3 class="card-title text-nowrap mb-1">
+                                {{ $data['count_application_orders'] ?: 0 }}
+                            </h3>
+                            <small class="text-success fw-semibold"><i
+                                    class="bx bx-up-arrow-alt"></i></small>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-12 mb-4">
                     <div class="card h-100">
                         <div class="card-header d-flex align-items-center justify-content-between">
-                            <h5 class="card-title m-0 me-2">أخر الخدمات</h5>
+                            <h5 class="card-title m-0 me-2">أخر طلبات التسعير</h5>
                             <a href="{{ route('admin.services.index') }}" class="btn p-0" type="button">
                                 <i class="bx bx-dots-vertical-rounded"></i>
-                                عرض الخدمات
+                                عرض الكل
                             </a>
                         </div>
                         <div class="card-body">
@@ -174,7 +208,7 @@
                                 @forelse ($data['last_application_orders'] as $application_order)
                                     <li class="d-flex mb-4 pb-1">
                                         <div class="avatar flex-shrink-0 me-3">
-                                            <img src="../assets/img/icons/unicons/chart-success.png" alt="User" class="rounded" />
+                                            <img src="{{ asset('assets/img/icons/unicons/chart-success.png') }}" alt="User" class="rounded" />
                                         </div>
                                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                             <div class="me-2">
