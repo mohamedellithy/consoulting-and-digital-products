@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Http;
 use App\Models\Order;
 class ThawaniPayment{
-    private static $endpoint    = "https://uatcheckout.thawani.om/";
+    private static $endpoint    = "https://checkout.thawani.om/"; //"https://uatcheckout.thawani.om/";
 
     private $enable = true;
 
