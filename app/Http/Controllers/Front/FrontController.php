@@ -98,7 +98,7 @@ class FrontController extends Controller
     public function services(){
         $services = Service::query();
         $services->with('image_info');
-        $services = $services->paginate(10);
+        $services = $services->orderBy('created_at','desc')->paginate(10);
 
         return view('pages.front.services.all-services',compact('services'));
     }
