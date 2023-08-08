@@ -295,7 +295,7 @@
                     prev_ids_thumbs = jQuery(global_media_ids).find('.uploaded-media-ids').val();
                 }
                 let join_list = jQuery(global_media_ids).find('.uploaded-media-ids').val(media_ids.join(
-                    ',') + prev_ids_thumbs);
+                    ',') + "," + prev_ids_thumbs);
                 if (jQuery('#exLargeModal').length) {
                     jQuery('#exLargeModal').modal('hide');
                 }
