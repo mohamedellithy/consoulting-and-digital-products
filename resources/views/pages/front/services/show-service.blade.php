@@ -25,11 +25,13 @@
                                             طلب تسعير خدمة
                                         </button>
                                     </li>
-                                    <li>
-                                        <a href="{{ 'https://wa.me/'.get_settings('website_whastapp').'?text='.urlencode(' طلب استفسار بخصوص خدمة ' . $service->name) }}" id="subscrib_on_service" class="btns btns-warning btn-sm">
-                                            تواصل معنا عبر الواتساب
-                                        </a>
-                                    </li>
+                                    @if($service->whatsapStatus == 0)
+                                        <li>
+                                            <a href="{{ 'https://wa.me/'.get_settings('website_whastapp').'?text='.urlencode(' طلب استفسار بخصوص خدمة ' . $service->name) }}" id="subscrib_on_service" class="btns btns-warning btn-sm">
+                                                تواصل معنا عبر الواتساب
+                                            </a>
+                                        </li>
+                                    @endif
                                     <li class="social">
                                         <label> مشاركة على روابط التواصل الاجتماعي :</label>
                                         <ul class="list-wrap">
