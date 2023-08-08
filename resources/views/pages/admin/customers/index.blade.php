@@ -29,8 +29,8 @@ $rows   = request()->query('rows')   ?: 10;
                     <div class="nav-item d-flex align-items-center m-2" >
                         <select name="filter" id="largeSelect"  onchange="document.getElementById('filter-data').submit()" class="form-select form-select-md">
                             <option>فلتر المنتجات</option>
-                            <option value="sort_asc"   @isset($filter) @if($filter == 'sort_asc') selected @endif @endisset>الاحدث تسجيلا</option>
-                            <option value="sort_desc"  @isset($filter) @if($filter == 'sort_desc') selected @endif @endisset>الاقدم تسجيلا</option>
+                            <option value="sort_desc"   @isset($filter) @if($filter == 'sort_desc') selected @endif @endisset>الاحدث تسجيلا</option>
+                            <option value="sort_asc"  @isset($filter) @if($filter == 'sort_asc') selected @endif @endisset>الاقدم تسجيلا</option>
                         </select>
                     </div>
                 </div>
