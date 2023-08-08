@@ -21,7 +21,7 @@
                                         <strong> {{ $service->name }} </strong>
                                     </li>
                                     <li>
-                                        @if($service->whatsapStatus == 1)
+                                        @if($service->loginStatus == 1)
                                             @auth
                                                 <button id="subscrib_on_service" class="btns btns-secondary-color btn-sm">
                                                     طلب تسعير خدمة
