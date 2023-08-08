@@ -34,6 +34,10 @@ class CustomerController extends Controller
             return $q->orderBy('created_at','desc');
         });
 
+        $customers->when(request('filter') == null, function ($q) {
+            return $q->orderBy('created_at','desc');
+        });
+
         if(request('rows')):
             $per_page = request('rows');
         endif;
