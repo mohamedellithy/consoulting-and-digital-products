@@ -128,19 +128,19 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
 
     <script>
         //Disable right click
-        // const element = document.getElementById("myfix"); 
-        // element.addEventListener("contextmenu", (event) => { 
-        //     event.preventDefault(); // show a custom context menu
-        // });
+        const element = document.getElementById("myfix"); 
+        element.addEventListener("contextmenu", (event) => { 
+            event.preventDefault(); // show a custom context menu
+        });
 
         // const elementembed = document.getElementById("myframe"); 
-        // elementembed.addEventListener("contextmenu", (event) => { 
-        //     event.preventDefault(); // show a custom context menu
-        // });
+        elementembed.addEventListener("contextmenu", (event) => { 
+            event.preventDefault(); // show a custom context menu
+        });
 
-        // window.addEventListener('contextmenu', function(event) {
-        //     event.preventDefault(); // Prevent the default right-click behavior
-        // });
+        window.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // Prevent the default right-click behavior
+        });
 
         //Disable F12
         jQuery(document).keydown(function (event) {
