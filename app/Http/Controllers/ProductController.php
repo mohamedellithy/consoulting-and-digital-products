@@ -13,6 +13,11 @@ class ProductController extends Controller
     }
     public function store(ProductRequest $request)
     {
+        if(!request('status')):
+            $request->merge([
+                'status' => 'inactive'
+            ]);
+        endif;
         $product = Product::create($request->only([
             'name',
             'description',
@@ -79,6 +84,11 @@ class ProductController extends Controller
     }
     public function update(ProductRequest $request, $id)
     {
+        if(!request('status')):
+            $request->merge([
+                'status' => 'inactive'
+            ]);
+        endif;
         $product = Product::find($id);
         $product->update($request->only([
             'name',
