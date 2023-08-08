@@ -5,17 +5,17 @@ $media = isset($media) ? $media : ImageInfo($media_id);
 <li class="preview-media-inner">
     {{-- <img src="{{ upload_assets($media_id,true) }}" /> --}}
     @if('video' == formateMediaType($media->type)[0])
-        <video style="width:100%;height:100%" controls>
+        <video style="width:100%;height:100%" title="{{ $media->name ?: fetchImageInnerDetails($media) }}" controls>
             <source src="{{ upload_assets($media_id,true) }}" type="{{ $media->type }}"></source>
         </video>
     @elseif('application' == formateMediaType($media->type)[0])
-        <i style="font-size: 120px;" class='bx bxs-file-pdf'></i>
+        <i style="font-size: 120px;" title="{{ $media->name ?: fetchImageInnerDetails($media) }}" class='bx bxs-file-pdf'></i>
     @elseif('text' == formateMediaType($media->type)[0])
-        <i style="font-size: 120px;" class='bx bxs-file-txt'></i>
+        <i style="font-size: 120px;" title="{{ $media->name ?: fetchImageInnerDetails($media) }}" class='bx bxs-file-txt'></i>
     @elseif('image' == formateMediaType($media->type)[0])
-        <img src="{{ upload_assets($media_id,true) }}"/>
+        <img src="{{ upload_assets($media_id,true) }}" title="{{ $media->name ?: fetchImageInnerDetails($media) }}"/>
     @else
-        <i style="font-size: 120px;" class='bx bxs-file-blank'></i>
+        <i style="font-size: 120px;" title="{{ $media->name ?: fetchImageInnerDetails($media) }}" class='bx bxs-file-blank'></i>
     @endif
     <i class='bx bxs-message-square-x remove' media-id="{{ $media_id }}"></i>
 </li>
