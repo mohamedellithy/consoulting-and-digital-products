@@ -21,11 +21,23 @@
                                         <strong> {{ $service->name }} </strong>
                                     </li>
                                     <li>
-                                        <button id="subscrib_on_service" class="btns btns-secondary-color btn-sm">
-                                            طلب تسعير خدمة
-                                        </button>
+                                        @if($service->whatsapStatus == 1)
+                                            @auth
+                                                <button id="subscrib_on_service" class="btns btns-secondary-color btn-sm">
+                                                    طلب تسعير خدمة
+                                                </button>
+                                            @endauth
+                                                <a href="{{ route('login') }}" class="btns btns-secondary-color btn-sm">
+                                                    طلب تسعير خدمة
+                                                </a>
+                                            @endauth
+                                        @else
+                                            <button id="subscrib_on_service" class="btns btns-secondary-color btn-sm">
+                                                طلب تسعير خدمة
+                                            </button>
+                                        @endif
                                     </li>
-                                    @if($service->whatsapStatus == 0)
+                                    @if($service->whatsapStatus == 1)
                                         <li>
                                             <a href="{{ 'https://wa.me/'.get_settings('website_whastapp').'?text='.urlencode(' طلب استفسار بخصوص خدمة ' . $service->name) }}" id="subscrib_on_service" class="btns btns-warning btn-sm">
                                                 تواصل معنا عبر الواتساب
