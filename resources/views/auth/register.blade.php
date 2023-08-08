@@ -52,7 +52,7 @@
                                 @error('phone')
                                     <span class="text-danger w-100 fs-6" style="color: #a21212 !important;">{{ $message }}</span>
                                 @else
-                                  <p id="frame_phone_alert" style="color:#ffc107;font-size:12px;">قم بكتابة رقم الجوال مكون من  <span id="phoneno">8</span> أرقام</p>
+                                     <p id="frame_phone_alert" style="color:#ffc107;font-size:12px;">قم بكتابة رقم الجوال   <span id="phoneno">8</span>  أرقام بدون صفر مثل: 555555555</p>
                                 @enderror
                             </div>
                         </div>

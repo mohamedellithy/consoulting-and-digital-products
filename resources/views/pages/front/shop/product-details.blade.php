@@ -73,50 +73,54 @@
                        {!! $product->description !!}
                     </p>
                 </div>
-                <div class="row">
-                    @php $my_review = auth()->user() ? (auth()->user()->reviews() ? auth()->user()->reviews()->where('product_id',$product->id)->first() : null) : null @endphp
-                    <div class="clients-reviews">
-                        @if(auth()->user() && ($my_review))
-                            <h5> يسعدنا تقيمك على المنتج</h5>
-                            <div id="my-review-show" class="review-card-section my-review col-md-12">
-                                <div class="top-section-review">
-                                    <div class="right-review">
-                                        <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
-                                        <span class="reviewr-name">
-                                            {{ $my_review->customer->name }}
-                                        </span>
-                                    </div>
-                                    <div class="review-points">
-                                        <div class="rating">
-                                            @if($my_review->degree > 5)
-                                                @php $my_review->degree = 5 @endphp
-                                            @endif
+                <!-- reviews sections -->
+                @if(get_settings('reviews_enable') && (get_settings('reviews_enable') == 'active'))
+                    <div class="row">
+                        @php $my_review = auth()->user() ? (auth()->user()->reviews()  ? auth()->user()->reviews()->where('product_id',$product->id)->first() : null) : null @endphp
+                        @php $allow_review_product = customer_allow_to_review_product($product->id) @endphp
+                        <div class="clients-reviews">
+                            @if(auth()->user() && ($my_review))
+                                <h5> يسعدنا تقيمك على المنتج</h5>
+                                <div id="my-review-show" class="review-card-section my-review col-md-12">
+                                    <div class="top-section-review">
+                                        <div class="right-review">
+                                            <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
+                                            <span class="reviewr-name">
+                                                {{ auth()->user()->name }}
+                                            </span>
+                                        </div>
+                                        <div class="review-points">
+                                            <div class="rating">
+                                                @if($my_review->degree > 5)
+                                                    @php $my_review->degree = 5 @endphp
+                                                @endif
 
-                                            ( {{ $my_review->degree }} )
-                                            @for($i = 1;$i <= $my_review->degree;$i++)
-                                                <i class="fas fa-star active"></i>
-                                            @endfor
+                                                ( {{ $my_review->degree }} )
+                                                @for($i = 1;$i <= $my_review->degree;$i++)
+                                                    <i class="fas fa-star active"></i>
+                                                @endfor
 
-                                            @for($i=1;$i <= 5-$my_review->degree;$i++)
-                                                <i class="fas fa-star"></i>
-                                            @endfor
+                                                @for($i=1;$i <= 5-$my_review->degree;$i++)
+                                                    <i class="fas fa-star"></i>
+                                                @endfor
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="bottom-section-review">
+                                        <p>
+                                            {{ $my_review->review }}
+                                        </p>
+                                    </div>
+                                    <div class="give-me" style="text-align: left;padding: 15px 0px;">
+                                        <button id="toggleEditReview" class="btn btn-info btn-sm" style="margin:auto">
+                                            تعديل التقيم
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="bottom-section-review">
-                                    <p>
-                                        {{ $my_review->review }}
-                                    </p>
-                                </div>
-                                <div class="give-me" style="text-align: left;padding: 15px 0px;">
-                                    <button id="toggleEditReview" class="btn btn-info btn-sm" style="margin:auto">
-                                        تعديل التقيم
-                                    </button>
-                                </div>
-                            </div>
                             @endif
-                            @if($my_review)
-                                <form id="form-review" action="{{ route('add_review_on_product',$product->id) }}#my-review-show" @if(auth()->user() && $my_review) style="display:none" @endif method="post">
+
+                            @if((auth()->user() && !$my_review && $allow_review_product) || ($my_review))
+                                <form id="form-review" action="{{ route('add_review_on_product',$product->id) }}#my-review-show" @if(auth()->user() && $my_review ) style="display:none" @endif method="post">
                                     @csrf
                                     <input type="hidden" @if(auth()->user() && $my_review) value="{{ $my_review->degree }}" @endif id="my-review-start" name="degree" required/>
                                     <div class="review-card-section col-md-12">
@@ -161,25 +165,26 @@
                                     </div>
                                 </form>
                             @endif
-                    </div>
-                    <div class="clients-reviews list-client-reviews">
-                        <h5> اراء العملاء</h5>
-                        @forelse($reviews as $review)
-                            @include('partials.reviews_list_1')
-                        @empty
-                        <div class="alert alert-warning">
-                            التقيمات غير متوفرة على هذا المنتج
                         </div>
-                        @endforelse
-                    </div>
-                    @if(!$reviews->isEmpty())
-                        <div class="load-more" style="text-align: left;">
-                            <button onClick="ajax_load_medias()" class="btn btn-warning btn-sm" style="margin:auto;margin-top: 13px;">
-                                تحميل المزيد
-                            </button>
+                        <div class="clients-reviews list-client-reviews">
+                            <h5> اراء العملاء</h5>
+                            @forelse($reviews as $review)
+                                @include('partials.reviews_list_1')
+                            @empty
+                            <div class="alert alert-warning">
+                                التقيمات غير متوفرة على هذا المنتج
+                            </div>
+                            @endforelse
                         </div>
-                    @endif
-                </div>
+                        @if(!$reviews->isEmpty())
+                            <div class="load-more" style="text-align: left;">
+                                <button onClick="ajax_load_medias()" class="btn btn-warning btn-sm" style="margin:auto;margin-top: 13px;">
+                                    تحميل المزيد
+                                </button>
+                            </div>
+                        @endif
+                    </div>
+                @endif
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@
     @if(!$review->replays->isEmpty())
         @foreach($review->replays as $replay)
             <div class="review-card-section replay-review-card-section col-md-12">
-                <h6>ردود المسؤلين</h6>
+                <h6 style="color: #ce8705;">رد إدارة الموقع</h6>
                 <div class="top-section-review">
                     <div class="right-review">
                         <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />

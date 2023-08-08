@@ -99,6 +99,21 @@ $settings = platformSettings();
                             </div>
                         </div>
                     </div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="mb-3">
+                                <h5 for="basic-default-fullname">تفعيل الاقسام</h5>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group mb-3">
+                                <div class="form-check form-switch mb-2" style="float: right;">
+                                    <input class="form-check-input" name="reviews_enable" type="checkbox" id="flexSwitchCheckChecked" value="active" @if(isset($settings['reviews_enable']) && $settings['reviews_enable'] == 'active') checked @endif>
+                                    <label class="form-check-label" style=" float: left;" for="flexSwitchCheckChecked">تفعيل قسم التقيمات</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="card mb-4">

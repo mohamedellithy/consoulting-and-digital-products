@@ -12,6 +12,11 @@ class SettingController extends Controller
     }
 
     public function save_general_setting(Request $request){
+        if(!request('reviews_enable')):
+            $request->merge([
+                'reviews_enable' => null
+            ]);
+        endif;
         $settings = $request->only([
             'website_name',
             'admin_email',
@@ -26,7 +31,8 @@ class SettingController extends Controller
             'meta_title',
             'meta_description',
             'website_address',
-            'website_location_map'
+            'website_location_map',
+            'reviews_enable'
         ]);
         foreach($settings as $name => $value):
             Setting::updateOrCreate([

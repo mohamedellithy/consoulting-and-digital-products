@@ -122,58 +122,60 @@
 <!-- --------------------------------------------------------------------------------------------->
 <!-- --------------------------------------------------------------------------------------------->
 <!-- review -->
-@if(auth()->user() && (!$my_review = auth()->user()->reviews()->where('product_id',$order->order_items->product->id)->first()))
-    <div class="review-popup-form" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="review-popup-form-close">
-            <span class="close-frame"><i class="fas fa-times"></i></span>
-        </div>
-        <div class="search-wrap text-center">
-            <div class="container">
-                <div class="row" id="nb">
-                    <div class="heading">
-                        <h5 class="title text-center" style="margin: 0 0 15px 0;">تقيمات المنتج</h5>
-                        <div class="rating">
-                            <i class="fas fa-star active"></i>
-                            <i class="fas fa-star active"></i>
-                            <i class="fas fa-star active"></i>
-                            <i class="fas fa-star active"></i>
-                            <i class="fas fa-star active"></i>
+@if(get_settings('reviews_enable') && (get_settings('reviews_enable') == 'active'))
+    @if(auth()->user() && (!$my_review = auth()->user()->reviews()->where('product_id',$order->order_items->product->id)->first()))
+        <div class="review-popup-form" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="review-popup-form-close">
+                <span class="close-frame"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="search-wrap text-center">
+                <div class="container">
+                    <div class="row" id="nb">
+                        <div class="heading">
+                            <h5 class="title text-center" style="margin: 0 0 15px 0;">تقيمات المنتج</h5>
+                            <div class="rating">
+                                <i class="fas fa-star active"></i>
+                                <i class="fas fa-star active"></i>
+                                <i class="fas fa-star active"></i>
+                                <i class="fas fa-star active"></i>
+                                <i class="fas fa-star active"></i>
+                            </div>
+                            <h6 class="sub-title text-center">يمكنك مساعدة الاخرين باعطاء رايك فى هذا المنتج</h6>
                         </div>
-                        <h6 class="sub-title text-center">يمكنك مساعدة الاخرين باعطاء رايك فى هذا المنتج</h6>
-                    </div>
-                    <form id="form-review" action="{{ route('add_review_on_product',$order->order_items->product->id) }}" method="post">
-                        @csrf
-                        <input type="hidden" @if(auth()->user()) value="0" @endif id="my-review-start" name="degree" required/>
-                        <div class="review-card-section col-md-12">
-                            <div class="top-section-review">
-                                <div class="right-review">
-                                    <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
-                                    <span class="reviewr-name">{{ auth()->user() ? auth()->user()->name : ''  }}</span>
-                                </div>
-                                <div class="review-points">
-                                    <div class="rating give-rate">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                        <form id="form-review" action="{{ route('add_review_on_product',$order->order_items->product->id) }}" method="post">
+                            @csrf
+                            <input type="hidden" @if(auth()->user()) value="0" @endif id="my-review-start" name="degree" required/>
+                            <div class="review-card-section col-md-12">
+                                <div class="top-section-review">
+                                    <div class="right-review">
+                                        <img class="reviewer-avatar" src="{{ upload_assets(null,false,"assets/img/avatars/user_avatar.png") }}" />
+                                        <span class="reviewr-name">{{ auth()->user() ? auth()->user()->name : ''  }}</span>
+                                    </div>
+                                    <div class="review-points">
+                                        <div class="rating give-rate">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="bottom-section-give" style="paading:0px">
+                                    <textarea rows="5" name="review" class="form-control" required>@if(auth()->user()) {{ old('review') }}  @endif</textarea>
+                                </div>
+                                <div class="give-me" style="text-align: left;padding: 15px 0px;">
+                                    <button type="submit" class="btn btn-success btn-sm" style="margin:auto">
+                                        اضافة تقيم
+                                    </button>
+                                </div>
                             </div>
-                            <div class="bottom-section-give" style="paading:0px">
-                                <textarea rows="5" name="review" class="form-control" required>@if(auth()->user()) {{ old('review') }}  @endif</textarea>
-                            </div>
-                            <div class="give-me" style="text-align: left;padding: 15px 0px;">
-                                <button type="submit" class="btn btn-success btn-sm" style="margin:auto">
-                                    اضافة تقيم
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endif
 @endsection
 

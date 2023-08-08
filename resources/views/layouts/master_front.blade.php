@@ -41,6 +41,14 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
             margin: 18px;
         }
     </style>
+    <script>
+        // window.onload = function() {
+        //     var iframe = document.getElementById('myframe');
+        //     iframe.contentWindow.document.addEventListener('contextmenu', function(event) {
+        //         event.preventDefault(); // Prevent the default right-click behavior
+        //     });
+        // };
+    </script>
 </head>
 
 <body>
@@ -77,7 +85,7 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
         </div>
     @endif
     <!-- main-area -->
-    <main class="fix">
+    <main class="fix" id="myfix">
 
         @yield('content')
 
@@ -107,6 +115,8 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
     <script src="{{ asset('front/assets/js/aos.js') }}"></script>
     <script src="{{ asset('front/assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('front/assets/js/main.js') }}"></script>
+    <script src="{{ asset('front/assets/js/iframeResizer.min.js') }}"></script>
+    <script src="{{ asset('front/assets/js/iframeResizer.contentWindow.min.js') }}"></script>
 
     <script>
         jQuery('document').ready(function(){
@@ -116,9 +126,38 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
         });
     </script>
 
+    <script>
+        //Disable right click
+        const element = document.getElementById("myfix"); 
+        element.addEventListener("contextmenu", (event) => { 
+            event.preventDefault(); // show a custom context menu
+        });
+
+        // const elementembed = document.getElementById("myframe"); 
+        elementembed.addEventListener("contextmenu", (event) => { 
+            event.preventDefault(); // show a custom context menu
+        });
+
+        window.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // Prevent the default right-click behavior
+        });
+
+        //Disable F12
+        jQuery(document).keydown(function (event) {
+            if (event.keyCode == 123) { // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+                return false;
+            }
+        });
+
+        jQuery('#myiframe').iFrameResize([{
+            log: false, // Disable logging (optional)
+            enableContextMenu: false, // Disable right-click (optional) 
+        }]);
+        window.frames["myiframe"].document.oncontextmenu = function(){ return false; };
+    </script>
     @stack('scripts')
 </body>
-
-<!-- Mirrored from themeadapt.com/tf/gerow/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 23 Jul 2023 22:01:30 GMT -->
 
 </html>

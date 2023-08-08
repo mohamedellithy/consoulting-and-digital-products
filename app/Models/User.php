@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     // protected $appends = [
     //     'full_phone'
-    // ]; 
+    // ];
 
 
      /**
@@ -66,6 +66,18 @@ class User extends Authenticatable
 
     public function orders(){
         return $this->hasMany(Order::class,'customer_id','id');
+    }
+
+    public function order_items()
+    {
+        return $this->hasManyThrough(
+            OrderItem::class,
+            Order::class,
+            'customer_id', // Foreign key on the Order table...
+            'order_id', // Foreign key on the OrderItem table...
+            'id', // Local key on the projects table...
+            'id' // Local key on the environments table...
+        );
     }
 
     public function application_orders(){

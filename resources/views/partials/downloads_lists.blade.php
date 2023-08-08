@@ -1,4 +1,4 @@
-<div class="accordion" id="accordionExample">
+<div class="accordion" id="accordionExample ">
     @if($order->order_items->product->downloads)
         @if($order->order_items->product->downloads->download_attachments_id)
             @foreach(GetAttachments($order->order_items->product->downloads->download_attachments_id) as $key => $attachment)
@@ -54,9 +54,9 @@
                                 @endif
                             @elseif('application' == formateMediaType($attachment->type)[0])
                                 @if(isset($order->order_items->product->downloads->download_link))
-                                    <iframe src='{{ $order->order_items->product->downloads->download_link }}#toolbar=0' width="100%" height="500px"></iframe>
+                                    <iframe src='{{ $order->order_items->product->downloads->download_link }}#toolbar=0' id="myiframe" width="100%" height="500px"></iframe>
                                 @else
-                                    <iframe src='/view-attachments/{{ $attachment->id }}#toolbar=0' width="100%" height="500px"></iframe>
+                                    <iframe src='/view-attachments/{{ $attachment->id }}#toolbar=0' width="100%" id="myiframe" height="500px"></iframe>
                                 @endif
                             @endif
                         </div>

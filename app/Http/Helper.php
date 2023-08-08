@@ -239,6 +239,22 @@ if(!function_exists('formateMediaType')){
     }
 }
 
+if(!function_exists('customer_allow_to_review_product')){
+    function customer_allow_to_review_product($product_id){
+        if(!isset($product_id)) return false;
+
+        if(!auth()->user()) return false;
+
+        $has_products = \App\Models\Order::where([
+            'customer_id'  => auth()->user()->id,
+            'order_status' => 'completed'
+        ])->whereHas('order_items',function($query) use($product_id){
+            return $query->where('order_items.product_id',$product_id);
+        })->exists();
+
+        return $has_products;
+    }
+}
 
 if(!function_exists('CountriesPhonesCode')){
     function CountriesPhonesCode($code = null){
