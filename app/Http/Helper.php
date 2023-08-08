@@ -2,6 +2,8 @@
 use App\Models\Setting;
 use App\Models\Image;
 use App\Models\Page;
+use App\Models\Order;
+use App\Models\ApplicationOrder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 if(!function_exists('upload_assets')){
@@ -253,6 +255,26 @@ if(!function_exists('customer_allow_to_review_product')){
         })->exists();
 
         return $has_products;
+    }
+}
+
+if(!function_exists('count_unread_model')){
+    function count_unread_model($model){
+        if(!isset($model)) return null;
+
+        $count_result = 0;
+
+        if($model == "Order"):
+            $count_result = Order::where([
+                'read' => 0
+            ])->count();
+        elseif($model == "ApplicationOrder"):
+            $count_result = ApplicationOrder::where([
+                'read' => 0
+            ])->count();
+        endif;
+
+        return $count_result;
     }
 }
 

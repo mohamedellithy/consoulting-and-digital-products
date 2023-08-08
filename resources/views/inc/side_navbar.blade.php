@@ -68,6 +68,11 @@
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-package'></i>
                 <div data-i18n="Layouts">الطلبات</div>
+                @if(($count_orders = count_unread_model('Order')) > 0)
+                    <span class="badge bg-danger bg-sm" style="margin-right: auto;">
+                        {{ $count_orders ?: 0 }}
+                    </span>
+                @endif
             </a>
 
             <ul class="menu-sub">
@@ -105,6 +110,11 @@
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon tf-icons bx bxs-package'></i>
                 <div data-i18n="Layouts">طلبات تسعير الخدمات</div>
+                @if(($count_orders = count_unread_model('ApplicationOrder')) > 0)
+                    <span class="badge bg-danger bg-sm" style="margin-right: auto;">
+                        {{ $count_orders ?: 0 }}
+                    </span>
+                @endif
             </a>
 
             <ul class="menu-sub">
