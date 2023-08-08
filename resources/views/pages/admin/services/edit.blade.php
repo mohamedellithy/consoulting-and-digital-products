@@ -42,8 +42,8 @@
                                     <select name="whatsapStatus" id="formtabs-country" class="select2 form-select"
                                         data-allow-clear="true">
 
-                                        <option value="1">مفعل</option>
-                                        <option value="0">معطل</option>
+                                        <option value="1" @if($service->whatsapStatus == 1) selected  @endif>مفعل</option>
+                                        <option value="0" @if($service->whatsapStatus == 1) selected  @endif>معطل</option>
                                     </select>
                                     @error('whatsapStatus')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
@@ -108,8 +108,8 @@
                                 <label class="form-label" for="basic-icon-default-fullname">حالة تسجيل الدخول</label>
                                 <select name="loginStatus" id="formtabs-country" class="select2 form-select"
                                     data-allow-clear="true">
-                                    <option value="1">مفعل</option>
-                                    <option value="0">معطل</option>
+                                    <option value="1" @if($service->loginStatus == 1) selected  @endif>مفعل</option>
+                                    <option value="0" @if($service->loginStatus == 0) selected  @endif>معطل</option>
                                 </select>
                             </div>
 
