@@ -164,6 +164,18 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <div class="container-uploader">
+                                    <div class="form-check form-switch mb-2">
+                                        <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" value="active" @if($product->status == 'active') checked @endif>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">حالة المنتج</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="container-uploader">
                                     <button type="button" class="btn btn-outline-warning btn-sm upload-media" data-type-media="image">
                                         <i class='bx bx-upload' ></i>
                                         اضافة صورة للمنتج
