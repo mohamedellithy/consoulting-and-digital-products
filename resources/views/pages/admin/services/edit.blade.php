@@ -43,7 +43,7 @@
                                         data-allow-clear="true">
 
                                         <option value="1" @if($service->whatsapStatus == 1) selected  @endif>مفعل</option>
-                                        <option value="0" @if($service->whatsapStatus == 1) selected  @endif>معطل</option>
+                                        <option value="0" @if($service->whatsapStatus == 0) selected  @endif>معطل</option>
                                     </select>
                                     @error('whatsapStatus')
                                         <span class="text-danger w-100 fs-6">{{ $message }}</span>
