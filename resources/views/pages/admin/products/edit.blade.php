@@ -96,7 +96,7 @@
                                             @isset($product->downloads)
                                                 @if($product->downloads->download_attachments_id)
                                                     @foreach(GetAttachments($product->downloads->download_attachments_id) as $attachment)
-                                                        <li class="preview-media-inner">
+                                                        <li class="preview-media-inner" title="{{ $attachment->name ?: fetchImageInnerDetails($attachment) }}">
                                                             @if(formateMediaType($attachment->type)[0] == 'video')
                                                                 <video style="width:100%;height:100%" controls>
                                                                     <source src="{{ upload_assets($attachment) }}" type="{{ $attachment->type }}"></source>
