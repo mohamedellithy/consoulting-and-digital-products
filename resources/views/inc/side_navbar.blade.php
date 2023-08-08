@@ -34,7 +34,7 @@
                         <div data-i18n="Without menu">اضافة</div>
                     </a>
                 </li>
-                <li class="menu-item {{ IsActiveOnlyIf(['admin.services.index']) }}">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.services.index','admin.services.edit']) }}">
                     <a href="{{ route('admin.services.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
                     </a>
@@ -55,7 +55,7 @@
                         <div data-i18n="Without menu">اضافة</div>
                     </a>
                 </li>
-                <li class="menu-item {{ IsActiveOnlyIf(['admin.products.index']) }}">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.products.index','admin.products.edit']) }}">
                     <a href="{{ route('admin.products.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
                     </a>
@@ -76,7 +76,7 @@
                         <div data-i18n="Without menu">اضافة</div>
                     </a>
                 </li>
-                <li class="menu-item {{ IsActiveOnlyIf(['admin.orders.index','admin.orders.show']) }}">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.orders.index','admin.orders.show','admin.orders.edit']) }}">
                     <a href="{{ route('admin.orders.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
                     </a>
@@ -87,7 +87,7 @@
          <!-- reviews -->
          <li class="menu-item {{ IsActiveOnlyIf(['admin.reviews.index','admin.reviews.show']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='bx bxs-comment-detail'></i>
+                <i class='menu-icon bx bxs-comment-detail'></i>
                 <div data-i18n="Layouts">تقيمات المنتجات</div>
             </a>
 
