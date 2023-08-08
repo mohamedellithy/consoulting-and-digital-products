@@ -52,7 +52,7 @@
                                 @else
                                     <img src='/view-attachments/{{ $attachment->id  }}' >
                                 @endif
-                            @elseif('application' == formateMediaType($attachment->type)[0])
+                            @else
                                 @if(isset($order->order_items->product->downloads->download_link))
                                     <iframe src='{{ $order->order_items->product->downloads->download_link }}#toolbar=0' id="myiframe" width="100%" height="500px"></iframe>
                                 @else
