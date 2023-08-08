@@ -1,22 +1,22 @@
-<div class="image-media-card text-center">
+<div class="image-media-card text-center" title="{{ $media->name ?: fetchImageInnerDetails($media) }}">
     <span class="badge bg-primary" style="position: absolute;">
         {{ $media->type ? (formateMediaType($media->type)[1] == 'vnd.openxmlformats-officedocument.spreadsheetml.sheet' ? 'xlsx' : formateMediaType($media->type)[1]) : 'mime' }}
     </span>
     <div class="container-image">
         @if('video' == formateMediaType($media->type)[0])
-            <video title="{{ $media->name ?: fetchImageInnerDetails($media) }}" controls>
+            <video controls>
                 <source src="{{ upload_assets($media) }}" type="{{ $media->type }}"></source>
             </video>
         @elseif('pdf' == formateMediaType($media->type)[1])
-            <i style="font-size: 120px;" title="{{ $media->name ?: fetchImageInnerDetails($media) }}" class='bx bxs-file-pdf'></i>
+            <i style="font-size: 120px;" class='bx bxs-file-pdf'></i>
         @elseif('text' == formateMediaType($media->type)[0])
-            <i style="font-size: 120px;" title="{{ $media->name ?: fetchImageInnerDetails($media) }}" class='bx bxs-file-txt'></i>
+            <i style="font-size: 120px;" class='bx bxs-file-txt'></i>
         @elseif('image' == formateMediaType($media->type)[0])
-            <img src="{{ upload_assets($media) }}" title="{{ $media->name ?: fetchImageInnerDetails($media) }}" />
+            <img src="{{ upload_assets($media) }}" />
         @elseif('vnd.openxmlformats-officedocument.spreadsheetml.sheet' == formateMediaType($media->type)[1])
-            <img src="{{ asset('assets/img/icons/xlsx.png') }}" title="{{ $media->name ?: fetchImageInnerDetails($media) }}" class="list-item-image"/>
+            <img src="{{ asset('assets/img/icons/xlsx.png') }}" class="list-item-image"/>
         @else
-            <i style="font-size: 120px;" title="{{ $media->name ?: fetchImageInnerDetails($media) }}" class='bx bxs-file-blank'></i>
+            <i style="font-size: 120px;" class='bx bxs-file-blank'></i>
         @endif
     </div>
     <p class="title-media-card text-center">
