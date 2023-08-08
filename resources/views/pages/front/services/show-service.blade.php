@@ -27,10 +27,11 @@
                                                     طلب تسعير خدمة
                                                 </button>
                                             @endauth
+                                            @guest
                                                 <a href="{{ route('login') }}" class="btns btns-secondary-color btn-sm">
                                                     طلب تسعير خدمة
                                                 </a>
-                                            @endauth
+                                            @endguest
                                         @else
                                             <button id="subscrib_on_service" class="btns btns-secondary-color btn-sm">
                                                 طلب تسعير خدمة
