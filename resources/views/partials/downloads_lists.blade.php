@@ -63,6 +63,58 @@
                     </div>
                 </div>
             @endforeach
+        @else
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                    ملف ( {{ $order->order_items->product->downloads->download_name }} )
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        @if($order->order_items->product->downloads->download_type == 'video')
+                            <video
+                                id="my-video"
+                                class="video-js"
+                                controls
+                                preload="auto"
+                                width="640"
+                                height="464"
+                                data-setup="{}"
+                            >
+                                @if(isset($order->order_items->product->downloads->download_link))
+                                    <source src='{{ $order->order_items->product->downloads->download_link  }}' type="video/mp4" />
+                                    <source src='{{ $order->order_items->product->downloads->download_link }}' type="video/webm" />
+                                @endif
+                                <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a
+                                web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank"
+                                    >supports HTML5 video</a
+                                >
+                                </p>
+                            </video>
+                        @elseif($order->order_items->product->downloads->download_type  == 'audio')
+                            <audio controls controlsList="nodownload">
+                                @if(isset($order->order_items->product->downloads->download_link))
+                                    <source src='{{ $order->order_items->product->downloads->download_link  }}' >
+                                    <source src='{{ $order->order_items->product->downloads->download_link }}'  >
+                                @endif
+                                Your browser does not support the audio element.
+                            </audio>
+                        @elseif($order->order_items->product->downloads->download_type  == 'image')
+                            @if(isset($order->order_items->product->downloads->download_link))
+                                <img src='{{ $order->order_items->product->downloads->download_link  }}' />
+                            @endif
+                        @else
+                            @if(isset($order->order_items->product->downloads->download_link))
+                                <iframe src='{{ $order->order_items->product->downloads->download_link }}#toolbar=0' id="myiframe" width="100%" height="500px"></iframe>
+                            @endif
+                        @endif
+                    </div>
+                </div>
+            </div>
         @endif
+
     @endif
 </div>
