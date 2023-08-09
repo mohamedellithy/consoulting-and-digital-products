@@ -291,11 +291,15 @@
                     }
                 });
                 let prev_ids_thumbs = "";
+                let join_media      = media_ids.join(',');
                 if(multiple_upload  == 'true'){
                     prev_ids_thumbs = jQuery(global_media_ids).find('.uploaded-media-ids').val();
+                    if(prev_ids_thumbs){
+                        join_media = join_media + "," + prev_ids_thumbs;
+                    }
                 }
-                let join_list = jQuery(global_media_ids).find('.uploaded-media-ids').val(media_ids.join(
-                    ',') + prev_ids_thumbs ? ("," + prev_ids_thumbs) : '');
+
+                let join_list = jQuery(global_media_ids).find('.uploaded-media-ids').val(join_media);
                 if (jQuery('#exLargeModal').length) {
                     jQuery('#exLargeModal').modal('hide');
                 }
