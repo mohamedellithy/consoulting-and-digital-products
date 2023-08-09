@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             //AdminSeeder::class,
            // OrderSeeder::class,
            // CustomerSeeder::class
-           PageSeeder::class
+           //PageSeeder::class
+           SettingSeeder::class
         ]);
     }
 }
