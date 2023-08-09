@@ -18,6 +18,10 @@ class ProductController extends Controller
                 'status' => 'inactive'
             ]);
         endif;
+        $slug = str_replace(' ','-',request('slug') ?: request('name'));
+        $request->merge([
+            'slug' => $slug
+        ]);
         $product = Product::create($request->only([
             'name',
             'description',
@@ -90,6 +94,10 @@ class ProductController extends Controller
             ]);
         endif;
         $product = Product::find($id);
+        $slug = str_replace(' ','-',request('slug') ?: request('name'));
+        $request->merge([
+            'slug' => $slug
+        ]);
         $product->update($request->only([
             'name',
             'short_description',

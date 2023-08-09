@@ -23,9 +23,11 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'name'         => 'required|string|max:255|unique:products,name,'.$this->product,
             'price'        => 'required',
+            'slug'         => 'required|unique:products,slug,'.$this->product,
             'meta_title'   => 'nullable|string|max:255',
             'description'  => 'required|string',
             'thumbnail_id' => 'required'
