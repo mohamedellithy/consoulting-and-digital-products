@@ -43,7 +43,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-company">سعر المنتج</label>
                                 <input id="basic-default-message" class="form-control" placeholder="" name='price' value="{{ $product->price }}" required>
-                                @error('slug')
+                                @error('price')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
