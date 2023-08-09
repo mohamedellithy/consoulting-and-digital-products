@@ -17,11 +17,14 @@ class PageSeeder extends Seeder
         //
         Page::updateOrCreate([
             'title'    => 'الرئيسية',
-            'slug'     => 'home',
+            'slug'     => '/',
             'image'    => null,
             'content'  => '',
             'position' => 'header',
-            'status'   => 'active'
+            'status'   => 'active',
+            'meta_title'=> 'الرئيسية',
+            'meta_description' => 'الرئيسية',
+            'menu_position'    => '8'
         ]);
 
         Page::updateOrCreate([
@@ -30,7 +33,10 @@ class PageSeeder extends Seeder
             'image'    => null,
             'content'  => '',
             'position' => 'header',
-            'status'   => 'active'
+            'status'   => 'active',
+            'meta_title'=> 'المنتجات',
+            'meta_description' => 'المنتجات',
+            'menu_position'    => '40'
         ]);
 
         Page::updateOrCreate([
@@ -39,7 +45,46 @@ class PageSeeder extends Seeder
             'image'    => null,
             'content'  => '',
             'position' => 'header',
-            'status'   => 'active'
+            'status'   => 'active',
+            'meta_title'=> 'الخدمات',
+            'meta_description' => 'الخدمات',
+            'menu_position'    => '30'
+        ]);
+
+        Page::updateOrCreate([
+            'title'    => 'تواصل معنا',
+            'slug'     => 'contact-us',
+            'image'    => null,
+            'content'  => '',
+            'position' => 'header',
+            'status'   => 'active',
+            'meta_title'=> 'تواصل معنا',
+            'meta_description' => 'تواصل معنا',
+            'menu_position'    => '60'
+        ]);
+
+        Page::updateOrCreate([
+            'title'    => 'من نحن',
+            'slug'     => 'من-نحن',
+            'image'    => null,
+            'content'  => '',
+            'position' => 'header',
+            'status'   => 'active',
+            'meta_title'=> 'من نحن',
+            'meta_description' => 'من نحن',
+            'menu_position'    => '20'
+        ]);
+
+        Page::updateOrCreate([
+            'title'    => 'سياسة الخصوصية',
+            'slug'     => 'سياسة-الخصوصية',
+            'image'    => null,
+            'content'  => '',
+            'position' => 'header',
+            'status'   => 'active',
+            'meta_title'=> 'سياسة الخصوصية',
+            'meta_description' => 'سياسة الخصوصية',
+            'menu_position'    => '50'
         ]);
     }
 }
