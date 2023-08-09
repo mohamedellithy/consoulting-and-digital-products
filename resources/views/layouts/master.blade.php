@@ -290,7 +290,7 @@
                         }
                     }
                 });
-                let prev_ids_thumbs = null;
+                let prev_ids_thumbs = "";
                 if(multiple_upload  == 'true'){
                     prev_ids_thumbs = jQuery(global_media_ids).find('.uploaded-media-ids').val();
                 }
