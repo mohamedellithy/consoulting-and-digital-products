@@ -18,7 +18,7 @@ class PageSeeder extends Seeder
         Page::updateOrCreate([
             'title'    => 'الرئيسية',
             'slug'     => '/',
-            'image'    => null,
+            'thumbnail_id'    => null,
             'content'  => '',
             'position' => 'header',
             'status'   => 'active',
@@ -30,7 +30,7 @@ class PageSeeder extends Seeder
         Page::updateOrCreate([
             'title'    => 'المنتجات',
             'slug'     => 'shop',
-            'image'    => null,
+            'thumbnail_id'    => null,
             'content'  => '',
             'position' => 'header',
             'status'   => 'active',
@@ -42,7 +42,7 @@ class PageSeeder extends Seeder
         Page::updateOrCreate([
             'title'    => 'الخدمات',
             'slug'     => 'service',
-            'image'    => null,
+            'thumbnail_id'    => null,
             'content'  => '',
             'position' => 'header',
             'status'   => 'active',
@@ -54,7 +54,7 @@ class PageSeeder extends Seeder
         Page::updateOrCreate([
             'title'    => 'تواصل معنا',
             'slug'     => 'contact-us',
-            'image'    => null,
+            'thumbnail_id'    => null,
             'content'  => '',
             'position' => 'header',
             'status'   => 'active',
@@ -66,7 +66,7 @@ class PageSeeder extends Seeder
         Page::updateOrCreate([
             'title'    => 'من نحن',
             'slug'     => 'من-نحن',
-            'image'    => null,
+            'thumbnail_id'    => null,
             'content'  => '',
             'position' => 'header',
             'status'   => 'active',
@@ -78,7 +78,7 @@ class PageSeeder extends Seeder
         Page::updateOrCreate([
             'title'    => 'سياسة الخصوصية',
             'slug'     => 'سياسة-الخصوصية',
-            'image'    => null,
+            'thumbnail_id'    => null,
             'content'  => '',
             'position' => 'header',
             'status'   => 'active',
