@@ -335,7 +335,7 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                 <div class="request-form-wrap">
                     <form action="#">
                         <div class="row">
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-grp">
                                     <input type="text" placeholder="Name *">
                                 </div>
@@ -349,9 +349,9 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                                 <div class="form-grp">
                                     <input type="number" placeholder="Phone *">
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-6">
-                                <button type="submit">تواصل معنا</button>
+                                <a type="btn btn-primary" href="{{ url('contact-us') }}">تواصل معنا</a>
                             </div>
                         </div>
                     </form>

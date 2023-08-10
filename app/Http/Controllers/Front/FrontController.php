@@ -288,6 +288,7 @@ class FrontController extends Controller
     public function post_contact_us(Request $request){
         $adminEmail = 'info@pioneeringstep.com';
         $data = $request->all();
+        $data['phone'] = $data['phone_code'] .$data['phone'];
         if(Mail::to($adminEmail)->send(new ContactMail($data))){
             flash()->success('تم ارسال الرسالة بنجاح ');
             Mail::to($data['email'])->send(new ReplayContactMail($data));
