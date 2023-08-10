@@ -45,7 +45,7 @@ class ReplayContactMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.email.replay-on-contact',
+            view: 'email.replay-on-contact',
         );
     }
 
