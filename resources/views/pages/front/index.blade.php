@@ -351,7 +351,7 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                                 </div>
                             </div> --}}
                             <div class="col-md-6">
-                                <a type="btn btn-primary" href="{{ url('contact-us') }}">تواصل معنا</a>
+                                <a class="btn btn-warning" href="{{ url('contact-us') }}">تواصل معنا</a>
                             </div>
                         </div>
                     </form>
