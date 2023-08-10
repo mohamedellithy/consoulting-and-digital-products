@@ -30,7 +30,7 @@
                             @forelse($orders as $order)
                                 <tr>
                                     <td>{{ $order->order_no }}</td>
-                                    <td>{{ $order->order_items->product->name }}</td>
+                                    <td>{{ $order->order_items->product ? $order->order_items->product->name : '-' }}</td>
                                     <td>{{ $order->order_status }}</td>
                                     <td>{{ formate_price($order->order_total) }}</td>
                                     <td>{{ $order->created_at }}</td>
