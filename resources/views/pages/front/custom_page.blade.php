@@ -5,9 +5,11 @@
 <meta name="title" content="{{ isset($page->meta_title) ? $page->meta_title : get_settings('meta_title') }} ">
 @endsection
 
+@section('title')
+ {{  $page->title }}
+@endsection
 
 @section('content')
-
 <section class="about-area about-bg" style="margin-top:50px">
     <div class="container">
         <div class="row align-items-center justify-content-center">

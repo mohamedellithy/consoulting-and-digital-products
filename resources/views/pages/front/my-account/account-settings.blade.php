@@ -17,6 +17,10 @@
 </style>
 @endpush
 
+@section('title')
+ {{ 'اعدادات الحساب' }}
+@endsection
+
 @section('content')
  <!-- project-details-area -->
  <section class="project-details-area pt-120 pb-120 page-bg">

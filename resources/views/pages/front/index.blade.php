@@ -8,6 +8,9 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
 <meta name="title" content="{{ isset($page->meta_title) ? $page->meta_title : get_settings('meta_title') }} ">
 @endsection
 
+@section('title')
+ {{  $page->title }}
+@endsection
 
 @section('content')
 

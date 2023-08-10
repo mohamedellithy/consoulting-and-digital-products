@@ -1,5 +1,9 @@
 @extends('layouts.master_front')
 
+@section('title')
+ {{ 'حسابي' }}
+@endsection
+
 @section('content')
  <!-- project-details-area -->
  <section class="project-details-area pt-120 pb-120 page-bg">

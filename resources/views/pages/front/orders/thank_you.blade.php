@@ -2,8 +2,11 @@
 
 @push('style')
 <link rel="stylesheet" href="{{ asset('front/assets/css/videojs.css') }}" />
-
 @endpush
+
+@section('title')
+ {{  'اكتمال الطلب #'.$order->order_no  ?: '' }}
+@endsection
 
 @section('content')
    <section class="project-details-area pt-120 pb-120 page-bg">

@@ -4,6 +4,10 @@
 $page = ActivePagesMenus(['slug','=','services'])[0];
 @endphp
 
+@section('title')
+ {{  $page->name  ?: '' }}
+@endsection
+
 @section('meta_tags')
 <meta name="description" content="{{ isset($page->meta_description) ? $page->meta_description : get_settings('meta_description') }} ">
 <meta name="title" content="{{ isset($page->meta_title) ? $page->meta_title : get_settings('meta_title') }} ">

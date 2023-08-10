@@ -11,6 +11,10 @@ $search   = request('search');
 <meta name="title" content="{{ isset($page->meta_title) ? $page->meta_title : get_settings('meta_title') }} ">
 @endsection
 
+@section('title')
+ {{  $page->title ?: '' }}
+@endsection
+
 @section('content')
 <!-- project-area -->
 <section class="project-area project-bg page-bg" data-background="assets/img/bg/project_bg.jpg">
