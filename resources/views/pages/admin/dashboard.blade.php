@@ -216,7 +216,7 @@
                                                 <h6 class="mb-0">#{{ $application_order->name }}</h6>
                                             </div>
                                             <div class="user-progress d-flex align-items-center gap-1">
-                                                <h6 class="mb-0">{{ $application_order->service->name }}</h6>
+                                                <h6 class="mb-0">{{ $application_order->service ? $application_order->service->name : '-' }}</h6>
                                             </div>
                                         </div>
                                     </li>
