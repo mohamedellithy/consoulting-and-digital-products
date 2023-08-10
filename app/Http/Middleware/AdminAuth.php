@@ -16,7 +16,7 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()):
+        if($request->expectsJson()):
             // if($request->user()->role != 0) return \Response::view('pages.404');
             return $next($request);
         else:
