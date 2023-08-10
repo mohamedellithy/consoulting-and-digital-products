@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Review;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\ApplicationServiceRequest;
+use App\Http\Requests\ContactUsRequest;
 use Mail;
 use App\Mail\ContactMail;
 use App\Mail\ReplayContactMail;
@@ -285,7 +286,7 @@ class FrontController extends Controller
         return back();
     }
 
-    public function post_contact_us(Request $request){
+    public function post_contact_us(ContactUsRequest $request){
         $adminEmail = 'info@pioneeringstep.com';
         $data = $request->all();
         $data['phone'] = $data['phone_code'] .$data['phone'];
