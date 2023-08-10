@@ -133,7 +133,7 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
             event.preventDefault(); // show a custom context menu
         });
 
-        // const elementembed = document.getElementById("myframe"); 
+        const elementembed = document.getElementById("myframe"); 
         elementembed.addEventListener("contextmenu", (event) => { 
             event.preventDefault(); // show a custom context menu
         });
