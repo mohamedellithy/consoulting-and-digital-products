@@ -208,18 +208,16 @@
         </div>
         <div class="side-info mb-30">
             <div class="contact-list mb-30">
-                <h4>Office Address</h4>
-                <p>123/A, Miranda City Likaoli <br> Prikano, Dope</p>
+                <h4>عنوان الشركة</h4>
+                <p>{{ get_settings('website_address') }}</p>
             </div>
             <div class="contact-list mb-30">
-                <h4>Phone Number</h4>
-                <p>+0989 7876 9865 9</p>
-                <p>+(090) 8765 86543 85</p>
+                <h4>رقم جوال الشركة</h4>
+                <p>{{ get_settings('website_whastapp') }}</p>
             </div>
             <div class="contact-list mb-30">
-                <h4>Email Address</h4>
-                <p>info@example.com</p>
-                <p>example.mail@hum.com</p>
+                <h4>البريد الالكترونى</h4>
+                <p>{{ get_settings('admin_email') }}</p>
             </div>
         </div>
         <div class="social-icon-right mt-30">
