@@ -853,6 +853,12 @@
                 border-top: 0px solid #eeee !important;
             }
             
+            .contact-us-index-button {
+                width: 50%;
+                padding: 13px;
+                border-radius: 45px;
+            }
+            
             @media (max-width: 1800px) {
                 .about-shape-wrap-two img:nth-child(1) {
                     right: 3%;

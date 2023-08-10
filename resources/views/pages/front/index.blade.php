@@ -350,8 +350,8 @@ $page = ActivePagesMenus(['slug','=','/'])[0];
                                     <input type="number" placeholder="Phone *">
                                 </div>
                             </div> --}}
-                            <div class="col-md-6">
-                                <a class="btn btn-warning" href="{{ url('contact-us') }}">تواصل معنا</a>
+                            <div class="col-md-12" style="text-align: left;">
+                                <a class="btn btn-warning contact-us-index-button" href="{{ url('contact-us') }}">تواصل معنا</a>
                             </div>
                         </div>
                     </form>
