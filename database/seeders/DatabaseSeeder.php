@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\Payment::factory(10)->create();
         $this->call([
-            //AdminSeeder::class,
+            AdminSeeder::class,
            // OrderSeeder::class,
            // CustomerSeeder::class
-           //PageSeeder::class
+           PageSeeder::class,
            SettingSeeder::class
         ]);
     }
