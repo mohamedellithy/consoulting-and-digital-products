@@ -1,12 +1,9 @@
-<h2>طلب الاشتراك فى النشرة البريدية</h2> 
+<h2>Hey, It's me {{ $data['firstname'].' '.$data['lastname'] }}</h2> 
 <br>
-    <strong  style="text-align: center"> 
-        يريد 
-        <br/>
-        {{ $data['email'] }}
-        <br>
-        الاشتراك فى النشرة البريدية لدينا
-    </strong> <br>
-<br/>
-
-شكرا لك 
+    
+<strong>User details: </strong><br>
+<strong>Name: </strong>{{ $data['firstname'].' '.$data['lastname']  }} <br>
+<strong>Email: </strong>{{ $data['email']  }} <br>
+<strong>Phone: </strong>{{ $data['phone']}} <br>
+<strong>Message: </strong>{{ $data['description']  }} <br><br>
+شكرا لك
