@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\services\UploadImage;
 class MediaController extends Controller
 {
     /**
@@ -55,11 +56,12 @@ class MediaController extends Controller
     public function destroy($id)
     {
         //
-        if(request('type') == 'all'):
-            $medias = Image::destroy($id);
-        else:
-            $medias = Image::destroy($id);
-        endif;
+        // if(request('type') == 'all'):
+        //     $medias = Image::destroy($id);
+        // else:
+        //endif;
+        $medias = new UploadImage();
+        $medias->delete_image($id);
         flash()->success('تم حذف العناصر بنجاح ');
         return redirect()->back();
     }
