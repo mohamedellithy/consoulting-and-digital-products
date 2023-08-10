@@ -58,11 +58,11 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">المنتج</label>
-                                            <h6 style="line-height: 1.3em;">{{ $order->order_items->product->name }}</h6>
+                                            <h6 style="line-height: 1.3em;">{{ $order->order_items ? $order->order_items->product->name : '-' }}</h6>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="basic-default-fullname">الكمية</label>
-                                            <h6 style="line-height: 1.3em;">{{ $order->order_items->quantity }} قطعة</h6>
+                                            <h6 style="line-height: 1.3em;">{{ $order->order_items ? $order->order_items->quantity : '-' }} قطعة</h6>
                                         </div>
                                     </div>
                                     <div class="row">
