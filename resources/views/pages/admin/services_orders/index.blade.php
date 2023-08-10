@@ -60,10 +60,12 @@ $rows   = request()->query('rows')   ?: 10;
                         @foreach($application_orders as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td class="width-16">{{ $order->service->name }}</td>
+                                <td class="width-16">{{ $order->service ? $order->service->name : '-' }}</td>
                                 <td>
-                                    <img src="{{ upload_assets($order->service->image_info) }}" alt="Avatar"
-                                        class="rounded-circle">
+                                    @if($order->service)
+                                        <img src="{{ upload_assets($order->service->image_info) }}" alt="Avatar"
+                                            class="rounded-circle">
+                                    @endif
                                 </td>
                                 <td class="width-16">
                                     {{ $order->name }}
