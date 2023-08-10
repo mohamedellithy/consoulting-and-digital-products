@@ -53,7 +53,7 @@
                         {!! isset($page->content) ? $page->content : '' !!}
                     </div>
                     <div class="form-login">
-                        <form method="POST" action="#">
+                        <form method="POST" action="{{ route('send-email') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -110,7 +110,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">نص الرسالة</label>
-                                        <textarea name="description" class="form-control" id="exampleInputPassword1" placeholder="نص الرسالة المتروكة">{{ old('description') }}</textarea>
+                                        <textarea name="description" class="form-control" id="exampleInputPassword1" placeholder="نص الرسالة المتروكة" required>{{ old('description') }}</textarea>
                                         @error('description')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

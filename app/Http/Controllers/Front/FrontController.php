@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Review;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\ApplicationServiceRequest;
+use Mail;
+use App\Mail\ContactMail;
+use App\Mail\ReplayContactMail;
 class FrontController extends Controller
 {
     //
@@ -280,5 +283,14 @@ class FrontController extends Controller
 
         flash()->success('تم اضافة تقيمك بنجاح');
         return back();
+    }
+
+    public function contact_us(Request $request){
+        $adminEmail = 'info@pioneeringstep.com';
+        $data = $request->all();
+        if(Mail::to($adminEmail)->send(new ContactMail($data))){
+            flash()->success('تم ارسال الرسالة بنجاح ');
+            Mail::to($data['email'])->send(new ReplayContactMail($data));
+        }
     }
 }
