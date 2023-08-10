@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-class AdminAuth
+class AdminAuth 
 {
     /**
      * Handle an incoming request.
@@ -20,7 +20,7 @@ class AdminAuth
             // if($request->user()->role != 0) return \Response::view('pages.404');
             return $next($request);
         else:
-            return route('login');
+            return redirect('/login');
         endif;
     }
 }
