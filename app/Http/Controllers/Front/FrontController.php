@@ -292,5 +292,7 @@ class FrontController extends Controller
             flash()->success('تم ارسال الرسالة بنجاح ');
             Mail::to($data['email'])->send(new ReplayContactMail($data));
         }
+
+        return redirect()->back();
     }
 }
