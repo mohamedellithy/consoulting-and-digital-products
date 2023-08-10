@@ -285,7 +285,7 @@ class FrontController extends Controller
         return back();
     }
 
-    public function contact_us(Request $request){
+    public function post_contact_us(Request $request){
         $adminEmail = 'info@pioneeringstep.com';
         $data = $request->all();
         if(Mail::to($adminEmail)->send(new ContactMail($data))){
