@@ -17,7 +17,7 @@ class AdminAuth
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()):
-            if($request->user()->role != 0) return \Response::view('pages.404');
+            // if($request->user()->role != 0) return \Response::view('pages.404');
             return $next($request);
         else:
             return route('login');
