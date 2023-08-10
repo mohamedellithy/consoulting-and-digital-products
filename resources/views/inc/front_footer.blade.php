@@ -12,7 +12,9 @@
                                 </a>
                             </div>
                             <div class="footer-content">
-                                <p>When an unknown printer took a galley of type aawer awtnd scrambled it to make a type specimen book.</p>
+                                <p>
+                                    متخصصون في التطوير الاداري وتقديم الاستشارات للقطاع الخاص والقطاع غير الربحي.
+                                </p>
                                 <div class="footer-info">
                                     <ul class="list-wrap">
                                         <li>
@@ -28,7 +30,7 @@
                                                 <i class="flaticon-clock"></i>
                                             </div>
                                             <div class="content">
-                                                <p>Mon – Sat: 8 am – 5 pm, <br> Sunday: <span>CLOSED</span></p>
+                                                <p>{{ get_settings('website_address') }}</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -62,8 +64,9 @@
                                 <p>
                                     يمكنك الاشتراك فى خدمة نشرتنا البريدة ليصلك كل جديد عن خدماتنا و انشطتنا الحديثة و القادمة
                                 </p>
-                                <form action="#">
-                                    <input type="email" placeholder="enter your e-mail">
+                                <form method="post" action="{{ url('send-news-letter') }}">
+                                    @csrf
+                                    <input type="email" name="email" placeholder="enter your e-mail">
                                     <button type="submit">الاشتراك</button>
                                 </form>
                                 <div class="footer-social footer-social-two">

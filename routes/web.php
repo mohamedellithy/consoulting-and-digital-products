@@ -91,4 +91,6 @@ Route::group(['middleware' => 'auth'],function(){
 });
 Route::get('ajax-paginate-review-lists',[FrontController::class,'ajax_paginate_review_lists'])->name('ajax-paginate-review-lists');
 Route::post('send-email',[FrontController::class,'post_contact_us'])->name('send-email');
+Route::post('send-news-letter',[FrontController::class,'post_news_letter'])->name('send-news-letter');
+
 Route::get('/{slug}',[FrontController::class,'custom_page']);
