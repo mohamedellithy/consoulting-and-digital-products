@@ -128,13 +128,13 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
 
     <script>
         //Disable right click
-        const element = document.getElementById("myfix"); 
-        element.addEventListener("contextmenu", (event) => { 
+        const element = document.getElementById("myfix");
+        element.addEventListener("contextmenu", (event) => {
             event.preventDefault(); // show a custom context menu
         });
 
-        // const elementembed = document.getElementById("myframe"); 
-        // elementembed.addEventListener("contextmenu", (event) => { 
+        // const elementembed = document.getElementById("myframe");
+        // elementembed.addEventListener("contextmenu", (event) => {
         //     event.preventDefault(); // show a custom context menu
         // });
 
@@ -143,17 +143,17 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
         });
 
         //Disable F12
-        jQuery(document).keydown(function (event) {
-            if (event.keyCode == 123) { // Prevent F12
-                return false;
-            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-                return false;
-            }
-        });
+        // jQuery(document).keydown(function (event) {
+        //     if (event.keyCode == 123) { // Prevent F12
+        //         return false;
+        //     } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I
+        //         return false;
+        //     }
+        // });
 
         jQuery('#myiframe').iFrameResize([{
             log: false, // Disable logging (optional)
-            enableContextMenu: false, // Disable right-click (optional) 
+            enableContextMenu: false, // Disable right-click (optional)
         }]);
         window.frames["myiframe"].document.oncontextmenu = function(){ return false; };
     </script>
