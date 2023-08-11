@@ -85,7 +85,7 @@
             }
             
             .banner-img img {
-                transform: rotateY(179deg) !important;
+                /*transform: rotateY(179deg) !important;*/
             }
             
             .slick-slider {
