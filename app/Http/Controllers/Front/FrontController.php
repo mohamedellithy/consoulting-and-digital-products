@@ -29,11 +29,11 @@ class FrontController extends Controller
 
     public function index(){
         $products = Cache::rememberForever('all-products',function(){
-            return $products = Product::all();
+            return $products = Product::where('status','active')->get();
         });
 
         $services = Cache::rememberForever('all-services',function(){
-            return $products = Service::all();
+            return $services = Service::all();
         });
         return view('pages.front.index',compact('products','services'));
     }
