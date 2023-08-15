@@ -103,6 +103,10 @@ class FrontController extends Controller
     public function services(){
         $services = Service::query();
         $services->with('image_info');
+        $services->when(request('search') != null, function ($q) {
+            return $q->where('name','like', '%' . request('search') . '%')->orWhere('description', 'like', '%' . request('search') . '%');
+        });
+
         $services = $services->orderBy('created_at','desc')->paginate(12);
 
         return view('pages.front.services.all-services',compact('services'));
