@@ -2,7 +2,7 @@
 $media = isset($media) ? $media : ImageInfo($media_id);
 
 @endphp
-<li class="preview-media-inner" title="{{ $media->name ?: fetchImageInnerDetails($media) }}">
+<li class="preview-media-inner" title="{{ $media ? $media->name : fetchImageInnerDetails($media) }}">
     {{-- <img src="{{ upload_assets($media_id,true) }}" /> --}}
     @if('video' == formateMediaType($media->type)[0])
         <video style="width:100%;height:100%" controls>
