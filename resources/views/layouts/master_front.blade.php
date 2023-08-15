@@ -6,6 +6,7 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
 <!doctype html>
 <html class="no-js" lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 <head>
+    <meta name="google-site-verification" content="40aCnX7tt4Ig1xeLHMATAESAkTL2pn15srB14sB-EOs" />
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title> {{ get_settings('website_name') }} |  @yield('title','الرئيسية')</title>
