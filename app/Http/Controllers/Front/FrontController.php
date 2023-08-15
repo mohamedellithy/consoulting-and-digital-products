@@ -57,7 +57,7 @@ class FrontController extends Controller
             $products = $products->orderBy('created_at', 'desc');
         endif;
 
-        $products = $products->paginate(10);
+        $products = $products->paginate(12);
 
         return view('pages.front.shop.products',compact('products'));
     }
@@ -103,7 +103,7 @@ class FrontController extends Controller
     public function services(){
         $services = Service::query();
         $services->with('image_info');
-        $services = $services->orderBy('created_at','desc')->paginate(10);
+        $services = $services->orderBy('created_at','desc')->paginate(12);
 
         return view('pages.front.services.all-services',compact('services'));
     }
