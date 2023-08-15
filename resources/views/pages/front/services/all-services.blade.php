@@ -68,6 +68,10 @@ $page = ActivePagesMenus(['slug','=','services'])[0];
                 @include('partials.services_list_card_1')
             @empty
             @endforelse
+            <div class="alert">
+                <br/>
+                {{ $products->links() }}
+            </div>
         </div>
     </div>
 </section>
