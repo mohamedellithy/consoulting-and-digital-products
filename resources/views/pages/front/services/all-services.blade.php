@@ -70,7 +70,7 @@ $page = ActivePagesMenus(['slug','=','services'])[0];
             @endforelse
             <div class="alert">
                 <br/>
-                {{ $products->links() }}
+                {{ $services->links() }}
             </div>
         </div>
     </div>
