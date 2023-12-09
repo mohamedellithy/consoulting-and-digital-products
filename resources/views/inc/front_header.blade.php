@@ -187,7 +187,7 @@
                         <h2 class="title">... البحث هنا ...</h2>
                         <div class="search-form">
                             <form action="#">
-                                <input type="text" name="search" placeholder="اكتب ما تريد البحث عنه">
+                                <input type="text" id="search" name="search" placeholder="اكتب ما تريد البحث عنه">
                                 <button class="search-btn"><i class="fas fa-search"></i></button>
                             </form>
                         </div>
