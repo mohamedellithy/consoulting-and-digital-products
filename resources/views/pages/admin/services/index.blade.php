@@ -65,6 +65,7 @@
                             <th>حالة الواتساب</th>
                             <th>رقم الواتساب</th>
                             <th>حالة التسجيل</th>
+                            <th>عرض الخدمة</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -96,6 +97,14 @@
                                         <span class="badge bg-label-danger me-1">معطل</span>
                                     @endif
 
+                                </td>
+
+                                <td>
+                                    @if ($service->status == 1)
+                                        <span class="badge bg-label-success me-1">مفعل</span>
+                                    @else
+                                        <span class="badge bg-label-danger me-1">معطل</span>
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="dropdown">

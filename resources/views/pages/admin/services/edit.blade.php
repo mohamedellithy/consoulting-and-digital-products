@@ -73,7 +73,18 @@
                 </div>
                 <div class="col-xl">
                     <div class="card mb-4">
-
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="container-uploader">
+                                    <div class="form-check form-switch mb-2">
+                                        <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" value="active" @if($service->status == 'active') checked @endif>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">حالة المنتج</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
                         <div class="card-body">
                             <div class="card mb-4">
                                 <div class="card-body">
