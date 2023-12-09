@@ -1,6 +1,6 @@
 @if($results)
     <ul class="search-result">
-        @foreach($results as $result)
+        @forelse($results as $result)
             <li style="text-align: right;">
                 @if(isset($result->short_description))
                     <a href="{{ route('single_product',['slug' => $result->slug]) }}">
@@ -18,7 +18,11 @@
                     </a>
                 @endif
             </li>
-        @endforeach
+        @empty
+         <h4 style="text-align: center;">
+            لايوجد نتائج متعلقة
+         </h4>
+        @endforelse
     </ul>
 @endif
 
