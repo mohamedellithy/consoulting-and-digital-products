@@ -158,6 +158,11 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
         }]);
         window.frames["myiframe"].document.oncontextmenu = function(){ return false; };
     </script>
+    <script>
+        jQeury('body').on('keyup','#search',function(e){
+            alert('hi');
+        });
+    </script>
     @stack('scripts')
     <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-VH38BJFLC8"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-VH38BJFLC8'); </script>
 

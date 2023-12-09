@@ -99,9 +99,3 @@
     </div>
 </nav>
 <!-- / Navbar -->
-
-<script>
-    jQeury('body').on('keyup','#search',function(e){
-        alert('hi');
-    });
-</script>
