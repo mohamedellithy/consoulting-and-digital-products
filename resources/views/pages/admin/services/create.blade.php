@@ -85,7 +85,7 @@ $settings = platformSettings();
                                 <div class="container-uploader">
                                     <div class="form-check form-switch mb-2">
                                         <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" value="active" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">حالة المنتج</label>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">عرض الخدمة</label>
                                     </div>
                                 </div>
                             </div>
