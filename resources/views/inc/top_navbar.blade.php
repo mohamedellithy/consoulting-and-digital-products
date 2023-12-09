@@ -9,13 +9,15 @@
 
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <!-- Search -->
-        <div class="navbar-nav align-items-center">
-            <div class="nav-item d-flex align-items-center">
-                <i class="bx bx-search fs-4 lh-0"></i>
-                <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
-                    aria-label="Search..." />
+        <form action="search" method="get">
+            <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                    <i class="bx bx-search fs-4 lh-0"></i>
+                    <input type="text" id="search" class="form-control border-0 shadow-none" placeholder="Search..."
+                        aria-label="Search..." />
+                </div>
             </div>
-        </div>
+        </form>
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -74,7 +76,7 @@
                                     class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                             </span>
                         </a>
-                    </li> 
+                    </li>
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
@@ -97,3 +99,9 @@
     </div>
 </nav>
 <!-- / Navbar -->
+
+<script>
+    jQeury('body').on('keyup','#search',function(e){
+        console.log(e);
+    });
+</script>
