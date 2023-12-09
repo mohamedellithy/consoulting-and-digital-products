@@ -139,7 +139,7 @@
                             </div>
                             <div class="mobile-search">
                                 <form action="#">
-                                    <input type="text" placeholder="البحث عن ...">
+                                    <input type="text" id="search" placeholder="البحث عن ...">
                                     <button><i class="flaticon-search"></i></button>
                                 </form>
                             </div>
