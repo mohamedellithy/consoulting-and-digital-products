@@ -1,4 +1,4 @@
-<ul class="search-result">
+<ul class="search-result" style="padding:20px;">
     @foreach($results as $result)
         <li style="text-align: right;">
             <h4>{{ $result->name }}</h4>
