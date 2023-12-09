@@ -43,6 +43,7 @@ class ServiceController extends Controller
     }
     public function update(ServiceRequest $request, $id)
     {
+        dd($request->all());
         $service = Service::findOrFail($id);
         $service->name = $request->input('name');
         $service->description = $request->input('description');
