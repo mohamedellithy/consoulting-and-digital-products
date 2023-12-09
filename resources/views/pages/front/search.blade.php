@@ -37,4 +37,11 @@
         <img src="{{ asset('front/assets/img/images/choose_shape.png') }}" alt="" data-aos="fade-right" data-aos-delay="200">
     </div> --}}
 </section>
+<style>
+    .search-result {
+        padding: 20px;
+        height: auto;
+        overflow-y: unset;
+    }
+</style>
 @endsection
