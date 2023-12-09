@@ -1,43 +1,10 @@
 <ul class="search-result">
-    <li style="text-align: right;">
-        <h4>جلسة استشارية رقم 45</h4>
-        <p class="description">
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-        </p>
-    </li>
-    <li style="text-align: right;">
-        <h4>جلسة استشارية رقم 45</h4>
-        <p class="description">
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-        </p>
-    </li>
-    <li style="text-align: right;">
-        <h4>جلسة استشارية رقم 45</h4>
-        <p class="description">
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-        </p>
-    </li>
-    <li style="text-align: right;">
-        <h4>جلسة استشارية رقم 45</h4>
-        <p class="description">
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-            جلسة استشارية رقم 45
-        </p>
-    </li>
-
+    @foreach($results as $result)
+        <li style="text-align: right;">
+            <h4>{{ $result->name }}</h4>
+            <p class="description">
+                {!! $result->description  !!}
+            </p>
+        </li>
+    @endforeach
 </ul>

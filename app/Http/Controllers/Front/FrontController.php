@@ -337,7 +337,7 @@ class FrontController extends Controller
         return response()->json([
             'data'    => request('search'),
             'results' => $results,
-            '_render' => view('partials.search_ajax')->render()
+            '_render' => view('partials.search_ajax',compact('results'))->render()
         ]);
     }
 }
