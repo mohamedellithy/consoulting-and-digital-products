@@ -102,6 +102,6 @@
 
 <script>
     jQeury('body').on('keyup','#search',function(e){
-        console.log(e);
+        alert('hi');
     });
 </script>
