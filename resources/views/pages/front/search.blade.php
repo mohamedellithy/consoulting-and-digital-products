@@ -18,15 +18,15 @@
                     <div class="choose-content-two">
                         <div class="section-title-two white-title">
                             <span class="sub-title" data-aos="fade-down" data-aos-delay="0">
-                                {{ isset($search) ? $search : '' }}
+                                {{ 'صفحة البحث' }}
                             </span>
                             <h2 class="title" data-aos="fade-up" data-aos-delay="10" style="color: #1e3668;">
-                                {{ isset($search) ? $search : '' }}
+                                نتائج البحث عن " {{ isset($search) ? $search : '' }} "
                             </h2>
                         </div>
                         <br/>
                         <div class="content-custom-page" data-aos="fade-in" data-aos-delay="30">
-                            hi
+                            @include('partials.search_ajax')
                         </div>
                     </div>
                 </div>
