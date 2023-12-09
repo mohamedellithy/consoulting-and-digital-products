@@ -6,7 +6,7 @@
 @endsection
 
 @section('title')
- {{  $page->title }}
+ {{  $search }}
 @endsection
 
 @section('content')
