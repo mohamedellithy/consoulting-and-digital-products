@@ -2,7 +2,7 @@
     <ul class="search-result">
         @foreach($results as $result)
             <li style="text-align: right;">
-                {{ class_name($result) }}
+                {{ class_basename($result) }}
                 <a href="{{ route('single_product',['slug' => $result->slug]) }}">
                     <h4>{{ $result->name }}</h4>
                     <p class="description">
