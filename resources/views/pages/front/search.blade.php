@@ -6,7 +6,7 @@
 @endsection
 
 @section('title')
- {{  $search }}
+نتائج البحث عن " {{  $search }} "
 @endsection
 
 @section('content')
