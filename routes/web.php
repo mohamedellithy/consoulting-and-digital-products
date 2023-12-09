@@ -93,4 +93,8 @@ Route::get('ajax-paginate-review-lists',[FrontController::class,'ajax_paginate_r
 Route::post('send-email',[FrontController::class,'post_contact_us'])->name('send-email');
 Route::post('send-news-letter',[FrontController::class,'post_news_letter'])->name('send-news-letter');
 
+Route::get('generate/sitemap',[FrontController::class,'generate_sitemap']);
+
 Route::get('/{slug}',[FrontController::class,'custom_page']);
+
+

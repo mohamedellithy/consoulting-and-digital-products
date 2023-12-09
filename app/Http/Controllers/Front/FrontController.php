@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers\Front;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\ApplicationOrder;
+use Mail;
+use App\Models\Page;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Review;
 use App\Models\Product;
 use App\Models\Service;
-use App\Models\Order;
-use App\Models\User;
-use App\Models\Page;
+use App\Mail\ContactMail;
 use Illuminate\Support\Str;
+use App\Mail\NewsLetterMail;
+use Illuminate\Http\Request;
+use App\Mail\ReplayContactMail;
+use App\Models\ApplicationOrder;
 use App\services\ThawaniPayment;
-use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Review;
+use Spatie\Sitemap\SitemapGenerator;
 use Illuminate\Support\Facades\Cache;
-use App\Http\Requests\ApplicationServiceRequest;
+use Illuminate\Support\Facades\Route;
 use App\Http\Requests\ContactUsRequest;
-use Mail;
-use App\Mail\ContactMail;
-use App\Mail\ReplayContactMail;
-use App\Mail\NewsLetterMail;
+use Illuminate\Support\Facades\Response;
+use App\Http\Requests\ApplicationServiceRequest;
+
 class FrontController extends Controller
 {
     //
@@ -311,5 +314,10 @@ class FrontController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function generate_sitemap(){
+        set_time_limit(100000000);
+        SitemapGenerator::create("http://127.0.0.1:8000")->writeToFile(public_path('sitemap.xml'));
     }
 }
