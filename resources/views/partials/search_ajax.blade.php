@@ -1,52 +1,84 @@
 <ul class="search-result">
     @foreach($results as $result)
         <li style="text-align: right;">
-            <h4>{{ $result->name }}</h4>
-            <p class="description">
-                {!! TrimLongText($result->description,200)  !!}
-            </p>
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
         </li>
         <li style="text-align: right;">
-            <h4>{{ $result->name }}</h4>
-            <p class="description">
-                {!! TrimLongText($result->description,200)  !!}
-            </p>
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
         </li>
         <li style="text-align: right;">
-            <h4>{{ $result->name }}</h4>
-            <p class="description">
-                {!! TrimLongText($result->description,200)  !!}
-            </p>
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
         </li>
         <li style="text-align: right;">
-            <h4>{{ $result->name }}</h4>
-            <p class="description">
-                {!! TrimLongText($result->description,200)  !!}
-            </p>
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
         </li>
         <li style="text-align: right;">
-            <h4>{{ $result->name }}</h4>
-            <p class="description">
-                {!! TrimLongText($result->description,200)  !!}
-            </p>
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
         </li>
         <li style="text-align: right;">
-            <h4>{{ $result->name }}</h4>
-            <p class="description">
-                {!! TrimLongText($result->description,200)  !!}
-            </p>
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
         </li>
         <li style="text-align: right;">
-            <h4>{{ $result->name }}</h4>
-            <p class="description">
-                {!! TrimLongText($result->description,200)  !!}
-            </p>
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
         </li>
         <li style="text-align: right;">
-            <h4>{{ $result->name }}</h4>
-            <p class="description">
-                {!! TrimLongText($result->description,200)  !!}
-            </p>
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
+        </li>
+        <li style="text-align: right;">
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
+        </li>
+        <li style="text-align: right;">
+            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                <h4>{{ $result->name }}</h4>
+                <p class="description">
+                    {!! TrimLongText($result->description,200)  !!}
+                </p>
+            </a>
         </li>
     @endforeach
 </ul>
