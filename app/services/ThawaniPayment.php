@@ -26,7 +26,6 @@ class ThawaniPayment{
 
     public function create_portal_payment($order_data){
 
-        dd($this->enable);
         if($this->enable != 'active') return;
 
         $this->order_data = $order_data;
@@ -57,6 +56,8 @@ class ThawaniPayment{
         ])->post(self::$endpoint.'api/v1/checkout/session',$data);
 
         $this->result = $response->json();
+
+        dd($this->result);
 
         if($response->successful()):
 
