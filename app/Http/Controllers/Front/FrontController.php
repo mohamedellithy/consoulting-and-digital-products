@@ -329,10 +329,14 @@ class FrontController extends Controller
     }
 
     public function search_ajax(Request $request){
-        $results = Product::where('name','like','%'.request('search').'%')
-        ->orWhere('short_description','like','%'.request('search').'%')
-        ->orWhere('description','like','%'.request('search').'%')->get();
 
+        if(request('search')):
+            $results = Product::where('name','like','%'.request('search').'%')
+            ->orWhere('short_description','like','%'.request('search').'%')
+            ->orWhere('description','like','%'.request('search').'%')->get();
+        else:
+            $results = null;
+        endif;
         
         return response()->json([
             'data'    => request('search'),
