@@ -1,5 +1,5 @@
 <ul class="search-result">
-    <li>
+    <li style="text-align: right;">
         <h4>جلسة استشارية رقم 45</h4>
         <p class="description">
             جلسة استشارية رقم 45
@@ -9,7 +9,7 @@
             جلسة استشارية رقم 45
         </p>
     </li>
-    <li>
+    <li style="text-align: right;">
         <h4>جلسة استشارية رقم 45</h4>
         <p class="description">
             جلسة استشارية رقم 45
@@ -19,7 +19,7 @@
             جلسة استشارية رقم 45
         </p>
     </li>
-    <li>
+    <li style="text-align: right;">
         <h4>جلسة استشارية رقم 45</h4>
         <p class="description">
             جلسة استشارية رقم 45
@@ -29,7 +29,7 @@
             جلسة استشارية رقم 45
         </p>
     </li>
-    <li>
+    <li style="text-align: right;">
         <h4>جلسة استشارية رقم 45</h4>
         <p class="description">
             جلسة استشارية رقم 45
@@ -39,5 +39,5 @@
             جلسة استشارية رقم 45
         </p>
     </li>
-    
+
 </ul>
