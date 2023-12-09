@@ -43,7 +43,6 @@ class ServiceController extends Controller
     }
     public function update(ServiceRequest $request, $id)
     {
-        dd($request->all());
         $service = Service::findOrFail($id);
         $service->name = $request->input('name');
         $service->description = $request->input('description');
@@ -52,7 +51,7 @@ class ServiceController extends Controller
         $service->whatsapNumber = $request->input('whatsapNumber');
         $service->loginStatus = $request->input('loginStatus');
         $service->slug = $request->input('slug');
-        $service->status = $request->input('status');
+        $service->status = $request->input('status') ?: 'unactive';
         $service->save();
 
         \Artisan::call('cache:clear');
