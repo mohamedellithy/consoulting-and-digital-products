@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Mail\ReplayContactMail;
 use App\Models\ApplicationOrder;
 use App\services\ThawaniPayment;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -331,11 +332,11 @@ class FrontController extends Controller
     public function search_ajax(Request $request){
 
         if(request('search')):
-            $results = Product::where('name','like','%'.request('search').'%')
+            $results = DB::table('products')->where('name','like','%'.request('search').'%')
             ->orWhere('short_description','like','%'.request('search').'%')
             ->orWhere('description','like','%'.request('search').'%')->limit(5)->get();
 
-            $services = Service::where('name','like','%'.request('search').'%')
+            $services = DB::table('serivces')->where('name','like','%'.request('search').'%')
             ->orWhere('description','like','%'.request('search').'%')->limit(5)->get();
 
             $results = $results->merge($services);
