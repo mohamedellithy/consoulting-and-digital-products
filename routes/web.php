@@ -70,7 +70,7 @@ Route::get('/',[FrontController::class,'index'])->name('home');
 Route::get('/shop',[FrontController::class,'shop'])->name('shop');
 Route::get('/product/{slug}',[FrontController::class,'single_product'])->name('single_product');
 Route::get('/services',[FrontController::class,'services'])->name('services');
-Route::get('/service/{slug}',[FrontController::class,'single_service']);
+Route::get('/service/{slug}',[FrontController::class,'single_service'])->name('single_service');
 Route::post('application-submit/{id}',[FrontController::class,'application_submit'])->name('application-submit');
 Route::get('/contact-us',[FrontController::class,'contact_us'])->name('contact-us');
 
