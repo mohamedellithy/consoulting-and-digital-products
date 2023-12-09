@@ -25,6 +25,8 @@ class ThawaniPayment{
     }
 
     public function create_portal_payment($order_data){
+
+        dd($this->enable);
         if($this->enable != 'active') return;
 
         $this->order_data = $order_data;
