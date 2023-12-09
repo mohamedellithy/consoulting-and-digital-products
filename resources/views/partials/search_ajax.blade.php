@@ -18,6 +18,7 @@
         padding: 20px;
         height: 300px;
         overflow-y: scroll;
+        background-color: white;
     }
     .search-result li{
         text-align: right;
