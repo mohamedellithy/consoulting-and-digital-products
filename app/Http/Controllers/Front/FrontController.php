@@ -356,10 +356,10 @@ class FrontController extends Controller
         if(request('search')):
             $results = Product::where('name','like','%'.request('search').'%')
             ->orWhere('short_description','like','%'.request('search').'%')
-            ->orWhere('description','like','%'.request('search').'%')->limit(5)->get();
+            ->orWhere('description','like','%'.request('search').'%')->limit(10)->get();
 
             $services = Service::where('name','like','%'.request('search').'%')
-            ->orWhere('description','like','%'.request('search').'%')->limit(5)->get();
+            ->orWhere('description','like','%'.request('search').'%')->limit(10)->get();
 
             $results = $results->merge($services);
         else:
