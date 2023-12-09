@@ -190,8 +190,8 @@
                                 <input type="text" id="search" name="search" placeholder="اكتب ما تريد البحث عنه">
                                 <button class="search-btn"><i class="fas fa-search"></i></button>
                             </form>
-                            <div class="results"></div>
                         </div>
+                        <div class="search-results"></div>
                     </div>
                 </div>
             </div>
