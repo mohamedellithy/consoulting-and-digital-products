@@ -336,7 +336,7 @@ class FrontController extends Controller
             ->orWhere('short_description','like','%'.request('search').'%')
             ->orWhere('description','like','%'.request('search').'%')->limit(5)->get();
 
-            $services = DB::table('serivces')->where('name','like','%'.request('search').'%')
+            $services = DB::table('services')->where('name','like','%'.request('search').'%')
             ->orWhere('description','like','%'.request('search').'%')->limit(5)->get();
 
             $results = $results->merge($services);
