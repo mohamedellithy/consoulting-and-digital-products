@@ -100,7 +100,7 @@
                                 </td>
 
                                 <td>
-                                    @if ($service->status == 1)
+                                    @if ($service->status == 'active')
                                         <span class="badge bg-label-success me-1">مفعل</span>
                                     @else
                                         <span class="badge bg-label-danger me-1">معطل</span>
