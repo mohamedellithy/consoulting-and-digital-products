@@ -333,7 +333,7 @@ class FrontController extends Controller
         ->orWhere('short_description','like','%'.request('search').'%')
         ->orWhere('description','like','%'.request('search').'%')->get();
         return response()->json([
-            'data'    => $request->all(),
+            'data'    => request('search'),
             'results' => $results
         ]);
     }
