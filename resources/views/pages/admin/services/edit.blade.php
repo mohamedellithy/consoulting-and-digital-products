@@ -18,8 +18,6 @@
 
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.services.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-default-fullname">اسم الخدمة</label>
                                     <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
@@ -67,7 +65,6 @@
                                     @enderror
                                 </div>
                                 {{-- <button type="submit" class="btn btn-primary">Send</button> --}}
-                            </form>
                         </div>
                     </div>
                 </div>
