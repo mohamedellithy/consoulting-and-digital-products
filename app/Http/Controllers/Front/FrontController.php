@@ -349,4 +349,23 @@ class FrontController extends Controller
             '_render' => view('partials.search_ajax',compact('results'))->render()
         ]);
     }
+
+    public function search(Request $request){
+
+        $search = request('search');
+        if(request('search')):
+            $results = Product::where('name','like','%'.request('search').'%')
+            ->orWhere('short_description','like','%'.request('search').'%')
+            ->orWhere('description','like','%'.request('search').'%')->limit(5)->get();
+
+            $services = Service::where('name','like','%'.request('search').'%')
+            ->orWhere('description','like','%'.request('search').'%')->limit(5)->get();
+
+            $results = $results->merge($services);
+        else:
+            $results = null;
+        endif;
+        
+        return view('pages.front.search',compact('results','search'));
+    }
 }
