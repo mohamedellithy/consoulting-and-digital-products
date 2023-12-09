@@ -159,7 +159,7 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
         window.frames["myiframe"].document.oncontextmenu = function(){ return false; };
     </script>
     <script>
-        jQeury('body').on('keyup','#search',function(e){
+        jQuery('body').on('keyup','#search',function(e){
             alert('hi');
         });
     </script>
