@@ -89,4 +89,10 @@
         height: 300px;
         overflow-y: scroll;
     }
+    .search-result li{
+        text-align: right;
+        background-color: #0c77bd1a;
+        padding: 13px;
+    }
+
 </style>
