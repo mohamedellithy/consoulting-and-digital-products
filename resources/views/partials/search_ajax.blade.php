@@ -1,15 +1,17 @@
-<ul class="search-result">
-    @foreach($results as $result)
-        <li style="text-align: right;">
-            <a href="{{ route('single_product',['slug' => $result->slug]) }}">
-                <h4>{{ $result->name }}</h4>
-                <p class="description">
-                    {!! TrimLongText($result->description,200)  !!}
-                </p>
-            </a>
-        </li>
-    @endforeach
-</ul>
+@if($result)
+    <ul class="search-result">
+        @foreach($results as $result)
+            <li style="text-align: right;">
+                <a href="{{ route('single_product',['slug' => $result->slug]) }}">
+                    <h4>{{ $result->name }}</h4>
+                    <p class="description">
+                        {!! TrimLongText($result->description,200)  !!}
+                    </p>
+                </a>
+            </li>
+        @endforeach
+    </ul>
+@endif
 
 <style>
     .search-result{
