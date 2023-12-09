@@ -332,9 +332,12 @@ class FrontController extends Controller
         $results = Product::where('name','like','%'.request('search').'%')
         ->orWhere('short_description','like','%'.request('search').'%')
         ->orWhere('description','like','%'.request('search').'%')->get();
+
+        
         return response()->json([
             'data'    => request('search'),
-            'results' => $results
+            'results' => $results,
+            '_render' => view('partials.search_ajax')->render()
         ]);
     }
 }

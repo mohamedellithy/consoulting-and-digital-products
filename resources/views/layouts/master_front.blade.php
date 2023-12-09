@@ -165,6 +165,7 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
                 dataType: 'json',
                 success: function( result ) {
                     console.log(result);
+                    jQuery('.search-form').html(result._render);
                 }
             });
         });
