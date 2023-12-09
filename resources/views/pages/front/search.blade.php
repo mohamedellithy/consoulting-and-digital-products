@@ -13,7 +13,7 @@
 <section class="about-area about-bg" style="margin-top:50px">
     <div class="container">
         <div class="row align-items-center justify-content-center">
-            @if(!$page)
+            @if(!$search)
                 <div class="col-lg-12">
                     <div class="choose-content-two">
                         <div class="section-title-two white-title">
