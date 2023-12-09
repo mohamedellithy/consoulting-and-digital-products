@@ -1,4 +1,4 @@
-@if($result)
+@if($results)
     <ul class="search-result">
         @foreach($results as $result)
             <li style="text-align: right;">
