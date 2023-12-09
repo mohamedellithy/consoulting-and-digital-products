@@ -74,13 +74,7 @@
                     </span>
                 @endif
             </a>
-
             <ul class="menu-sub">
-                <li class="menu-item {{ IsActiveOnlyIf(['admin.orders.create']) }}">
-                    <a href="{{ route('admin.orders.create') }}" class="menu-link">
-                        <div data-i18n="Without menu">اضافة</div>
-                    </a>
-                </li>
                 <li class="menu-item {{ IsActiveOnlyIf(['admin.orders.index','admin.orders.show','admin.orders.edit']) }}">
                     <a href="{{ route('admin.orders.index') }}" class="menu-link">
                         <div data-i18n="Without navbar">عرض</div>
