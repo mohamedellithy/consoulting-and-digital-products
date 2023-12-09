@@ -155,7 +155,18 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
     </script>
     <script>
         jQuery('body').on('keyup','#search',function(e){
-            alert('hi');
+            let search = jQuery(this).val();
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('search-ajax') }}",
+                data: {
+                    search:search
+                },
+                dataType: 'json',
+                success: function( result ) {
+                    console.log(result);
+                }
+            });
         });
     </script>
     @stack('scripts')

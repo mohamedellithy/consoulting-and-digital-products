@@ -327,4 +327,10 @@ class FrontController extends Controller
         set_time_limit(100000000);
         SitemapGenerator::create(env('APP_URL'))->writeToFile(public_path('sitemap.xml'));
     }
+
+    public function search_ajax(Request $request){
+        return response()->json([
+            'data' => $request->all()
+        ]);
+    }
 }
