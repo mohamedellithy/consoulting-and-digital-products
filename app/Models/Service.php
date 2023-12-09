@@ -20,7 +20,8 @@ class Service extends Model
         'loginStatus',
         'meta_title',
         'meta_description',
-        'slug'
+        'slug',
+        'status'
     ];
 
     public function slug(): Attribute
@@ -29,7 +30,7 @@ class Service extends Model
             set: fn ($value) => str_replace(' ','-',$value ?: $this->name),
         );
     }
-    
+
     public function image_info()
     {
         return $this->belongsTo(Image::class, 'image', 'id');

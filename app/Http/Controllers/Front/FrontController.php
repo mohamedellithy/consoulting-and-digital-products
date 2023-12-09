@@ -36,7 +36,7 @@ class FrontController extends Controller
         });
 
         $services = Cache::rememberForever('all-services',function(){
-            return $services = Service::all();
+            return $services = Service::where('status','active')->get();
         });
         return view('pages.front.index',compact('products','services'));
     }
@@ -105,6 +105,8 @@ class FrontController extends Controller
 
     public function services(){
         $services = Service::query();
+
+        $services = $services->where('status','active');
         $services->with('image_info');
         $services->when(request('search') != null, function ($q) {
             return $q->where('name','like', '%' . request('search') . '%')->orWhere('description', 'like', '%' . request('search') . '%');
@@ -116,7 +118,10 @@ class FrontController extends Controller
     }
 
     public function single_service($slug){
-        $service  = Service::with('image_info')->where('slug',$slug)->first();
+        $service  = Service::with('image_info')->where([
+            'slug'   => $slug,
+            'status' => 'active'
+        ])->first();
         return view('pages.front.services.show-service',compact('service'));
     }
 
@@ -153,7 +158,9 @@ class FrontController extends Controller
     }
 
     public function my_services(){
-        $applications = ApplicationOrder::with('customer','service')->where('customer_id',auth()->user()->id)->orderBy('created_at','desc')->paginate(10);
+        $applications = ApplicationOrder::with('customer','service')->where([
+            'customer_id' => auth()->user()->id
+        ])->orderBy('created_at','desc')->paginate(10);
         return view('pages.front.my-account.services',compact('applications'));
     }
 

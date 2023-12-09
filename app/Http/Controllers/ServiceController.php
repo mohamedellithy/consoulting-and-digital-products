@@ -21,7 +21,8 @@ class ServiceController extends Controller
             'whatsapStatus',
             'whatsapNumber',
             'loginStatus',
-            'slug'
+            'slug',
+            'status'
         ]));
 
         \Artisan::call('cache:clear');
@@ -50,6 +51,7 @@ class ServiceController extends Controller
         $service->whatsapNumber = $request->input('whatsapNumber');
         $service->loginStatus = $request->input('loginStatus');
         $service->slug = $request->input('slug');
+        $service->status = $request->input('status');
         $service->save();
 
         \Artisan::call('cache:clear');
