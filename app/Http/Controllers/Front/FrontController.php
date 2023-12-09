@@ -318,6 +318,6 @@ class FrontController extends Controller
 
     public function generate_sitemap(){
         set_time_limit(100000000);
-        SitemapGenerator::create("http://127.0.0.1:8000")->writeToFile(public_path('sitemap.xml'));
+        SitemapGenerator::create(env('APP_URL'))->writeToFile(public_path('sitemap.xml'));
     }
 }
