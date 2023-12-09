@@ -131,16 +131,11 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
         //Disable right click
         const element = document.getElementById("myfix");
         element.addEventListener("contextmenu", (event) => {
-            event.preventDefault(); // show a custom context menu
+            //event.preventDefault(); // show a custom context menu
         });
 
-        // const elementembed = document.getElementById("myframe");
-        // elementembed.addEventListener("contextmenu", (event) => {
-        //     event.preventDefault(); // show a custom context menu
-        // });
-
         window.addEventListener('contextmenu', function(event) {
-            event.preventDefault(); // Prevent the default right-click behavior
+           // event.preventDefault(); // Prevent the default right-click behavior
         });
 
         //Disable F12
@@ -156,7 +151,7 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
             log: false, // Disable logging (optional)
             enableContextMenu: false, // Disable right-click (optional)
         }]);
-        window.frames["myiframe"].document.oncontextmenu = function(){ return false; };
+        //window.frames["myiframe"].document.oncontextmenu = function(){ return false; };
     </script>
     <script>
         alert('hi');
