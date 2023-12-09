@@ -26,7 +26,7 @@
                         </div>
                         <br/>
                         <div class="content-custom-page" data-aos="fade-in" data-aos-delay="30">
-                            @include('partials.search_ajax')
+                            @include('partials.search_results')
                         </div>
                     </div>
                 </div>
@@ -37,11 +37,4 @@
         <img src="{{ asset('front/assets/img/images/choose_shape.png') }}" alt="" data-aos="fade-right" data-aos-delay="200">
     </div> --}}
 </section>
-<style>
-    .search-result {
-        padding: 20px;
-        height: auto;
-        overflow-y: unset;
-    }
-</style>
 @endsection
