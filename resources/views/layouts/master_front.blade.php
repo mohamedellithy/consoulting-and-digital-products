@@ -155,7 +155,7 @@ $logo_url = upload_assets(get_settings('website_logo'),true);
     </script>
     <script>
         alert('hi');
-        jQuery('.search-popup-wrap').on('keyup','#search',function(e){
+        jQuery('#search').keyup(function(e){
             alert('hi');
         });
     </script>
