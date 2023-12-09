@@ -89,7 +89,9 @@
         height: 300px;
         overflow-y: scroll;
     }
-    .search-result li{
+    .search-result li a:hover,
+    .search-result li a:active,
+    .search-result li a:focus{
         text-align: right;
         background-color: #0c77bd1a;
         padding: 13px;
