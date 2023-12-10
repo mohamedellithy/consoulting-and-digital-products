@@ -65,8 +65,7 @@ if(!function_exists('formate_price')) {
 if(!function_exists('convert_price_to_Omr')) {
     function convert_price_to_Omr($price,$currency = true)
     {
-        return  get_settings('currency_converter');
-        $full_convert = (round($price,3) );
+        $full_convert = (round($price,3) * get_settings('currency_converter'));
         if($currency == true):
             $full_convert .= ' '.'OMR';
         endif;
