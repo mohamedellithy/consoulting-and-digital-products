@@ -63,9 +63,9 @@ if(!function_exists('formate_price')) {
 }
 
 if(!function_exists('convert_price_to_Omr')) {
-    function convert_price_to_Omr($price)
+    function convert_price_to_Omr($price,$currency = 'OMR')
     {
-        return round($price,3) * get_settings('currency_converter');
+        return (round($price,3) * get_settings('currency_converter')).' '.$currency;
     }
 }
 
