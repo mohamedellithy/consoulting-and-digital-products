@@ -130,9 +130,15 @@
             </div>
             <div class="col-lg-6 col-md-8" data-aos="fade-right" data-aos-delay="40">
                 <div class="about-img-wrap-four">
-                    <div class="mask-img-wrap">
-                        <img src="{{ isset($page->thumbnail_id) ? upload_assets($page->thumbnail_id,true) : asset('front/assets/img/images/h3_about_img01.jpg') }}" alt="">
-                    </div>
+                    @if(isset($page->thumbnail_id))
+                        <div>
+                            <img src="{{ upload_assets($page->thumbnail_id,true) }}" alt="">
+                        </div>
+                    @else
+                        <div class="mask-img-wrap">
+                            <img src="{{ asset('front/assets/img/images/h3_about_img01.jpg') }}" alt="">
+                        </div>
+                    @endif
                     <div class="icon"><i class="flaticon-business-presentation"></i></div>
                     {{-- <img src="{{ asset('front/assets/img/images/h3_about_img02.jpg') }}" alt="" class="img-two"> --}}
                     <div class="about-shape-wrap-three">
