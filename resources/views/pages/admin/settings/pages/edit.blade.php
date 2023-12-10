@@ -771,7 +771,7 @@
                             </div>
                         </div>
                     </div>
-                    @if(IsPagesAllowDeletes($page->slug))
+                    @if(IsPagesAllowDeletes($page->slug) || ($page->slug == 'contact-us'))
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="mb-3">
