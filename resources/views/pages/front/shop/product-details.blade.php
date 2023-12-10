@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="col-lg-7" style="position: relative;">
-                <span class="badge bg-danger price-value" style="direction: ltr">
+                <span class="badge bg-danger price-value" style="direction: ltr;background: linear-gradient(164deg, rgb(162, 2, 63) 11.2%, rgb(231, 62, 68) 53.6%, rgb(255, 129, 79) 91.1%);">
                     {{ formate_price($product->price) }}  <br/> {{ convert_price_to_Omr($product->price) }}
                 </span>
                 <div class="team-details-content">
