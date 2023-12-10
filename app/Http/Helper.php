@@ -58,7 +58,14 @@ if(!function_exists('GetAttachments')) {
 if(!function_exists('formate_price')) {
     function formate_price($price)
     {
-        return round($price,2).' '.get_settings('website_currency');
+        return round($price,3).' '.get_settings('website_currency');
+    }
+}
+
+if(!function_exists('convert_price_to_Omr')) {
+    function convert_price_to_Omr($price)
+    {
+        return round($price,3) * get_settings('currency_converter');
     }
 }
 
