@@ -684,6 +684,7 @@
                 left: 20px;
                 font-size: 20px;
                 line-height: 1.6em;
+                min-width: 170px;
             }
             
             .breadcrumb-bg.page-bg {
