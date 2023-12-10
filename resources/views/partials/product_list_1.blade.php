@@ -20,8 +20,8 @@
                 <div class="bottom-content d-flex">
                     @include('partials.stars_list')
                     <b>
-                        {{ formate_price($product->price) }}  / {{ convert_price_to_Omr($product->price) }}
-                    </b>
+                        {{ formate_price($product->price) }}  <br/> {{ convert_price_to_Omr($product->price) }}
+                    </br>
                 </div>
                 <div class="frame-buy">
                      <form action="{{ route('buy_now') }}"" method="post">
