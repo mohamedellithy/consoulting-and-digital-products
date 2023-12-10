@@ -40,14 +40,12 @@ class ConverterCurrency extends Command
 
         if($response->successful()):
             $result = $response->json();
-            if($result['success'] == 'true'):
-                $value  = round($result['result'],3);
-                Setting::updateOrCreate([
-                    'name' => 'currency_converter'
-                ],[
-                    'value'=> $value
-                ]);
-            endif;
+            $value  = round($result['result'],3);
+            Setting::updateOrCreate([
+                'name' => 'currency_converter'
+            ],[
+                'value'=> $value
+            ]);
         endif;
         return Command::SUCCESS;
     }
