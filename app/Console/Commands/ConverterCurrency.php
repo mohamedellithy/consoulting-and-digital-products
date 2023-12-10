@@ -29,23 +29,24 @@ class ConverterCurrency extends Command
      */
     public function handle()
     {
-        $to = 'OMR';
-        $from = 'USD';
+        $to     = 'OMR';
+        $from   = 'USD';
         $amount = 1;
+        $apikey = "12d9032148bb3c169a0631e0579b7310";
         $response = Http::withOptions([
-            'verify' => false
-        ])->withHeaders([
-            'apikey' => '12d9032148bb3c169a0631e0579b7310'
-        ])->get("https://api.apilayer.com/fixer/convert?to={$to}&from={$from}&amount={$amount}");
+            'verify' => true
+        ])->get("http://data.fixer.io/api/latest?access_key={$apikey}&symbols={$to}&base={$from}");
 
         if($response->successful()):
             $result = $response->json();
-            $value  = round($result['result'],3);
-            Setting::updateOrCreate([
-                'name' => 'currency_converter'
-            ],[
-                'value'=> $value
-            ]);
+            if($result['success'] == true):
+                $value  = round($result['rates'][$to],3);
+                Setting::updateOrCreate([
+                    'name' => 'currency_converter'
+                ],[
+                    'value'=> $value
+                ]);
+            endif;
         endif;
         return Command::SUCCESS;
     }
