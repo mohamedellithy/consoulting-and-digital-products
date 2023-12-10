@@ -37,16 +37,18 @@ class ThawaniPayment{
                 [
                     "name"        => TrimLongText($this->order_data->order_items->product->name,35),
                     "quantity"    => 1,
-                    "unit_amount" => $this->order_data->order_total * 1000
+                    "unit_amount" => convert_price_to_Omr($this->order_data->order_total,$currency = false) * 1000
                 ]
             ],
+            "total_amount"=>  convert_price_to_Omr($this->order_data->order_total,$currency = false) * 1000,
             "success_url" => route('payments.success',['order_no' => $this->order_data->order_no]),
             "cancel_url"  => route('single_product',$this->order_data->order_items->product->slug),
             "metadata"    => [
                 "Customer Email" => $this->order_data->customer->email,
-                "order no"      => $this->order_data->order_no
+                "order no"      => $this->order_data->order_no,
+                'Currency info' => formate_price($this->order_data->order_total) .' / ' .convert_price_to_Omr($this->order_data->order_total)
             ],
-            'currency' => get_settings('website_currency')
+            'currency' => "OMR"
         ];
 
         $response  = Http::withOptions([
