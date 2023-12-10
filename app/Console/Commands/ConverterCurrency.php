@@ -35,7 +35,7 @@ class ConverterCurrency extends Command
         $response = Http::withOptions([
             'verify' => false
         ])->withHeaders([
-            'apikey' => 'hUbZSrc2OIHH818soPvCENH7hfn2JZ19'
+            'apikey' => '12d9032148bb3c169a0631e0579b7310'
         ])->get("https://api.apilayer.com/fixer/convert?to={$to}&from={$from}&amount={$amount}");
 
         if($response->successful()):
