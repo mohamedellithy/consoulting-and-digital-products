@@ -21,7 +21,7 @@
                     @include('partials.stars_list')
                     <b>
                         {{ formate_price($product->price) .'\n'. convert_price_to_Omr($product->price) }}
-                    </br>
+                    </b>
                 </div>
                 <div class="frame-buy">
                      <form action="{{ route('buy_now') }}"" method="post">
