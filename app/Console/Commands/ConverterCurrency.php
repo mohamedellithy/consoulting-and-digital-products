@@ -37,6 +37,7 @@ class ConverterCurrency extends Command
         ])->withHeaders([
             'apikey' => 'xQUo5gU5Jaoz8N3s59COpo0MNHVQxsfL'
         ])->get("https://api.apilayer.com/fixer/convert?to={$to}&from={$from}&amount={$amount}");
+
         if($response->successful()):
             $result = $response->json();
             if($result['success'] == true):
