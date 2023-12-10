@@ -37,7 +37,7 @@ class ThawaniPayment{
                 [
                     "name"        => TrimLongText($this->order_data->order_items->product->name,35),
                     "quantity"    => 1,
-                    "unit_amount" => formate_price($this->order_data->order_total) .' / ' .convert_price_to_Omr($this->order_data->order_total)
+                    "unit_amount" => convert_price_to_Omr($this->order_data->order_total,$currency = false) * 1000
                 ]
             ],
             "total_amount"=>  convert_price_to_Omr($this->order_data->order_total,$currency = false) * 1000,
