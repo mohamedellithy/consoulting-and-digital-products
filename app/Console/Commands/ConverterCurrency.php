@@ -47,6 +47,8 @@ class ConverterCurrency extends Command
                 ],[
                     'value'=> $value
                 ]);
+
+                \Artisan::call('cache:clear');
             endif;
         endif;
         return Command::SUCCESS;
