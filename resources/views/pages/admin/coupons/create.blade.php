@@ -73,30 +73,12 @@ $code = Str::random(10);
                     <div class="card mb-4">
                         <div class="card-body">
                             <ul class="list-products">
-                                <li>
-                                    <input type="checkbox" name="products[]" />
-                                    <span>منتج جديد</span>
-                                </li>
-                                <li>
-                                    <input type="checkbox" name="products[]" />
-                                    <span>منتج جديد</span>
-                                </li>
-                                <li>
-                                    <input type="checkbox" name="products[]" />
-                                    <span>منتج جديد</span>
-                                </li>
-                                <li>
-                                    <input type="checkbox" name="products[]" />
-                                    <span>منتج جديد</span>
-                                </li>
-                                <li>
-                                    <input type="checkbox" name="products[]" />
-                                    <span>منتج جديد</span>
-                                </li>
-                                <li>
-                                    <input type="checkbox" name="products[]" />
-                                    <span>منتج جديد</span>
-                                </li>
+                                @foreach($products as $product)
+                                    <li>
+                                        <input type="checkbox" name="products[]" />
+                                        <span>{{ $product->name  }}</span>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -125,7 +107,7 @@ $code = Str::random(10);
     {
         padding: 10px;
         list-style: none;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid white;
     }
 </style>
 @endpush

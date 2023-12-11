@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coupon;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -28,7 +29,10 @@ class CouponController extends Controller
     public function create()
     {
         //
-        return view('pages.admin.coupons.create');
+        $products  = Product::query();
+
+        $products = $products->select('id','name')->get();
+        return view('pages.admin.coupons.create',compact('products'));
     }
 
     /**
