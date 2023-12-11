@@ -63,6 +63,27 @@
             </ul>
         </li>
 
+        <!-- coupons -->
+        <li class="menu-item {{ IsActiveOnlyIf(['admin.coupons.index','admin.coupons.create','admin.coupons.edit']) }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class='menu-icon tf-icons bx bxs-category'></i>
+                <div data-i18n="Layouts">كوبونات الخصم</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.coupons.create']) }}">
+                    <a href="{{ route('admin.coupons.create') }}" class="menu-link">
+                        <div data-i18n="Without menu">اضافة</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ IsActiveOnlyIf(['admin.coupons.index','admin.coupons.edit']) }}">
+                    <a href="{{ route('admin.coupons.index') }}" class="menu-link">
+                        <div data-i18n="Without navbar">عرض</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <!-- orders -->
         <li class="menu-item {{ IsActiveOnlyIf(['admin.orders.index','admin.orders.create','admin.orders.edit','admin.orders.show']) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
