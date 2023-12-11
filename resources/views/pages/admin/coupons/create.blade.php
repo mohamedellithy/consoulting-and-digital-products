@@ -41,41 +41,6 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="basic-default-company">قيمة الخصم</label>
-                                <input id="basic-default-message" class="form-control" placeholder="" name='value' value="{{ old('value') }}" required>
-                                @error('value')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-default-fullname">كود الكوبون</label>
-                                <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
-                                    name="code" value="{{ old('code') }}" required/>
-                                @error('code')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-default-company">تاريخ بدأ الخصم</label>
-                                <input type="date" id="basic-default-message" class="form-control" placeholder="" name='from' value="{{ old('from') }}" required>
-                                @error('from')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-default-company">تاريخ نهاية الخصم</label>
-                                <input type="date" id="basic-default-message" class="form-control" placeholder="" name='to' value="{{ old('to') }}" required>
-                                @error('to')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
                                 <label class="form-label" for="basic-default-company">عدد مرات استخدام الكود</label>
                                 <input type="number" id="basic-default-message" class="form-control" placeholder="" name='count_used' value="{{ old('to') }}" required>
                                 @error('count_used')
@@ -99,6 +64,13 @@
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            
                         </div>
                     </div>
                 </div>
