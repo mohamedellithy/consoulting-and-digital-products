@@ -72,6 +72,17 @@ $code = Str::random(10);
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body">
+                            <h4>تحديد المنتجات</h4>
+                            <ul>
+                                <li>
+                                    <input type="radio" value="all" name="type_choices" />
+                                    <span>كل المنتجات</span>
+                                </li>
+                                <li>
+                                    <input type="radio" value="some" name="type_choices" />
+                                    <span>تحديد بعض المنتجات</span>
+                                </li>
+                            </ul>
                             <ul class="list-products">
                                 @foreach($products as $product)
                                     <li>
