@@ -1,6 +1,8 @@
+@php
+use Illuminate\Support\Str;
+$code = Str::random(10);
+@endphp
 @extends('layouts.master')
-
-
 @section('content')
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -21,7 +23,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-fullname">كود الكوبون</label>
                                 <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
-                                    name="code" value="{{ old('code') }}" required/>
+                                    name="code" value="{{ old('code') ?: $code }}" required/>
                                 @error('code')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
