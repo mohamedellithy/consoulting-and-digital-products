@@ -76,6 +76,23 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label class="form-label" for="basic-default-company">عدد مرات استخدام الكود</label>
+                                <input type="number" id="basic-default-message" class="form-control" placeholder="" name='count_used' value="{{ old('to') }}" required>
+                                @error('count_used')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-company">نوع الخصم</label>
+                                <select name="discount_type" class="form-control">
+                                    <option value="value">قيمة</option>
+                                    <option value="percent">النسبة</option>
+                                </select>
+                                @error('discount_type')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label" for="basic-default-company">قيمة الخصم</label>
                                 <input id="basic-default-message" class="form-control" placeholder="" name='value' value="{{ old('value') }}" required>
                                 @error('value')
