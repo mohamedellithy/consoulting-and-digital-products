@@ -72,7 +72,32 @@ $code = Str::random(10);
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            
+                            <ul class="list-products">
+                                <li>
+                                    <input type="checkbox" name="products[]" />
+                                    <span>منتج جديد</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="products[]" />
+                                    <span>منتج جديد</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="products[]" />
+                                    <span>منتج جديد</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="products[]" />
+                                    <span>منتج جديد</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="products[]" />
+                                    <span>منتج جديد</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" name="products[]" />
+                                    <span>منتج جديد</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
