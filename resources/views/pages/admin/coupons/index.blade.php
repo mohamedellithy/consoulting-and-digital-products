@@ -52,21 +52,44 @@ $rows   = request()->query('rows')   ?: 10;
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>الصورة</th>
-                            <th>الاسم</th>
-                            <th>الوصف</th>
-                            <th>السعر</th>
-                            <th>الحالة</th>
+                            <th>
+                                كود الخصم
+                            </th>
+                            <th>
+                                تاريخ البدء 
+                            </th>
+                            <th>
+                                تاريخ الانتهاء
+                            </th>
+                            <th>
+                                نوع الخصم
+                            </th>
+                            <th>
+                                قيمة الخصم
+                            </th>
+                            <th>
+                                حالة الكوبون
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0 alldata">
-                        
+                        @foreach($coupons as $coupon)
+                            <tr>
+                                <td>{{ $coupon->code }}</td>
+                                <td>{{ $coupon->from }}</td>
+                                <td>{{ $coupon->to }}</td>
+                                <td>{{ $coupon->discount_type }}</td>
+                                <td>{{ $coupon->value }}</td>
+                                <td>{{ $coupon->status }}</td>
+                                <td>{{ $coupon->created_at }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <br/>
                 <div class="d-flex flex-row justify-content-center">
-                    {{-- {{ $products->links() }} --}}
+                    {{ $coupons->links() }}
                 </div>
             </div>
         </div>
