@@ -114,4 +114,12 @@ $code = Str::random(10);
         });
     });
 </script>
+<style>
+    .list-products{
+        padding: 24px;
+        background-color: #eee;
+        overflow-y: auto;
+        height: 500px;
+    }
+</style>
 @endpush
