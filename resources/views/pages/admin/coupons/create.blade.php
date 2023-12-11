@@ -112,7 +112,7 @@ $code = Str::random(10);
         padding: 24px;
         background-color: #eee;
         overflow-y: auto;
-        height: 500px;
+        height: 300px;
     }
     .list-products li
     {
