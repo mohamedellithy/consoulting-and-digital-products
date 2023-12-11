@@ -16,7 +16,7 @@ class CouponController extends Controller
     {
         //
         $coupons = Coupon::query();
-        $coupons->paginate(10);
+        $coupons = $coupons->paginate(10);
         return view('pages.admin.coupons.index', compact('coupons'));
     }
 
