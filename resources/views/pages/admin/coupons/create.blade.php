@@ -121,5 +121,11 @@ $code = Str::random(10);
         overflow-y: auto;
         height: 500px;
     }
+    .list-products li
+    {
+        padding: 10px;
+        list-style: none;
+        border-bottom: 1px solid #eee;
+    }
 </style>
 @endpush
