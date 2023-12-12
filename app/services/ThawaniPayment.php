@@ -59,6 +59,8 @@ class ThawaniPayment{
 
         $this->result = $response->json();
 
+        dd($response->json());
+
         if($response->successful()):
 
             $this->order_data->payment()->updateOrCreate([
@@ -92,7 +94,7 @@ class ThawaniPayment{
             'thawani-api-key' => $this->api_key,
         ])->get("https://uatcheckout.thawani.om/api/v1/checkout/invoice/".$order->payment->transaction_id);
 
-        dd($response->json());
+        
 
         if($response->successful()):
             $invoice = $response->json();
