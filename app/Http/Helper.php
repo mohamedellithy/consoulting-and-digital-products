@@ -63,6 +63,19 @@ if(!function_exists('formate_price')) {
     }
 }
 
+function get_price_after_discount($product){
+    if(($product->discount == null) || ($product->discount == 0)):
+        return round($product->price,3);
+    else:
+        if($product->discount_type == 'value'):
+            $discount = $product->price - $product->value;
+        else:
+            $discount = $product->price - ($product->price * $product->value) / 100;
+        endif;
+        return round($discount,3);
+    endif;
+}
+
 if(!function_exists('convert_price_to_Omr')) {
     function convert_price_to_Omr($price,$currency = true)
     {
