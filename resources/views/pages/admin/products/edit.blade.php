@@ -58,7 +58,7 @@
                                 <label class="form-label" for="basic-default-company">نوع الخصم</label>
                                 <select class="form-control" name="discount_type">
                                     <option value="value" @if($product->discount_type == 'value') selected @endif>بالقيمة</option>
-                                    <option value="percent" @if($product->discount_type == 'percent') selected @endif>بالقيمة</option>
+                                    <option value="percent" @if($product->discount_type == 'percent') selected @endif>بالنسبة</option>
                                 </select>
                                 @error('discount_type')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>

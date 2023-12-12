@@ -58,7 +58,7 @@
                                 <label class="form-label" for="basic-default-company">نوع الخصم</label>
                                 <select class="form-control" name="discount_type">
                                     <option value="value">بالقيمة</option>
-                                    <option value="percent">بالقيمة</option>
+                                    <option value="percent">بالنسبة</option>
                                 </select>
                                 @error('discount_type')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
