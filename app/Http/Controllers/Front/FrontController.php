@@ -89,7 +89,7 @@ class FrontController extends Controller
         $coupon = check_coupon_exists($product,$request->input('coupon_code'));
         $result = null;
         if($coupon):
-            $result  = apply_coupon_code($coupon,$product->price);
+            $result  = apply_coupon_code($coupon,get_price_after_discount($product));
         endif;
         return response()->json([
             'product_id' =>  $request->input('product_id'),
@@ -228,14 +228,14 @@ class FrontController extends Controller
             if($request->has('coupon_code')):
                 $coupon = check_coupon_exists($product,$request->input('coupon_code'));
                 if($coupon):
-                    $coupon_amounts  = apply_coupon_code($coupon,$product->price);
+                    $coupon_amounts  = apply_coupon_code($coupon,get_price_after_discount($product));
                 endif;
             endif;
 
             $order   = Order::Create([
                 'order_no'     => Str::random(5).auth()->user()->id,
                 'customer_id'  => auth()->user()->id,
-                'order_total'  => ($coupon_amounts != null ? $coupon_amounts['rest_amount'] : $product->price) * $request->input('qty'),
+                'order_total'  => ($coupon_amounts != null ? $coupon_amounts['rest_amount'] : get_price_after_discount($product)) * $request->input('qty'),
                 'order_status' => 'pending',
                 'coupon_id'    => $coupon ? $coupon->id : null
             ]);
