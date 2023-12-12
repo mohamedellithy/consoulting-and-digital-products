@@ -71,7 +71,7 @@ $rows   = request()->query('rows')   ?: 10;
                                 <td class="">
                                     {{ TrimLongText($product->description) }}
                                 </td>
-                                <td>
+                                <td style="direction: ltr;width:25%">
                                     {!! html_price($product) !!}
                                 </td>
 
