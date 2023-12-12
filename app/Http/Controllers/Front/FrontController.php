@@ -6,6 +6,7 @@ use Mail;
 use App\Models\Page;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Coupon;
 use App\Models\Review;
 use App\Models\Product;
 use App\Models\Service;
@@ -71,6 +72,7 @@ class FrontController extends Controller
             'product_id' => $product->id
         ]);
 
+        $coupon = check_coupon_exists($product);
         $reviews->whereNull('replay_on');
 
         $reviews->where('status','active');
@@ -79,7 +81,21 @@ class FrontController extends Controller
             $reviews->where('customer_id','!=',auth()->user()->id);
         endif;
         $reviews = $reviews->orderBy('created_at','desc')->paginate(5);
-        return view('pages.front.shop.product-details',compact('product','reviews'));
+        return view('pages.front.shop.product-details',compact('product','reviews','coupon'));
+    }
+
+    public function ajax_apply_coupon(Request $request){
+        $product = Product::where('id',$request->input('product_id'))->first();
+        $coupon = check_coupon_exists($product,$request->input('coupon_code'));
+        $result = null;
+        if($coupon):
+            $result  = apply_coupon_code($coupon,$product->price);
+        endif;
+        return response()->json([
+            'product_id' =>  $request->input('product_id'),
+            'code'       =>  $request->input('coupon_code'),
+            'result'     =>  $result
+        ]);
     }
 
     public function ajax_paginate_review_lists(){
@@ -207,11 +223,21 @@ class FrontController extends Controller
         // here add payment
         if($request->has('product_id')):
             $product = Product::find($request->input('product_id'));
+
+            $coupon_amounts = null;
+            if($request->has('coupon_code')):
+                $coupon = check_coupon_exists($product,$request->input('coupon_code'));
+                if($coupon):
+                    $coupon_amounts  = apply_coupon_code($coupon,$product->price);
+                endif;
+            endif;
+
             $order   = Order::Create([
                 'order_no'     => Str::random(5).auth()->user()->id,
                 'customer_id'  => auth()->user()->id,
-                'order_total'  => $product->price * $request->input('qty'),
-                'order_status' => 'pending'
+                'order_total'  => ($coupon_amounts != null ? $coupon_amounts['rest_amount'] : $product->price) * $request->input('qty'),
+                'order_status' => 'pending',
+                'coupon_id'    => $coupon->id
             ]);
 
             $order->order_items()->create([
@@ -344,7 +370,7 @@ class FrontController extends Controller
         else:
             $results = null;
         endif;
-        
+
         return response()->json([
             'data'    => request('search'),
             'results' => $results,
@@ -367,7 +393,7 @@ class FrontController extends Controller
         else:
             $results = null;
         endif;
-        
+
         return view('pages.front.search',compact('results','search'));
     }
 }

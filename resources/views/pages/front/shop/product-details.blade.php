@@ -58,8 +58,18 @@
                         </span>
                     </p>
                     <br/>
+                    @if($coupon)
+                        <form class="coupon-form-apply" action="#" method="post">
+                            <div class="coupon-form">
+                                <p>هل تمتلك كوبون خصم ؟ يمكن تطبيقه هنا</p>
+                                <input class="form-control coupon_code" placeholder="الصق كود الخصم هنا" name="coupon_code" required/>
+                                <button type="submit" class="btn btn-apply-code">تطبيق</button>
+                            </div>
+                        </form>
+                    @endif
                     <form action="{{ route('buy_now') }}"" method="post">
                         @csrf
+                        <input type="hidden" name="coupon_code" class="coupon_code_buy" />
                         <input type="hidden" name="product_id" value="{{ $product->id }}" />
                         <input type="hidden" name="qty"        value="1" />
                         <button type="submit" class="btns btns-secondary-color">
@@ -192,8 +202,41 @@
 <!-- team-details-area-end -->
 @endsection
 
+@push('style')
+<style>
+    .coupon-form{
+        display: flex !important;
+        background-color: #ff6f0042;
+        padding: 12px;
+        border-radius: 13px;
+        margin: 15px 0px;
+        border: 1px solid #eee;
+        box-shadow: 0px 2px 14px 8px #eee;
+        align-items: center;
+    }
+    .coupon-form .coupon_code{
+        border-radius: 52px;
+        background-color: #f2f2f2d6;
+        height: 45px;
+    }
+    .coupon-form .btn-apply-code{
+        background-color: #000000;
+        color: white;
+        padding: 0px 14px;
+        margin: 5px;
+        height: 40px;
+    }
+</style>
+@endpush
+
 @push('scripts')
 <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     jQuery(document).ready(function(){
         jQuery('.rating.give-rate i').on('mouseover',function(){
             jQuery(this).toggleClass('active');
@@ -206,6 +249,41 @@
         jQuery('#toggleEditReview').on('click',function(){
             jQuery('.review-card-section.my-review').slideUp(100);
             jQuery('#form-review').slideDown(100);
+        });
+    });
+
+    jQuery('.coupon-form-apply').submit(function(e){
+        e.preventDefault();
+        let coupon_code = jQuery('.coupon_code').val();
+        jQuery('.btn-apply-code').attr('disabled',true);
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('ajax-apply-coupon') }}",
+            data: {
+                product_id:"{{ $product->id }}",
+                coupon_code: coupon_code
+            },
+            success: function(data) {
+                console.log(data);
+                jQuery('.btn-apply-code').attr('disabled',false);
+                jQuery('.btn-apply-code').hide(100);
+                if(data.result !=null){
+                    jQuery('.coupon_code_buy').val(coupon_code);
+                    jQuery('.coupon_code').attr('disabled',true);
+                    jQuery('.coupon-form').append('<i class="fas fa-check-circle success-message" style="padding:10px;color:green;font-size: 18px;"></i>');
+                    jQuery('.price-value').html(`
+                        <b style="text-decoration:line-through gray;padding: 14px;color:#00194c">${data.result.USD_amount}</b><b>${data.result.USD_rest_amount}</b> <br/>
+                        <b style="text-decoration:line-through gray;padding: 14px;color:#00194c">${data.result.OMR_amount}</b><b>${data.result.OMR_rest_amount}</b>
+                    `);
+                } else {
+                    jQuery('.coupon-form').append('<i class="fas fa-times error-message" style="padding:10px;color:red;font-size: 18px;"></i>');
+                    setTimeout(() => {
+                        jQuery('.error-message').hide(100);
+                        jQuery('.btn-apply-code').fadeIn(1000);
+                    }, 3000);
+                }
+
+            }
         });
     });
 </script>

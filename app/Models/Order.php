@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['order_status','order_no','order_total','read','customer_id'];
+    protected $fillable = ['order_status','order_no','order_total','read','customer_id','coupon_id'];
 
     public function customer(){
         return $this->belongsTo(User::class,'customer_id','id');
@@ -21,5 +21,9 @@ class Order extends Model
 
     public function payment(){
         return $this->hasOne(Payment::class,'order_id','id');
+    }
+
+    public function coupon(){
+        return $this->belongsTo(Coupon::class,'coupon_id','id');
     }
 }

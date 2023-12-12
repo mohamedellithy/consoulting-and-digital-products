@@ -50,6 +50,10 @@
                                         <label class="form-label" for="basic-default-fullname">تاريخ الطلبية</label>
                                         <h6 style="line-height: 1.3em;">{{ $order->created_at }}</h6>
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basic-default-fullname">كود الخصم</label>
+                                        <h6 style="line-height: 1.3em;">{{ $order->coupon->code }}</h6>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">

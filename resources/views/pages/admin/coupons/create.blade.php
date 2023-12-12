@@ -53,9 +53,19 @@ $code = Str::random(10);
                                 <label class="form-label" for="basic-default-company">نوع الخصم</label>
                                 <select name="discount_type" class="form-control">
                                     <option value="value">قيمة</option>
-                                    <option value="percent">النسبة</option>
+                                    <option value="precent">النسبة</option>
                                 </select>
                                 @error('discount_type')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-company">حالة الكود</label>
+                                <select name="status" class="form-control">
+                                    <option value="active">نشط</option>
+                                    <option value="un-active">غير نشط</option>
+                                </select>
+                                @error('status')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -73,20 +83,20 @@ $code = Str::random(10);
                     <div class="card mb-4">
                         <div class="card-body">
                             <h4>تحديد المنتجات</h4>
-                            <ul>
+                            <ul class="lists-types">
                                 <li>
-                                    <input type="radio" value="all" name="type_choices" />
+                                    <input type="radio" class="type_choices" value="all" name="type_choices" checked/>
                                     <span>كل المنتجات</span>
                                 </li>
                                 <li>
-                                    <input type="radio" value="some" name="type_choices" />
+                                    <input type="radio" class="type_choices" value="some" name="type_choices" />
                                     <span>تحديد بعض المنتجات</span>
                                 </li>
                             </ul>
-                            <ul class="list-products">
+                            <ul class="list-products" style="display: none">
                                 @foreach($products as $product)
                                     <li>
-                                        <input type="checkbox" name="products[]" />
+                                        <input type="checkbox" name="products[]" value="{{ $product->id }}" />
                                         <span>{{ $product->name  }}</span>
                                     </li>
                                 @endforeach
@@ -102,11 +112,18 @@ $code = Str::random(10);
 @push('script')
 <script>
     jQuery('document').ready(function(){
-        jQuery('.download-type').on('change',function(){
-           jQuery('.download-files').attr('data-type-media',jQuery(this).val());
+        jQuery('.type_choices').click(function(){
+            let type = jQuery(this).val();
+            if(type == 'some'){
+                jQuery('.list-products').show();
+            } else {
+                jQuery('.list-products').hide();
+            }
         });
     });
 </script>
+@endpush
+@push('style')
 <style>
     .list-products{
         padding: 24px;
@@ -119,6 +136,14 @@ $code = Str::random(10);
         padding: 10px;
         list-style: none;
         border-bottom: 1px solid white;
+    }
+    .lists-types{
+        list-style:none;
+        padding:0px;
+    }
+    .lists-types li
+    {
+        padding: 10px 0px;
     }
 </style>
 @endpush

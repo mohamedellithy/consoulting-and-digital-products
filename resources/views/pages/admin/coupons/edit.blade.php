@@ -1,16 +1,19 @@
+@php
+use Illuminate\Support\Str;
+$code = Str::random(10);
+@endphp
 @extends('layouts.master')
-
 @section('content')
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3" style="padding-bottom: 0rem !important;">اضافة منتج جديد</h4>
+        <h4 class="fw-bold py-3" style="padding-bottom: 0rem !important;">تعديل كوبون</h4>
         <!-- Basic Layout -->
-        <form action="{{ route('admin.products.update',$product->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.coupons.update',$coupon->id) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="row">
                 <div class="col-xl" style="padding: 0px 10px 10px;text-align: left;">
-                    <button type="submit" class="btn btn-success btn-sm">تعديل المنتج</button>
+                    <button type="submit" class="btn btn-success btn-sm">تعديل الكوبون</button>
                 </div>
                 <br/>
             </div>
@@ -19,140 +22,58 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="mb-3">
-                                <label class="form-label" for="basic-default-fullname">اسم المنتج</label>
-                                <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
-                                    name="name" value="{{ $product->name }}" required/>
-                                @error('name')
+                                <label class="form-label" for="basic-default-fullname">كود الكوبون</label>
+                                <input type="text" class="form-control" id="basic-default-fullname"
+                                    name="code" value="{{ $coupon->code ?: old('code')  }}" required/>
+                                @error('code')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="basic-default-company "> نبذة عن المنتج </label>
-                                <textarea id="basic-default-message" class="form-control"  rows="3" placeholder="" name='short_description' required>{{ $product->short_description }}</textarea>
-                                @error('short_description')
+                                <label class="form-label" for="basic-default-company">تاريخ بدأ الخصم</label>
+                                <input type="date" id="basic-default-message" class="form-control" name='from' value="{{ $coupon->from ?: old('from') }}" required>
+                                @error('from')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="basic-default-company"> وصف المنتج</label>
-                                <textarea id="basic-default-message" class="form-control summernote"  rows="10" placeholder="" name='description' required>{{ $product->description }}</textarea>
-                                @error('description')
+                                <label class="form-label" for="basic-default-company">تاريخ نهاية الخصم</label>
+                                <input type="date" id="basic-default-message" class="form-control" name='to' value="{{ $coupon->to ?: old('to') }}" required>
+                                @error('to')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="basic-default-company">سعر المنتج</label>
-                                <input id="basic-default-message" class="form-control" placeholder="" name='price' value="{{ $product->price }}" required>
-                                @error('price')
+                                <label class="form-label" for="basic-default-company">عدد مرات استخدام الكود</label>
+                                <input type="number" id="basic-default-message" class="form-control" name='count_used' value="{{ $coupon->count_used ?: old('count_used') }}" required>
+                                @error('count_used')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="basic-default-company"> رابط المنتج</label>
-                                <input id="basic-default-message" class="form-control" placeholder="" name='slug' value="{{ $product->slug }}" required>
-                                @error('slug')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <div class="mb-3">
-                                <h4 class="">التحميلات </h4>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-default-fullname">نوع الملف</label>
-                                <select type="url" class="form-control download-type" id="basic-default-fullname" placeholder=""
-                                    name="download_type" value="{{ old('download_type') }}" required>
-                                    <option value="pdf"   @isset($product->downloads) @if($product->downloads->download_type == 'pdf') selected @endif   @endisset>Pdf</option>
-                                    <option value="image" @isset($product->downloads) @if($product->downloads->download_type == 'image') selected @endif @endisset>Image</option>
-                                    <option value="video" @isset($product->downloads) @if($product->downloads->download_type == 'video') selected @endif @endisset>Video</option>
-                                    <option value="audio" @isset($product->downloads) @if($product->downloads->download_type == 'audio') selected @endif @endisset>Audio</option>
-                                    <option value="zip"   @isset($product->downloads) @if($product->downloads->download_type == 'zip') selected @endif   @endisset>Zip</option>
-                                    <option value="vnd.openxmlformats-officedocument.spreadsheetml.sheet"   @isset($product->downloads) @if($product->downloads->download_type == 'vnd.openxmlformats-officedocument.spreadsheetml.sheet') selected @endif   @endisset>xlsx</option>
-
+                                <label class="form-label" for="basic-default-company">نوع الخصم</label>
+                                <select name="discount_type" class="form-control">
+                                    <option value="value"    @if($coupon->discount_type == 'value') selected @endif>قيمة</option>
+                                    <option value="precent"  @if($coupon->discount_type == 'precent') selected @endif>النسبة</option>
                                 </select>
-                                @error('download_type')
+                                @error('discount_type')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <div class="container-uploader">
-                                    <button type="button" class="btn btn-info btn-sm download-files upload-media" data-type-media="pdf" data-multiple-media="true">
-                                        <i class='bx bx-upload' ></i>
-                                        اضافة ملفات قابلة للتحميل
-                                        <input type="hidden" name="download_attachments_id" @isset($product->downloads) value="{{ $product->downloads->download_attachments_id  }}" @endisset
-                                            class="form-control dob-picker uploaded-media-ids"/>
-                                    </button>
-                                    @error('download_attachments_id')
-                                        <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                    @enderror
-                                    <div class="preview-thumbs">
-                                        <br/>
-                                        <ul class="list-preview-thumbs">
-                                            @isset($product->downloads)
-                                                @if($product->downloads->download_attachments_id)
-                                                    @foreach(GetAttachments($product->downloads->download_attachments_id) as $attachment)
-                                                        <li class="preview-media-inner" title="{{ $attachment->name ?: fetchImageInnerDetails($attachment) }}">
-                                                            @if(formateMediaType($attachment->type)[0] == 'video')
-                                                                <video style="width:100%;height:100%" controls>
-                                                                    <source src="{{ upload_assets($attachment) }}" type="{{ $attachment->type }}"></source>
-                                                                </video>
-                                                            @elseif(formateMediaType($attachment->type)[1] =='pdf')
-                                                                <i style="font-size: 120px;" class='bx bxs-file-pdf'></i>
-                                                            @elseif(formateMediaType($attachment->type)[0] == 'audio')
-                                                                <audio style="width:100%;height:100%" controls>
-                                                                    <source src="{{ upload_assets($attachment) }}" type="{{ $attachment->type }}"></source>
-                                                                </audio>
-                                                            @elseif(formateMediaType($attachment->type)[0] =='image')
-                                                                <img src="{{ upload_assets($attachment) }}"/>
-                                                            @else
-                                                                <i style="font-size: 120px;" class='bx bxs-file-blank'></i>
-                                                            @endif
-                                                            <i class='bx bxs-message-square-x remove' media-id="{{ $attachment->id }}"></i>
-                                                        </li>
-                                                    @endforeach
-                                                @endif
-                                            @endisset
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-default-fullname">حالة الملف</label>
-                                <select type="url" class="form-control" id="basic-default-fullname" placeholder=""
-                                    name="download_status" value="{{ old('download_status') }}" required>
-                                    <option value="download"         @isset($product->downloads) @if($product->downloads->download_status == 'download')  selected  @endif @endisset>تنزيل الملف او الفيديو</option>
-                                    <option value="without_download" @isset($product->downloads) @if($product->downloads->download_status == 'without_download')  selected @endif @endisset>مشاهدة بدون تنزيل</option>
+                                <label class="form-label" for="basic-default-company">حالة الكود</label>
+                                <select name="status" class="form-control">
+                                    <option value="active"    @if($coupon->status == 'active') selected @endif>نشط</option>
+                                    <option value="un-active"  @if($coupon->status == 'un-active') selected @endif>غير نشط</option>
                                 </select>
-                                @error('download_status')
+                                @error('status')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="basic-default-fullname">رابط ملف التحميل ان وجدت</label>
-                                <input type="url" class="form-control" id="basic-default-fullname" placeholder=""
-                                    name="download_link"  @isset($product->downloads) value="{{ $product->downloads->download_link ?: old('download_link') }}" @endisset>
-                                @error('download_link')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-default-fullname">اسم الملف التحميلات</label>
-                                <input type="text" class="form-control" id="basic-default-fullname" placeholder=""
-                                    name="download_name" @isset($product->downloads) value="{{ $product->downloads->download_name ?: old('download_name') }}" @endisset required/>
-                                @error('download_name')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-default-fullname">وصف ملف التحميلات</label>
-                                <textarea type="text" class="form-control summernote" id="basic-default-fullname" placeholder=""
-                                    name="download_description" required>{{  $product->downloads ? $product->downloads->download_description : old('download_description') }}</textarea>
-                                @error('download_description')
+                                <label class="form-label" for="basic-default-company">قيمة الخصم</label>
+                                <input id="basic-default-message" class="form-control" name='value' value="{{ $coupon->value ?: old('value') }}" required>
+                                @error('value')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -162,93 +83,26 @@
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="mb-3">
-                                <div class="container-uploader">
-                                    <div class="form-check form-switch mb-2">
-                                        <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" value="active" @if($product->status == 'active') checked @endif>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">حالة المنتج</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <div class="container-uploader">
-                                    <button type="button" class="btn btn-outline-warning btn-sm upload-media" data-type-media="image">
-                                        <i class='bx bx-upload' ></i>
-                                        اضافة صورة للمنتج
-                                        <input type="hidden" name="thumbnail_id" value="{{ $product->thumbnail_id }}"
-                                            class="form-control dob-picker uploaded-media-ids" required/>
-                                    </button>
-                                    @error('thumbnail_id')
-                                        <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                    @enderror
-                                    <div class="preview-thumbs">
-                                        <br/>
-                                        <ul class="list-preview-thumbs">
-                                            @if($product->thumbnail_id)
-                                                <li class="preview-media-inner">
-                                                    <img src="{{ upload_assets($product->image_info) }}" />
-                                                    <i class='bx bxs-message-square-x remove' media-id="{{ $product->thumbnail_id }}"></i>
-                                                </li>
-                                            @endif
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <div class="container-uploader">
-                                    <button type="button" class="btn btn-outline-warning btn-sm upload-media" data-type-media="image" data-multiple-media="true">
-                                        <i class='bx bx-upload' ></i>
-                                        اضافة صور أخري  للمنتج
-                                        <input type="hidden" name="attachments_id" value="{{ $product->attachments_id }}"
-                                            class="form-control dob-picker uploaded-media-ids" required/>
-                                    </button>
-                                    @error('attachments_id')
-                                        <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                    @enderror
-                                    <div class="preview-thumbs">
-                                        <br/>
-                                        <ul class="list-preview-thumbs">
-                                            @if($product->attachments_id)
-                                                @foreach(GetAttachments($product->attachments_id) as $attachment)
-                                                    <li class="preview-media-inner">
-                                                        <img src="{{ upload_assets($attachment) }}" />
-                                                        <i class='bx bxs-message-square-x remove' media-id="{{ $attachment->id }}"></i>
-                                                    </li>
-                                                @endforeach
-                                            @endif
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-icon-default-company">عنوان السيو ( meta title )</label>
-                                <input type="text" id="basic-icon-default-company" class="form-control" name="meta_title"
-                                    value="{{ old('meta_title') }}" />
-                                @error('meta_title')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="basic-icon-default-company">وصف السيو ( meta description ) </label>
-                                <textarea type="text" id="basic-icon-default-company" class="form-control"
-                                    name="meta_description">{{ old('meta_description') }}</textarea>
-                                @error('meta_description')
-                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
-                                @enderror
-                            </div>
+                            <h4>تحديد المنتجات</h4>
+                            <ul class="lists-types">
+                                <li>
+                                    <input type="radio" class="type_choices" value="all" name="type_choices" @if($coupon->products == -1) checked @endif/>
+                                    <span>كل المنتجات</span>
+                                </li>
+                                <li>
+                                    <input type="radio" class="type_choices" value="some" name="type_choices" @if($coupon->products != -1) checked @endif/>
+                                    <span>تحديد بعض المنتجات</span>
+                                </li>
+                            </ul>
+                            <ul class="list-products"  @if($coupon->products == -1) style="display: none" @endif>
+                                @php $selected_products = $coupon->product ? $coupon->product->pluck('id')->toArray() : [] @endphp
+                                @foreach($products as $product)
+                                    <li>
+                                        <input type="checkbox" name="products[]" value="{{ $product->id }}" @if(in_array($product->id,$selected_products)) checked @endif/>
+                                        <span>{{ $product->name  }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -257,13 +111,41 @@
     </div>
     <!-- / Content -->
 @endsection
-
 @push('script')
 <script>
     jQuery('document').ready(function(){
-        jQuery('.download-type').on('change',function(){
-           jQuery('.download-files').attr('data-type-media',jQuery(this).val());
+        jQuery('.type_choices').click(function(){
+            let type = jQuery(this).val();
+            if(type == 'some'){
+                jQuery('.list-products').show();
+            } else {
+                jQuery('.list-products').hide();
+            }
         });
     });
 </script>
+@endpush
+@push('style')
+<style>
+    .list-products{
+        padding: 24px;
+        background-color: #eee;
+        overflow-y: auto;
+        height: 400px;
+    }
+    .list-products li
+    {
+        padding: 10px;
+        list-style: none;
+        border-bottom: 1px solid white;
+    }
+    .lists-types{
+        list-style:none;
+        padding:0px;
+    }
+    .lists-types li
+    {
+        padding: 10px 0px;
+    }
+</style>
 @endpush

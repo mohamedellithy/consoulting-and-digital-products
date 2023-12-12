@@ -1,11 +1,12 @@
 <?php
-use App\Models\Setting;
-use App\Models\Image;
 use App\Models\Page;
+use App\Models\Image;
 use App\Models\Order;
+use App\Models\Coupon;
+use App\Models\Setting;
 use App\Models\ApplicationOrder;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 if(!function_exists('upload_assets')){
     function upload_assets($image_selected,$is_id = false,$default = 'default.jpg'){
         if($is_id == true):
@@ -73,6 +74,66 @@ if(!function_exists('convert_price_to_Omr')) {
     }
 }
 
+
+if(!function_exists('apply_coupon_code')){
+    function apply_coupon_code($coupon,$amount = 0){
+        $rest_amount = 0;
+        if($coupon->discount_type == 'precent'):
+            $rest_amount = $amount - ($amount  * $coupon->value) / 100;
+        else:
+            $rest_amount = $amount - $coupon->value;
+        endif;
+
+        return [
+            'amount'           => $amount,
+            'rest_amount'      => $rest_amount,
+            'USD_amount'       => formate_price($amount),
+            'USD_rest_amount'  => formate_price($rest_amount),
+            'OMR_amount'       => convert_price_to_Omr($amount),
+            'OMR_rest_amount'  => convert_price_to_Omr($rest_amount),
+        ];
+    }
+}
+
+if(!function_exists('check_coupon_exists')){
+    function check_coupon_exists($product,$code = null){
+        $coupon = Coupon::query();
+        $coupon = $coupon->when(auth()->user()->id != null,function($query){
+            return $query->whereDoesntHave('order',function($q){
+                return $q->where('orders.customer_id',auth()->user()->id);
+            });
+        });
+
+        $coupon = $coupon->when($code != null,function($query) use($code){
+            return $query->where('code',$code);
+        });
+        $coupon = $coupon->whereDate('from','<=',date('Y-m-d'));
+        $coupon = $coupon->whereDate('to','>=',date('Y-m-d'));
+        $coupon = $coupon->where('status','=','active');
+        $coupon = $coupon->whereHas('product',function($query) use($product){
+            return $query->where('product_id',$product->id);
+        });
+        $coupon = $coupon->where('products','!=','-1')->first();
+
+        if($coupon == null){
+            $coupon = Coupon::query();
+            $coupon = $coupon->when(auth()->user()->id != null,function($query){
+                return $query->whereDoesntHave('order',function($q){
+                    return $q->where('orders.customer_id',auth()->user()->id);
+                });
+            });
+            $coupon = $coupon->when($code != null,function($query) use($code){
+                return $query->where('code',$code);
+            });
+            $coupon = $coupon->whereDate('from','<=',date('Y-m-d'));
+            $coupon = $coupon->whereDate('to','>=',date('Y-m-d'));
+            $coupon = $coupon->where('status','=','active');
+            $coupon = $coupon->where('products','=','-1')->first();
+        }
+
+        return $coupon;
+    }
+}
 
 if(!function_exists('filter_orders')) {
     function filter_orders($orders)

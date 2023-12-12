@@ -44,4 +44,8 @@ class Product extends Model
     {
         return $this->hasMany(Review::class,'product_id','id')->whereNull('replay_on');
     }
+
+    public function coupon(){
+        return $this->belongsToMany(Coupon::class,'coupon_products','product_id','coupon_id');
+    }
 }

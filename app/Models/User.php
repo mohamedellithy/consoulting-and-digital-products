@@ -91,8 +91,4 @@ class User extends Authenticatable
     public function getFullPhoneAttribute() {
         return $this->phone_code.$this->phone ?: 'غير متوفر';
     }
-
-    public function coupon(){
-        return $this->belongsToMany(Coupon::class,'users_coupons','user_id','coupon_id')->withPivot('product_id','order_id');
-    }
 }

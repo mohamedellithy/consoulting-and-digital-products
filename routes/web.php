@@ -98,6 +98,8 @@ Route::post('send-news-letter',[FrontController::class,'post_news_letter'])->nam
 Route::get('search-ajax',[FrontController::class,'search_ajax'])->name('search-ajax');
 Route::get('search',[FrontController::class,'search'])->name('search');
 
+Route::post('ajax-apply-coupon',[FrontController::class,'ajax_apply_coupon'])->name('ajax-apply-coupon');
+
 Route::get('generate/sitemap',[FrontController::class,'generate_sitemap']);
 
 Route::get('/{slug}',[FrontController::class,'custom_page']);

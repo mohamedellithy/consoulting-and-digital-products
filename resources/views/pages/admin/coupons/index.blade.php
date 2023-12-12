@@ -22,17 +22,8 @@ $rows   = request()->query('rows')   ?: 10;
                     <div class="nav-item d-flex align-items-center m-2" >
                         <select name="status" onchange="document.getElementById('filter-data').submit()" id="largeSelect" class="form-select form-select-md">
                             <option>حالة الكوبون</option>
-                            <option value="active" @isset($status) @if($status == 'active') selected @endif @endisset>مفعل</option>
-                            <option value="notactive" @isset($status) @if($status == 'notactive') selected @endif @endisset>غير مفعل</option>
-                        </select>
-                    </div>
-                    <div class="nav-item d-flex align-items-center m-2" >
-                        <select name="filter" id="largeSelect"  onchange="document.getElementById('filter-data').submit()" class="form-select form-select-md">
-                            <option>فلتر الكوبون</option>
-                            <option value="high-price" @isset($filter) @if($filter == 'high-price') selected @endif @endisset>الاعلي سعرا</option>
-                            <option value="low-price"  @isset($filter) @if($filter == 'low-price') selected @endif @endisset>الاقل سعرا</option>
-                            {{-- <option value="more-sale"  @isset($filter) @if($filter == 'more-sale') selected @endif @endisset>الاكثر طلبا</option>
-                            <option value="less-sale"  @isset($filter) @if($filter == 'less-sale') selected @endif @endisset>الاقل طلبا</option> --}}
+                            <option value="active" @isset($status) @if($status == 'active') selected @endif @endisset>نشط</option>
+                            <option value="notactive" @isset($status) @if($status == 'notactive') selected @endif @endisset>غير نشط</option>
                         </select>
                     </div>
                 </div>
@@ -79,10 +70,29 @@ $rows   = request()->query('rows')   ?: 10;
                                 <td>{{ $coupon->code }}</td>
                                 <td>{{ $coupon->from }}</td>
                                 <td>{{ $coupon->to }}</td>
-                                <td>{{ $coupon->discount_type }}</td>
+                                <td>{{ $coupon->discount_type == 'value' ? 'قيمة' : 'النسبة' }}</td>
                                 <td>{{ $coupon->value }}</td>
-                                <td>{{ $coupon->status }}</td>
+                                <td>{{ $coupon->status == 'active' ? 'نشطة' : 'غير نشطة' }}</td>
                                 <td>{{ $coupon->created_at }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                        <div class="dropdown-menu">
+                                            <form action="{{ route('admin.coupons.destroy', $coupon->id) }}" method="POST">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.coupons.edit', $coupon->id) }}"><i
+                                                        class="bx bx-edit-alt me-2"></i>
+                                                    تعديل</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item">
+                                                    <i class="bx bx-trash me-2"></i>حذف
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

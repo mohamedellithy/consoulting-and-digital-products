@@ -21,7 +21,11 @@ class Coupon extends Model
         'count_used'
     ];
 
-    public function user(){
-        return $this->belongsToMany(User::class,'users_coupons','coupon_id','user_id')->withPivot('product_id','order_id');
+    public function order(){
+        return $this->hasOne(Order::class,'coupon_id','id');
+    }
+
+    public function product(){
+        return $this->belongsToMany(Product::class,'coupon_products','coupon_id','product_id');
     }
 }
