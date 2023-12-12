@@ -70,7 +70,7 @@ function get_price_after_discount($product){
         if($product->discount_type == 'value'):
             $discount = $product->price - $product->value;
         else:
-            $discount = $product->price - ($product->price * $product->value) / 100;
+            $discount = $product->price - (($product->price * $product->value) / 100);
         endif;
         return round($discount,3);
     endif;
