@@ -74,7 +74,8 @@ if(!function_exists('get_price_after_discount')) {
             else:
                 $discount = ($product->price - (($product->price * $product->value) / 100)).'c';
             endif;
-            return round($discount,3);
+            return $discount;
+            //return round($discount,3);
         endif;
     }
 }
