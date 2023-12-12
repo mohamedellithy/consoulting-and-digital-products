@@ -168,14 +168,14 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="mb-3">
-                                <label class="form-label" for="basic-default-company">تاريخ بدأ الخصم</label>
+                                <label class="form-label" for="basic-default-company">تاريخ بدأ الدورة</label>
                                 <input type="date" id="basic-default-message" class="form-control" placeholder="" name='from' value="{{ old('from') }}">
                                 @error('from')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="basic-default-company">تاريخ نهاية الخصم</label>
+                                <label class="form-label" for="basic-default-company">تاريخ نهاية الدورة</label>
                                 <input type="date" id="basic-default-message" class="form-control" placeholder="" name='to' value="{{ old('to') }}">
                                 @error('to')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
