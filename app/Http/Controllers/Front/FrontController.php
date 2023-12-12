@@ -237,7 +237,7 @@ class FrontController extends Controller
                 'customer_id'  => auth()->user()->id,
                 'order_total'  => ($coupon_amounts != null ? $coupon_amounts['rest_amount'] : $product->price) * $request->input('qty'),
                 'order_status' => 'pending',
-                'coupon_id'    => $coupon->id
+                'coupon_id'    => $coupon ? $coupon->id : null
             ]);
 
             $order->order_items()->create([
