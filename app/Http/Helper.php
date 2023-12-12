@@ -78,6 +78,17 @@ if(!function_exists('get_price_after_discount')) {
     }
 }
 
+if(!function_exists('html_price')) {
+    function html_price($product){
+        if(get_price_after_discount($product) == $product->price):
+            return formate_price($product->price);
+        else:
+            return "<b style='text-decoration: line-through;padding:10px'>".
+            formate_price($product->price)."</b>".formate_price(get_price_after_discount($product));
+        endif;
+    }
+}
+
 if(!function_exists('convert_price_to_Omr')) {
     function convert_price_to_Omr($price,$currency = true)
     {
