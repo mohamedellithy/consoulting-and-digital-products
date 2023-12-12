@@ -72,7 +72,7 @@ $rows   = request()->query('rows')   ?: 10;
                                     {{ TrimLongText($product->description) }}
                                 </td>
                                 <td>
-                                    {{ html_price($product) }}
+                                    {!! html_price($product) !!}
                                 </td>
 
                                 <td>
