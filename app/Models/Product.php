@@ -20,6 +20,7 @@ class Product extends Model
         'attachments_id',
         'price',
         'discount',
+        'discount_type',
         'meta_title',
         'meta_description'];
 

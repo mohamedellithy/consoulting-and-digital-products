@@ -48,6 +48,23 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label class="form-label" for="basic-default-company">خصم على المنتج</label>
+                                <input id="basic-default-message" class="form-control" placeholder="" name='discount' value="{{ $product->discount }}" required>
+                                @error('discount')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-company">نوع الخصم</label>
+                                <select name="discount_type">
+                                    <option value="value" @if($product->discount_type == 'value') selected @endif>بالقيمة</option>
+                                    <option value="percent" @if($product->discount_type == 'percent') selected @endif>بالقيمة</option>
+                                </select>
+                                @error('discount_type')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label" for="basic-default-company"> رابط المنتج</label>
                                 <input id="basic-default-message" class="form-control" placeholder="" name='slug' value="{{ $product->slug }}" required>
                                 @error('slug')
