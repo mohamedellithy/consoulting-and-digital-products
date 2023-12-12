@@ -14,11 +14,11 @@
                     <div class="form-status-change" style="">
                         <div class="form-group">
                             <select name="order_status" class="form-control" style="height: 50px;">
-                                <option value="pending">Pending</option>
-                                <option value="processing">Processing</option>
-                                <option value="on-hold">on-hold</option>
-                                <option value="cancelled">cancelled</option>
-                                <option value="completed">Complete</option>
+                                <option value="pending" @if($order->order_status == 'pending') selected @endif>Pending</option>
+                                <option value="processing" @if($order->order_status == 'processing') selected @endif>Processing</option>
+                                <option value="on-hold" @if($order->order_status == 'on-hold') selected @endif>on-hold</option>
+                                <option value="cancelled" @if($order->order_status == 'cancelled') selected @endif>cancelled</option>
+                                <option value="completed" @if($order->order_status == 'completed') selected @endif>Complete</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-success btn-sm">تعديل المنتج</button>
