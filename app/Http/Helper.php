@@ -79,9 +79,9 @@ if(!function_exists('apply_coupon_code')){
     function apply_coupon_code($coupon,$amount = 0){
         $rest_amount = 0;
         if($coupon->discount_type == 'precent'):
-            $rest_amount = $amount - ($amount  * $coupon->value) / 100;
+            $rest_amount = round($amount - ($amount  * $coupon->value) / 100,3);
         else:
-            $rest_amount = $amount - $coupon->value;
+            $rest_amount = round($amount - $coupon->value,3);
         endif;
 
         return [
