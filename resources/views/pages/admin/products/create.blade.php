@@ -56,7 +56,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-company">نوع الخصم</label>
-                                <select name="discount_type">
+                                <select class="form-control" name="discount_type">
                                     <option value="value">بالقيمة</option>
                                     <option value="percent">بالقيمة</option>
                                 </select>
