@@ -83,7 +83,7 @@ if(!function_exists('html_price')) {
         if(get_price_after_discount($product) == $product->price):
             return formate_price($product->price);
         else:
-            return "<b style='text-decoration: line-through red;padding:10px'>".
+            return "<b style='text-decoration: line-through red;padding: 0px 10px 0px 0px;'>".
             formate_price($product->price)."</b>".formate_price(get_price_after_discount($product));
         endif;
     }
