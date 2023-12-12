@@ -65,17 +65,17 @@ if(!function_exists('formate_price')) {
 
 if(!function_exists('get_price_after_discount')) {
     function get_price_after_discount($product){
-        return $product->discount;
-        // if(($product->discount == null) || ($product->discount == 0)):
-        //     return round($product->price,3);
-        // else:
-        //     if($product->discount_type == 'value'):
-        //         $discount = $product->price - $product->value;
-        //     else:
-        //         $discount = $product->price - (($product->price * $product->value) / 100);
-        //     endif;
-        //     return round($discount,3);
-        // endif;
+        //return $product->discount;
+        if(($product->discount == null) || ($product->discount == 0)):
+            return round($product->price,3).'b';
+        else:
+            if($product->discount_type == 'value'):
+                $discount = $product->price - $product->value;
+            else:
+                $discount = $product->price - (($product->price * $product->value) / 100);
+            endif;
+            return round($discount,3);
+        endif;
     }
 }
 
