@@ -72,7 +72,7 @@ $rows   = request()->query('rows')   ?: 10;
                                     {{ TrimLongText($product->description) }}
                                 </td>
                                 <td>
-                                    {{ get_price_after_discount($product) }}
+                                    {{ formate_price(get_price_after_discount($product)) }}
                                 </td>
 
                                 <td>

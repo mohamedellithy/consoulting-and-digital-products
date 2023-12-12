@@ -65,17 +65,15 @@ if(!function_exists('formate_price')) {
 
 if(!function_exists('get_price_after_discount')) {
     function get_price_after_discount($product){
-        //return $product->discount;
         if(($product->discount == null) || ($product->discount == 0)):
-            return round($product->price,3).'b';
+            return round($product->price,3);
         else:
             if($product->discount_type == 'value'):
-                $discount = ($product->price - $product->value).'n';
+                $discount = ($product->price - $product->discount);
             else:
-                $discount = ($product->price - (($product->price * $product->value) / 100)).'c';
+                $discount = ($product->price - (($product->price * $product->discount) / 100));
             endif;
-            return $discount;
-            //return round($discount,3);
+            return round($discount,3);
         endif;
     }
 }
