@@ -21,6 +21,8 @@ class Product extends Model
         'price',
         'discount',
         'discount_type',
+        'from',
+        'to',
         'meta_title',
         'meta_description'];
 

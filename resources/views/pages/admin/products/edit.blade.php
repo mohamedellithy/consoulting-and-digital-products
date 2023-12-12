@@ -49,7 +49,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="basic-default-company">خصم على المنتج</label>
-                                <input id="basic-default-message" class="form-control" placeholder="" name='discount' value="{{ $product->discount }}" required>
+                                <input id="basic-default-message" class="form-control" placeholder="" name='discount' value="{{ $product->discount }}">
                                 @error('discount')
                                     <span class="text-danger w-100 fs-6">{{ $message }}</span>
                                 @enderror
@@ -186,6 +186,24 @@
                                         <label class="form-check-label" for="flexSwitchCheckChecked">حالة المنتج</label>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-company">تاريخ بدأ الخصم</label>
+                                <input type="date" id="basic-default-message" class="form-control" placeholder="" name='from' value="{{ $product->from  }}" >
+                                @error('from')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-company">تاريخ نهاية الخصم</label>
+                                <input type="date" id="basic-default-message" class="form-control" placeholder="" name='to' value="{{ $product->to }}">
+                                @error('to')
+                                    <span class="text-danger w-100 fs-6">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>
