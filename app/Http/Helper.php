@@ -98,7 +98,7 @@ if(!function_exists('apply_coupon_code')){
 if(!function_exists('check_coupon_exists')){
     function check_coupon_exists($product,$code = null){
         $coupon = Coupon::query();
-        $coupon = $coupon->when(auth()->user()->id != null,function($query){
+        $coupon = $coupon->when(auth()->user(),function($query){
             return $query->whereDoesntHave('order',function($q){
                 return $q->where('orders.customer_id',auth()->user()->id);
             });
@@ -117,7 +117,7 @@ if(!function_exists('check_coupon_exists')){
 
         if($coupon == null){
             $coupon = Coupon::query();
-            $coupon = $coupon->when(auth()->user()->id != null,function($query){
+            $coupon = $coupon->when(auth()->user(),function($query){
                 return $query->whereDoesntHave('order',function($q){
                     return $q->where('orders.customer_id',auth()->user()->id);
                 });
