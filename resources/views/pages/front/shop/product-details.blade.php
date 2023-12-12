@@ -1,5 +1,5 @@
-@extends('layouts.master_front')
 
+@extends('layouts.master_front')
 @section('title')
 {{ $product->name }}
 @endsection
@@ -34,9 +34,11 @@
                 </div>
             </div>
             <div class="col-lg-7" style="position: relative;">
+                
                 <span class="badge bg-danger price-value" style="direction: ltr;background: linear-gradient(164deg, rgb(162, 2, 63) 11.2%, rgb(231, 62, 68) 53.6%, rgb(255, 129, 79) 91.1%);">
                     {!! html_price($product) !!} <br/> {{ convert_price_to_Omr(get_price_after_discount($product)) }}
                 </span>
+                
                 <div class="team-details-content">
                     <h2 class="title">
                         {{ $product->name }}
@@ -45,6 +47,7 @@
                         منتج رقمي
                     </span>
                         @include('partials.stars_list')
+                        @include('partials.countdown')
                     <br/>
                     <b>نبذة عن المنتج</b>
                     <p>
@@ -67,15 +70,18 @@
                             </div>
                         </form>
                     @endif
-                    <form action="{{ route('buy_now') }}"" method="post">
-                        @csrf
-                        <input type="hidden" name="coupon_code" class="coupon_code_buy" />
-                        <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                        <input type="hidden" name="qty"        value="1" />
-                        <button type="submit" class="btns btns-secondary-color">
-                                شراء الأن
-                        </button>
-                    </form>
+                    @if( ($product->from == null) || ($product->to == null) 
+                    || ( ( strtotime($product->to) >= strtotime(date('Y-m-d h:i:s')) ) && ( strtotime(date('Y-m-d h:i:s')) >= strtotime($product->from)) ) ) 
+                        <form action="{{ route('buy_now') }}"" method="post">
+                            @csrf
+                            <input type="hidden" name="coupon_code" class="coupon_code_buy" />
+                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                            <input type="hidden" name="qty"        value="1" />
+                            <button type="submit" class="btns btns-secondary-color">
+                                    شراء الأن
+                            </button>
+                        </form>
+                    @endif
                     <br/>
                     <br/>
                     <b>تفاصيل المنتج</b>
@@ -225,6 +231,17 @@
         padding: 0px 14px;
         margin: 5px;
         height: 40px;
+    }
+    .countdown-all{
+        border-radius: 40px;
+        padding: 10px 0px;
+        font-weight: bold;
+        color: orange;
+        font-size: 25px;
+    }
+    #countdown{
+        color: black;
+        padding: 33px;
     }
 </style>
 @endpush
