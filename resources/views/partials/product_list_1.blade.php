@@ -20,7 +20,7 @@
                 <div class="bottom-content d-flex">
                     @include('partials.stars_list')
                     <b style="direction: ltr;">
-                        {{ formate_price($product->price) }} <br/> {{ convert_price_to_Omr($product->price) }}
+                        {!! html_price($product) !!} <br/> {{ convert_price_to_Omr(get_price_after_discount($product)) }}
                     </b>
                 </div>
                 <div class="frame-buy">
