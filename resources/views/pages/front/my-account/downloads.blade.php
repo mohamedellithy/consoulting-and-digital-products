@@ -1,7 +1,7 @@
 @extends('layouts.master_front')
 
 @section('title')
- {{ 'تحميلاتى' }}
+ {{ 'منتجاتي' }}
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
                     @include('inc.customer_menu')
                 </div>
                 <div class="content-page">
-                    <h4> تحميلاتى  </h4>
+                    <h4> منتجاتى  </h4>
                     <table class="table">
                         <thead class="table-white">
                             <tr>

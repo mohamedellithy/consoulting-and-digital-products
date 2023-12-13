@@ -15,7 +15,7 @@
                 </div>
                 <div class="content-page">
                     <div class="right-thank">
-                        <h4>ملفات التحميل</h4>
+                        <h4>مرفقات المنتج</h4>
                         <table class="table table-light">
                             <tr>
                                 <th>اسم الملف</th>
@@ -36,28 +36,39 @@
                                 </td>
                             </tr>
                             @if($order->order_items->product->downloads)
-                                @if($order->order_items->product->downloads->download_status == 'download')
+                                @if($order->order_items->product->downloads->download_type == 'zoom')
                                     <tr>
-                                        <th> رابط تحميل الملف</th>
+                                        <th> رابط الانضمام</th>
                                         <td>
-                                            <form method="post" action="{{ route('download_attachments') }}" >
-                                                <input name="order_id" type="hidden" value="{{ $order->id }}"/>
-                                                @csrf
-                                                <button type="submit" class="btn btn-success btn-sm" id="download_files">
-                                                    تحميل الملف
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @elseif($order->order_items->product->downloads->download_status == 'without_download')
-                                    <tr>
-                                        <th> مشاهدة المحتوي الملف</th>
-                                        <td>
-                                            <a href="#" class="btn btn-success btn-sm show_attachments" data-id="{{ $order->order_items->product->downloads->download_attachments_id }}">
-                                                الاطلاع على الملفات
+                                            <a class="btn btn-success btn-sm" href="{{ $order->order_items->product->downloads->download_attachments_id }}" >
+                                               الانضمام
                                             </a>
                                         </td>
                                     </tr>
+                                @else
+                                    @if($order->order_items->product->downloads->download_status == 'download')
+                                        <tr>
+                                            <th> رابط تحميل الملف</th>
+                                            <td>
+                                                <form method="post" action="{{ route('download_attachments') }}" >
+                                                    <input name="order_id" type="hidden" value="{{ $order->id }}"/>
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success btn-sm" id="download_files">
+                                                        تحميل الملف
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @elseif($order->order_items->product->downloads->download_status == 'without_download')
+                                        <tr>
+                                            <th> مشاهدة المحتوي الملف</th>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-sm show_attachments" data-id="{{ $order->order_items->product->downloads->download_attachments_id }}">
+                                                    الاطلاع على الملفات
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endif
                             @endif
                         </table>
