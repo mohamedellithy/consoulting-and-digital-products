@@ -18,20 +18,14 @@
                     </b>
                 </div>
                 <div class="frame-buy">
-                    @if( ($product->from == null) || ($product->to == null) 
-                    || ( ( strtotime($product->to) >= strtotime(date('Y-m-d h:i:s')) ) && ( strtotime(date('Y-m-d h:i:s')) >= strtotime($product->from)) ) ) 
-                        
-                        <form action="{{ route('buy_now') }}"" method="post">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                            <input type="hidden" name="qty"        value="1" />
-                            <button type="submit" class="btns btns-secondary-color">
-                                شراء المنتج
-                            </button>
-                        </form>
-                    @else
-                        -
-                    @endif
+                    <form action="{{ route('buy_now') }}"" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                        <input type="hidden" name="qty"        value="1" />
+                        <button type="submit" class="btns btns-secondary-color">
+                            شراء المنتج
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
