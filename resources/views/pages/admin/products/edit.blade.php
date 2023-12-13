@@ -89,6 +89,7 @@
                                     <option value="video" @isset($product->downloads) @if($product->downloads->download_type == 'video') selected @endif @endisset>Video</option>
                                     <option value="audio" @isset($product->downloads) @if($product->downloads->download_type == 'audio') selected @endif @endisset>Audio</option>
                                     <option value="zip"   @isset($product->downloads) @if($product->downloads->download_type == 'zip') selected @endif   @endisset>Zip</option>
+                                    <option value="zoom"   @isset($product->downloads) @if($product->downloads->download_type == 'zoom') selected @endif   @endisset>Zoom</option>
                                     <option value="vnd.openxmlformats-officedocument.spreadsheetml.sheet"   @isset($product->downloads) @if($product->downloads->download_type == 'vnd.openxmlformats-officedocument.spreadsheetml.sheet') selected @endif   @endisset>xlsx</option>
 
                                 </select>
