@@ -8,11 +8,11 @@
     if(($product->from != null) && ($product->to != null)){
         if(strtotime($product->from) > strtotime(date('Y-m-d h:i:s')) ){
             $diffInDate = $startDate;
-            $text = "موعد بداية الدورة";
+            $text = "متبقي على بداية العرض";
             $allow_register = false;
         } elseif(strtotime($product->to) > strtotime(date('Y-m-d h:i:s')) ) {
             $diffInDate = $endDate;
-            $text = "متبقي على نهاية الدورة";
+            $text = "متبقي على نهاية العرض";
             $allow_register = true;
         } else {
             $diffInDate = null;
@@ -23,7 +23,7 @@
 @if($diffInDate)
     <p class="countdown-all">
         {{ $text }}
-        <span id="countdown"></span> 
+        <span id="countdown"></span>
     </p>
 @endif
 
