@@ -40,7 +40,7 @@
                                     <tr>
                                         <th> رابط الانضمام</th>
                                         <td>
-                                            <a class="btn btn-success btn-sm" href="{{ $order->order_items->product->downloads->download_attachments_id }}" >
+                                            <a class="btn btn-success btn-sm" href="{{ $order->order_items->product->downloads->download_link }}" >
                                                الانضمام
                                             </a>
                                         </td>
