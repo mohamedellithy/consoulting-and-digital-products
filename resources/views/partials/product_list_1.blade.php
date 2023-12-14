@@ -31,10 +31,3 @@
         </div>
     </div>
 </div>
-<style>
-    .countdown-all{
-        font-size: 12px;
-        color: red;
-        text-align: center;
-    }
-</style>
