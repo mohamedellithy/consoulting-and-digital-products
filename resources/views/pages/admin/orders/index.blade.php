@@ -68,7 +68,7 @@ $rows   = request()->query('rows')   ?: 10;
                         @foreach($orders as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td class="width-16">{{ $order->order_no }}</td>
+                                <td class="width-16">{{ $order->order_no ?: '-' }}</td>
                                 <td class="width-16">
                                     {{ $order->order_items ? $order->order_items->product->name : '-' }}
                                 </td>
