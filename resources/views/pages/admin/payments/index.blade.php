@@ -66,8 +66,8 @@ $rows   = request()->query('rows')   ?: 10;
                         @foreach($payments as $payment)
                             <tr>
                                 <td>{{ $payment->id }}</td>
-                                <td>{{ $payment->order->order_no }}</td>
-                                <td>{{ $payment->order->customer->name }}</td>
+                                <td>{{ $payment->order ? $payment->order->order_no : '-' }}</td>
+                                <td>{{ $payment->order ? $payment->order->customer->name : '-' }}</td>
                                 <td>{{ formate_price($payment->total_payment) }}</td>
                                 <td>{{ $payment->transaction_id }}</td>
                                 <td>
@@ -87,7 +87,7 @@ $rows   = request()->query('rows')   ?: 10;
                                             data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item"
-                                                href="{{ route('admin.orders.show', $payment->order->order_no) }}"><i
+                                                href="{{ route('admin.orders.show', ($payment->order ? $payment->order->order_no : '') ) }}"><i
                                                     class="fa-regular fa-eye me-2"></i></i>
                                                 عرض
                                             </a>
